@@ -30,12 +30,15 @@ public class RoomManager : MonoBehaviour
                 item.SetBool("openDoor", true);
             }
 
-            print("Can Open Chest  " + canOpenChest);
+            //print("Can Open Chest  " + canOpenChest);
         }
     }
 
-    public void InitiateRoom()
+    public void InitiateRoom(Vector2 centre)
     {
+        Debug.Log("RoomManager " + centre);
+        AStarGridGraph.CreateGraph(centre);
+
         if (!hasBeenActivated)
         {
             foreach (var spawnPoint in spawnPoints)

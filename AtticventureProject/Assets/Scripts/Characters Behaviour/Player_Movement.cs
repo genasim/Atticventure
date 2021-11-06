@@ -90,14 +90,15 @@ public class Player_Movement : MonoBehaviour
         camCinamachine.Follow = collision.transform.parent;
         /*
         AstarData data = AstarPath.active.data;
-        //îïèîïøGridGraph astarGraph = data.AddGraph(typeof(GridGraph) as GridGraph);
+        //GridGraph astarGraph = data.AddGraph(typeof(GridGraph) as GridGraph);
         print(astarGraph.active.transform);
         print("changing graph center");
         //astarGraph.center = collision.gameObject.transform.parent.position; // <- NullReferenceException
         print("graph center changed");                                      
         */
+        Debug.Log("Player_Movement " + collision.transform.position);
         if (!collision.GetComponent<RoomManager>().hasBeenActivated)
-        collision.GetComponent<RoomManager>().InitiateRoom();
+            collision.GetComponent<RoomManager>().InitiateRoom(centre: collision.transform.position);
     }
     
     private void OnDrawGizmosSelected()

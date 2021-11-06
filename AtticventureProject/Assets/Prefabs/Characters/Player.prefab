@@ -109,7 +109,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -808744969
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 7887465231551580504, guid: 9c2710bd3570dcf4dbcbb98f00669e59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -205,7 +205,7 @@ MonoBehaviour:
   player: {fileID: 6610984723404469180}
   cam: {fileID: 0}
   attackPoint: {fileID: 6610984722910652426}
-  bulletPrefab: {fileID: 3692864561690947711, guid: 17aaabe1df090124f9a67eaedb1f26dc, type: 3}
+  bulletPrefab: {fileID: 3692864561690947711, guid: ee2349bb13862a84fa4c775854770f30, type: 3}
   bulletSpeed: 35
   damage: 10
   attackSpeed: 2
