@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - SpawnPoint
+  - Rooms
+  - Surface
+  - Enemy
+  - Crate
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Terrain
+  - Water
+  - UI
+  - Player
+  - Bullet
+  - Enemy
+  - Light
+  - SpawnPoints
+  - EnemyBullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2824570239
+    locked: 0
+  - name: Doors
+    uniqueID: 2519524475
+    locked: 0
+  - name: Loot
+    uniqueID: 2301199097
+    locked: 0
+  - name: Crates
+    uniqueID: 2225005597
+    locked: 0
+  - name: Enemy
+    uniqueID: 3065411503
+    locked: 0
+  - name: Player
+    uniqueID: 3486222327
+    locked: 0
+  - name: Bullet
+    uniqueID: 2634962089
+    locked: 0
+  - name: Upper Door
+    uniqueID: 2650552761
+    locked: 0
