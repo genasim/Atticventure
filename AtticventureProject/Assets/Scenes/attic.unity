@@ -5620,6 +5620,10 @@ PrefabInstance:
       propertyPath: pointer
       value: 
       objectReference: {fileID: 751142185}
+    - target: {fileID: 6610984723404469182, guid: bb4c740423913624096b69b307195e28, type: 3}
+      propertyPath: bulletSpeed
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb4c740423913624096b69b307195e28, type: 3}
 --- !u!4 &6653934514008648105
