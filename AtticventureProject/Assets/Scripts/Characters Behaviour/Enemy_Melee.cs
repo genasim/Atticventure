@@ -33,13 +33,6 @@ public class Enemy_Melee : MonoBehaviour
             Physics2D.OverlapCircle(gameObject.transform.position, attackRange, playerMask).gameObject.GetComponent<HealthManager>().TakeDamage(damage);
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-            collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

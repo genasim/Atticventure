@@ -24,6 +24,7 @@ public class LootEffects : MonoBehaviour
         playerWeapon = GameObject.FindGameObjectWithTag("Player").GetComponent<Shooting>();
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManager>();
     }
+
     void Update()
     {
         canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && Input.GetKeyDown(KeyCode.E);
@@ -37,6 +38,12 @@ public class LootEffects : MonoBehaviour
             crateAnim.SetBool("ItemSpawned", true);
             hasSpawned = true;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(check.position, 1);
     }
 
     public void SetEffect()

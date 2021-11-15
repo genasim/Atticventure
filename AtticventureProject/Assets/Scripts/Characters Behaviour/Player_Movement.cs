@@ -10,7 +10,6 @@ public class Player_Movement : MonoBehaviour
     Vector2 movement;
     public Animator animator;
 
-    //private GridGraph astarGraph;
     public CinemachineVirtualCamera camCinamachine;
 
     public float speed = 2f;
@@ -88,22 +87,10 @@ public class Player_Movement : MonoBehaviour
     {
         camCinamachine.LookAt = collision.transform.parent;
         camCinamachine.Follow = collision.transform.parent;
-        /*
-        AstarData data = AstarPath.active.data;
-        //GridGraph astarGraph = data.AddGraph(typeof(GridGraph) as GridGraph);
-        print(astarGraph.active.transform);
-        print("changing graph center");
-        //astarGraph.center = collision.gameObject.transform.parent.position; // <- NullReferenceException
-        print("graph center changed");                                      
-        */
-        Debug.Log("Player_Movement " + collision.transform.position);
+
+        AStarGridGraph.UpdateGraph(centre: collision.transform.position);
+
         if (!collision.GetComponent<RoomManager>().hasBeenActivated)
-            collision.GetComponent<RoomManager>().InitiateRoom(centre: collision.transform.position);
-    }
-    
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawSphere(GetComponent<Shooting>().attackPoint.transform.position, .5f);
+            collision.GetComponent<RoomManager>().InitiateRoom();
     }
 }

@@ -14,9 +14,11 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
-        foreach (var item in enemyList) {
+        foreach (var item in enemyList)
+        {
             if (!item) enemyList.Remove(item);
         }
+
         if (enemyList.Count == 0)
         {
             foreach (var border in doorColliders)
@@ -30,15 +32,12 @@ public class RoomManager : MonoBehaviour
                 item.SetBool("openDoor", true);
             }
 
-            //print("Can Open Chest  " + canOpenChest);
+            canOpenChest = true;
         }
     }
 
-    public void InitiateRoom(Vector2 centre)
+    public void InitiateRoom()
     {
-        Debug.Log("RoomManager " + centre);
-        AStarGridGraph.CreateGraph(centre);
-
         if (!hasBeenActivated)
         {
             foreach (var spawnPoint in spawnPoints)
@@ -59,11 +58,6 @@ public class RoomManager : MonoBehaviour
             }
 
             hasBeenActivated = true;
-        }
-        else
-        {
-            canOpenChest = true;
-            return;
         }
     }
 }
