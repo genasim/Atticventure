@@ -99,7 +99,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  attackSpeed: 0.4
+  attackSpeed: 0.7
   damage: 10
   attackRange: 1.45
 --- !u!114 &4312015062878629689

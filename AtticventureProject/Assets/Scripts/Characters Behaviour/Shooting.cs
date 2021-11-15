@@ -31,7 +31,7 @@ public class Shooting : MonoBehaviour
         if (Time.time >= nextTimeToAttack & Input.GetButton("Fire1"))
         {
             nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
-            Shoot(attackDir);
+            if (!PauseMenu.gameIsPaused) Shoot(attackDir);
         }
     }
 
