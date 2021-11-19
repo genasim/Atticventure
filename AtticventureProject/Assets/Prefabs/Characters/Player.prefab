@@ -185,11 +185,6 @@ MonoBehaviour:
   animator: {fileID: 6610984723404469173}
   camCinamachine: {fileID: 0}
   speed: 9
-  isMovingRight: 0
-  isMovingLeft: 0
-  isMovingUp: 0
-  isMovingDown: 0
-  isNotMoving: 0
 --- !u!114 &6610984723404469182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +233,7 @@ Animator:
   m_GameObject: {fileID: 6610984723404469181}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d7820515fcf74244f868144233907e67, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3e5edcfddbaa6f449b1844d4b7604fdd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
