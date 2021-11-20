@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    private int health;
+    [SerializeField] private int health;
     public static int numberOfHearths = 5;
 
     [SerializeField] private Image[] hearts;
@@ -15,8 +15,9 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        health = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManager>().currentHealth / 10;  
-        for (int i = 0; i <= hearts.Length; i++)
+        health = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManager>().currentHealth / 10;
+
+        for (int i = 0; i < hearts.Length; i++)
         {
             if (i < numberOfHearths)
                 hearts[i].enabled = true;
@@ -24,7 +25,7 @@ public class Health : MonoBehaviour
                 hearts[i].enabled = false;
 
 
-            if ((i + 1) * 2 < health)
+            if ((i + 1) * 2 <= health)
                 hearts[i].sprite = fullHeart;
             else if ((i + 1) * 2 == health + 1)
                 hearts[i].sprite = halfHeart;

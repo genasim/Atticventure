@@ -9,6 +9,10 @@ TagManager:
   - Surface
   - Enemy
   - Crate
+  - PlusHP
+  - MinusHP
+  - PlusMaxHP
+  - MinusMaxHP
   layers:
   - Default
   - TransparentFX

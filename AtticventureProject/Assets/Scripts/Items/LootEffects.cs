@@ -149,12 +149,12 @@ public class LootEffects : MonoBehaviour
     }
     public void PlusHP()
     {
-        playerHealth.currentHealth += 5;
+        playerHealth.currentHealth += 10;
         Debug.Log("It worked");
     }
     public void MinusHP()
     {
-        playerHealth.currentHealth -= 5;
+        if (playerHealth.currentHealth >= 50) playerHealth.currentHealth -= 10;
         Debug.Log("It worked");
     }
     public void PlusCritRate()
@@ -179,14 +179,16 @@ public class LootEffects : MonoBehaviour
     }
     public void PlusMaxHP()
     {
-        playerHealth.maxHealth += 10;
+        if (playerHealth.maxHealth <= 140) playerHealth.maxHealth += 20;
         playerHealth.currentHealth += 10;
+        if (Health.numberOfHearths <= 7) Health.numberOfHearths++;
         Debug.Log("It worked");
     }
     public void MinusMaxHP()
     {
-        playerHealth.maxHealth -= 10;
-        playerHealth.currentHealth -= 10;
+        if (playerHealth.maxHealth >= 60) playerHealth.maxHealth -= 20;
+        if (Health.numberOfHearths >= 3) Health.numberOfHearths--;
+        if (playerHealth.currentHealth >= 50) playerHealth.currentHealth -= 10;
         Debug.Log("It worked");
     }
 }
