@@ -225,7 +225,7 @@ MonoBehaviour:
   - {fileID: 4697966692496280231}
   doorAnimatiors:
   - {fileID: 5172599986273811300}
-  canOpenChest: 0
+  crate: {fileID: 1582356623999659280}
   hasBeenActivated: 0
 --- !u!61 &6129206239594809743
 BoxCollider2D:
@@ -1695,6 +1695,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
+--- !u!114 &1582356623999659280 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2728330268531666372, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
+  m_PrefabInstance: {fileID: 3470394167572218068}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38dd586ea0f5d374881d821b5fbe2dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1582356623999659295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
@@ -1948,14 +1959,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64638e6ffc07679469838afee6eeb4b8, type: 3}
---- !u!1 &4864751767240218574 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9084209653827907288, guid: 64638e6ffc07679469838afee6eeb4b8, type: 3}
-  m_PrefabInstance: {fileID: 4436759739578759446}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4864751767240218575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9084209653827907289, guid: 64638e6ffc07679469838afee6eeb4b8, type: 3}
+  m_PrefabInstance: {fileID: 4436759739578759446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4864751767240218574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9084209653827907288, guid: 64638e6ffc07679469838afee6eeb4b8, type: 3}
   m_PrefabInstance: {fileID: 4436759739578759446}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5193673254858821341

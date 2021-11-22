@@ -10,24 +10,29 @@ public class LootEffects : MonoBehaviour
 
     private int effect;
     public Items item;
+
     private bool hasSpawned = false;
     private bool canBeOpen = false;
+    public bool roomHasBeenCleared = false;
+
     public Animator itemAnim;
     public Animator crateAnim;
     public Transform check;
     public LayerMask player;
 
-    // Start is called before the first frame update
+    GameObject Player;
+
     void Start()
     {
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Movement>();
-        playerWeapon = GameObject.FindGameObjectWithTag("Player").GetComponent<Shooting>();
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManager>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = Player.GetComponent<Player_Movement>();
+        playerWeapon = Player.GetComponent<Shooting>();
+        playerHealth = Player.GetComponent<HealthManager>();
     }
 
     void Update()
     {
-        canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && Input.GetKeyDown(KeyCode.E);
+        canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && Input.GetKeyDown(KeyCode.E) & roomHasBeenCleared;
         if (item && hasSpawned == false && canBeOpen)
         {
             effect = item.effect;

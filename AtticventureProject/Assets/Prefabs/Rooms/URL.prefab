@@ -2658,7 +2658,7 @@ MonoBehaviour:
   - {fileID: 940727356737095464}
   - {fileID: 1437557641897899605}
   - {fileID: 1127356537328192083}
-  canOpenChest: 0
+  crate: {fileID: 1789524051528231816}
   hasBeenActivated: 0
 --- !u!61 &1473818973662031665
 BoxCollider2D:
@@ -2987,6 +2987,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
   m_PrefabInstance: {fileID: 4398138080974669388}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789524051528231816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2728330268531666372, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
+  m_PrefabInstance: {fileID: 4398138080974669388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38dd586ea0f5d374881d821b5fbe2dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4517181452523936498
 PrefabInstance:
   m_ObjectHideFlags: 0

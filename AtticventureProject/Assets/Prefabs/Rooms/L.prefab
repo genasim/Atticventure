@@ -1067,7 +1067,7 @@ MonoBehaviour:
   - {fileID: 8078748580753668030}
   doorAnimatiors:
   - {fileID: 1196162449626411970}
-  canOpenChest: 0
+  crate: {fileID: 82662376700197741}
   hasBeenActivated: 0
 --- !u!61 &4965454655916061383
 BoxCollider2D:
@@ -1511,6 +1511,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
   m_PrefabInstance: {fileID: 2664254194026256041}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &82662376700197741 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2728330268531666372, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
+  m_PrefabInstance: {fileID: 2664254194026256041}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38dd586ea0f5d374881d821b5fbe2dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2895744056930778869
 PrefabInstance:
   m_ObjectHideFlags: 0

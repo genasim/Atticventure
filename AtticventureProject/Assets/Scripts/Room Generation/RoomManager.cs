@@ -8,15 +8,16 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private List<GameObject> spawnPoints;
     [SerializeField] private BoxCollider2D[] doorColliders;
     [SerializeField] private Animator[] doorAnimatiors;
-    
-    public bool canOpenChest = false;
+    [SerializeField] private LootEffects crate;
+
+    //public bool canOpenChest = false;
     public bool hasBeenActivated = false;
 
     void Update()
     {
-        foreach (var item in enemyList)
+        foreach (var enemy in enemyList)
         {
-            if (!item) enemyList.Remove(item);
+            if (!enemy) enemyList.Remove(enemy);
         }
 
         if (enemyList.Count == 0)
@@ -32,7 +33,7 @@ public class RoomManager : MonoBehaviour
                 item.SetBool("openDoor", true);
             }
 
-            canOpenChest = true;
+            crate.roomHasBeenCleared = true;
         }
     }
 
@@ -57,6 +58,7 @@ public class RoomManager : MonoBehaviour
                 item.SetBool("openDoor", false);
             }
 
+            crate.roomHasBeenCleared = false;
             hasBeenActivated = true;
         }
     }

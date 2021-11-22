@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RandomLoot : MonoBehaviour
 {
-    public Items[] loot;
-    LootEffects crate;
+    [SerializeField] private Items[] loot;
+    [SerializeField] private LootEffects effects;
 
     public int[] table =
     {
@@ -20,7 +20,7 @@ public class RandomLoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        crate = GameObject.FindGameObjectWithTag("Crate").GetComponent<LootEffects>();
+        //effects = GameObject.FindGameObjectWithTag("Crate").GetComponent<LootEffects>();
         foreach (var item in table)
         {
             total += item;
@@ -32,7 +32,7 @@ public class RandomLoot : MonoBehaviour
         {
             if (randomNumber <= table[i])
             {
-                crate.item = loot[i];
+                effects.item = loot[i];
                 return;
             }
             else
