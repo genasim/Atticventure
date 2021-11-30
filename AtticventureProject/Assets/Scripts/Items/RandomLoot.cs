@@ -17,10 +17,8 @@ public class RandomLoot : MonoBehaviour
     public int total;
     public int randomNumber;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //effects = GameObject.FindGameObjectWithTag("Crate").GetComponent<LootEffects>();
         foreach (var item in table)
         {
             total += item;

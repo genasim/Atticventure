@@ -10,7 +10,6 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private Animator[] doorAnimatiors;
     [SerializeField] private LootEffects crate;
 
-    //public bool canOpenChest = false;
     public bool hasBeenActivated = false;
 
     void Update()

@@ -26,7 +26,7 @@ public class HealthManager : MonoBehaviour
 
         hitSFX.Play();
 
-        print(("damage taken [0] [1]", maxHealth, currentHealth));
+        print($"damage taken {maxHealth} {currentHealth}");
     }
 
     void Die()
