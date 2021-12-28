@@ -19,7 +19,7 @@ public class Player_Movement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         animator.SetFloat("Speed", movement.sqrMagnitude);
-        if (movement.x != 0 | movement.y != 0)
+        if (movement.x != 0 || movement.y != 0)
         {
             xAnimation = (int)movement.x;
             yAnimation = (int)movement.y;

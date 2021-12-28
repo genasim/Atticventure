@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] internal Transform player;
-    [SerializeField] internal Camera cam;
-    [SerializeField] internal Transform attackPoint;
+    [SerializeField] private Transform player;
+    [SerializeField] private Camera cam;
+    [SerializeField] private Transform attackPoint;
 
-    [SerializeField] internal GameObject bulletPrefab;
+    [SerializeField] private GameObject bulletPrefab;
     public float bulletSpeed = 35f;
 
     public float damage = 20f;
@@ -18,7 +18,7 @@ public class Shooting : MonoBehaviour
 
     public float critRate = 10;
     public float critDamage = 50;
-    private float critMeter;
+    private readonly float critMeter;
 
     public AudioSource shotSFX;
 
