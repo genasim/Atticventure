@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Shooting : MonoBehaviour
+public class Player_Shooting : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    private InputSystem inputSystem;
+
+    private Transform player;
     [SerializeField] private Camera cam;
     [SerializeField] private Transform attackPoint;
+    private Vector2 attackDir;
 
     [SerializeField] private GameObject bulletPrefab;
     public float bulletSpeed = 35f;
@@ -22,12 +27,18 @@ public class Shooting : MonoBehaviour
 
     public AudioSource shotSFX;
 
-    void Update()
-    {
-        currentAttackSpeed = attackSpeed;
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 attackDir = mousePos - (Vector2)attackPoint.position;
+    private void Awake() {
+        inputSystem = new InputSystem();
+        player = GetComponent<Transform>();
+    }
 
+    private void OnEnable() {
+        inputSystem.Player.Shoot.performed += DoShoot;
+        inputSystem.Player.Shoot.Enable();
+    }
+
+    private void DoShoot(InputAction.CallbackContext obj)
+    {
         if (Time.time >= nextTimeToAttack & Input.GetButton("Fire1"))
         {
             nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
@@ -35,10 +46,23 @@ public class Shooting : MonoBehaviour
         }
     }
 
+    private void OnDisable() {
+        inputSystem.Player.Shoot.Disable();
+        inputSystem.Player.Shoot.performed -= DoShoot;
+    }
+
+    void Update()
+    {
+        currentAttackSpeed = attackSpeed;
+        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        attackDir = mousePos - (Vector2)attackPoint.position;
+    }
+
     void Shoot(Vector2 attackDir)
     {
         GameObject bullet = Instantiate(bulletPrefab, attackPoint.transform.position, transform.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * attackDir.normalized;
+        
         if (critRate >= critMeter)
         {
             bullet.GetComponent<BulletScript>().damage = damage;
