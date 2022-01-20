@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Player_Shooting : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    private InputSystem inputSystem;
+
     private Transform player;
     [SerializeField] private Camera cam;
     [SerializeField] private Transform attackPoint;
@@ -26,33 +27,29 @@ public class Player_Shooting : MonoBehaviour
 
     public AudioSource shotSFX;
 
-    // private void Awake() {
-    //     inputSystem = new InputSystem();
-    //     player = GetComponent<Transform>();
-    // }
-
-    // private void OnEnable() {
-    //     inputSystem.Player.Shoot.performed += DoShoot;
-    //     inputSystem.Player.Shoot.Enable();
-    // }
-    // private void OnDisable() {
-    //     inputSystem.Player.Shoot.Disable();
-    //     inputSystem.Player.Shoot.performed -= DoShoot;
-    // }
     private void Awake() {
-        playerInput = GetComponent<PlayerInput>();
+        inputSystem = new InputSystem();
+        player = GetComponent<Transform>();
     }
 
-    public void DoShoot()
+    private void OnEnable() {
+        inputSystem.Player.Shoot.performed += DoShoot;
+        inputSystem.Player.Shoot.Enable();
+    }
+
+    private void DoShoot(InputAction.CallbackContext obj)
     {
-        // bool pressed = playerInput.actions["Shoot"].
-        if (Time.time >= nextTimeToAttack)
+        if (Time.time >= nextTimeToAttack & Input.GetButton("Fire1"))
         {
             nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
-            Shoot(attackDir);
+            if (!PauseMenu.gameIsPaused) Shoot(attackDir);
         }
     }
 
+    private void OnDisable() {
+        inputSystem.Player.Shoot.Disable();
+        inputSystem.Player.Shoot.performed -= DoShoot;
+    }
 
     void Update()
     {

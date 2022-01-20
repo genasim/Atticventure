@@ -14,7 +14,6 @@ public class ShootPistol : MonoBehaviour
 
     void Shoot()    // Being used by AnimationEvent in each of the Animations
     {
-        Debug.Log("Event Triggered!");
         enemy_Ranged.Shoot();
     }
 }
