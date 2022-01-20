@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Input System.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input System/Input System.inputactions'
 
 using System;
 using System.Collections;
@@ -29,10 +29,10 @@ public class @InputSystem : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
-                    ""id"": ""3de96232-2488-47b1-b0d1-158a8c98c5d4"",
+                    ""id"": ""0f9d4b1e-4271-4b7e-b0a3-869e5db39020"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Hold""
                 }
             ],
             ""bindings"": [
@@ -59,9 +59,9 @@ public class @InputSystem : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""12513cdd-7c56-4374-adbc-495c9acffd76"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""name"": ""left"",
+                    ""id"": ""38a592d3-9760-4256-bff2-a00dc949e23a"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
@@ -70,9 +70,9 @@ public class @InputSystem : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""38a592d3-9760-4256-bff2-a00dc949e23a"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""name"": ""down"",
+                    ""id"": ""12513cdd-7c56-4374-adbc-495c9acffd76"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
@@ -148,7 +148,7 @@ public class @InputSystem : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fb5c92df-85db-4af7-aa9e-0db8fa5a85cf"",
+                    ""id"": ""8568fb5e-6564-48e1-b85f-6331453bf580"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
