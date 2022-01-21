@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      holy_hunter_all_0: 7217798284284849719
+      holy_hunter_all_1: 7752994468054484165
+      holy_hunter_all_2: -6671865367931447517
+      holy_hunter_all_3: -6186498473948673458
+      holy_hunter_all_4: -7035977807930184184
+      holy_hunter_all_5: -6089192443130940062
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 public class Player_Movement : MonoBehaviour
 {
-    private InputSystem inputSystem;
-    private InputAction movementReader;
     private Vector2 movement;
 
     [SerializeField] private Rigidbody2D rb2D;
@@ -17,23 +15,15 @@ public class Player_Movement : MonoBehaviour
 
     int xAnimation, yAnimation;
 
+    private PlayerInput playerInput;
 
     private void Awake() {
-        inputSystem = new InputSystem();
-    }
-
-    private void OnEnable() {
-        movementReader = inputSystem.Player.Movement;
-        movementReader.Enable();
-    }
-
-    private void OnDisable() {
-        movementReader.Disable();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
-        movement = movementReader.ReadValue<Vector2>();
+        movement = playerInput.actions["Movement"].ReadValue<Vector2>();
         animator.SetFloat("Speed", movement.sqrMagnitude);
         if (movement.x != 0 || movement.y != 0)
         {
@@ -46,7 +36,7 @@ public class Player_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Movement(movement: movementReader.ReadValue<Vector2>());
+        Movement(movement: playerInput.actions["Movement"].ReadValue<Vector2>());
     }
 
     void Movement(Vector2 movement)

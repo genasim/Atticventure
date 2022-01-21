@@ -46,7 +46,7 @@ public class Enemy_Ranged : MonoBehaviour
     {
         float x = Mathf.Abs(thisEnemy.position.x - player.position.x);
         float y = Mathf.Abs(thisEnemy.position.y - player.position.y);
-        //print($"x:{x} y:{y}");
+        // print($"x:{x} y:{y}");
 
         if (x >= y)
             return new Vector2((thisEnemy.position.x > player.position.x) ? -1 : 1, 0);
