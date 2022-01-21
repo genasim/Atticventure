@@ -5,7 +5,7 @@ using UnityEngine;
 public class LootEffects : MonoBehaviour
 {
     Player_Movement playerMovement;
-    Shooting playerWeapon;
+    Player_Shooting playerWeapon;
     HealthManager playerHealth;
 
     private int effect;
@@ -26,7 +26,7 @@ public class LootEffects : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         playerMovement = Player.GetComponent<Player_Movement>();
-        playerWeapon = Player.GetComponent<Shooting>();
+        playerWeapon = Player.GetComponent<Player_Shooting>();
         playerHealth = Player.GetComponent<HealthManager>();
     }
 

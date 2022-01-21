@@ -24,9 +24,6 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake() {
         pauseButton.performed += _ => Pause();
-    }
-
-    private void Start() {
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
     }
 
