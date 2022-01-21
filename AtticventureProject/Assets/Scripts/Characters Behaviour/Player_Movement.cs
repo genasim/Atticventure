@@ -1,16 +1,13 @@
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class Player_Movement : MonoBehaviour
 {
-<<<<<<< Updated upstream
-=======
-    private PlayerInput playerInput;
+    private Vector2 movement;
 
->>>>>>> Stashed changes
     [SerializeField] private Rigidbody2D rb2D;
     [SerializeField] private Animator animator;
-    private Vector2 movement;
 
     [SerializeField] private CinemachineVirtualCamera camCinamachine;
 
@@ -18,26 +15,20 @@ public class Player_Movement : MonoBehaviour
 
     int xAnimation, yAnimation;
 
-<<<<<<< Updated upstream
-    private void Update()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+    private PlayerInput playerInput;
 
-=======
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
-        Vector2 movement = playerInput.actions["Movement"].ReadValue<Vector2>();
->>>>>>> Stashed changes
+        movement = playerInput.actions["Movement"].ReadValue<Vector2>();
         animator.SetFloat("Speed", movement.sqrMagnitude);
         if (movement.x != 0 || movement.y != 0)
         {
-            xAnimation = (int)movement.x;
-            yAnimation = (int)movement.y;
+            xAnimation = Mathf.RoundToInt(movement.x);
+            yAnimation = Mathf.RoundToInt(movement.y);
             animator.SetFloat("Horizontal", xAnimation);
             animator.SetFloat("Vertical", yAnimation);
         }
@@ -45,11 +36,7 @@ public class Player_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-<<<<<<< Updated upstream
-        Movement(movement);
-=======
         Movement(movement: playerInput.actions["Movement"].ReadValue<Vector2>());
->>>>>>> Stashed changes
     }
 
     void Movement(Vector2 movement)

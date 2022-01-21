@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:AtticventureProject/Assets/Scripts/Characters Behaviour/Shooting.cs.meta
-guid: d926950bdaf9dd448bf14a099eda05dc
-=======
-guid: cc11d99b1a6682f4cbc4aba1fcd9ac5d
->>>>>>> Stashed changes:AtticventureProject/Assets/Scripts/Input System/RebindActionUI.cs.meta
+guid: f6520739c0f58114293fafe1590b9867
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

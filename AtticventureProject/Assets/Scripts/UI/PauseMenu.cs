@@ -12,7 +12,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] InputAction pauseButton;
     PlayerInput playerInput;
 
-
     private static bool gameIsPaused = false;
 
     private void OnEnable() {

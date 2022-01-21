@@ -1,20 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Shooting : MonoBehaviour
+public class Player_Shooting : MonoBehaviour
 {
-<<<<<<< Updated upstream:AtticventureProject/Assets/Scripts/Characters Behaviour/Shooting.cs
-    [SerializeField] private Transform player;
-=======
-    //private PlayerInput playerInput; TODO Mouse delta
->>>>>>> Stashed changes:AtticventureProject/Assets/Scripts/Characters Behaviour/Player_Shooting.cs
+    private PlayerInput playerInput;
+    private Transform player;
     [SerializeField] private Camera cam;
-
     [SerializeField] private Transform attackPoint;
+    private Vector2 attackDir;
 
     [SerializeField] private GameObject bulletPrefab;
     public float bulletSpeed = 35f;
+
     public float damage = 20f;
     private float nextTimeToAttack;
     public float attackSpeed = 1f;
@@ -26,35 +26,46 @@ public class Shooting : MonoBehaviour
 
     public AudioSource shotSFX;
 
-    void Update()
-<<<<<<< Updated upstream:AtticventureProject/Assets/Scripts/Characters Behaviour/Shooting.cs
-    {
-        currentAttackSpeed = attackSpeed;
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 attackDir = mousePos - (Vector2)attackPoint.position;
+    // private void Awake() {
+    //     inputSystem = new InputSystem();
+    //     player = GetComponent<Transform>();
+    // }
 
-        if (Time.time >= nextTimeToAttack & Input.GetButton("Fire1"))
-=======
-    {
-        currentAttackSpeed = attackSpeed;
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        attackDir = mousePos - (Vector2)attackPoint.position;
+    // private void OnEnable() {
+    //     inputSystem.Player.Shoot.performed += DoShoot;
+    //     inputSystem.Player.Shoot.Enable();
+    // }
+    // private void OnDisable() {
+    //     inputSystem.Player.Shoot.Disable();
+    //     inputSystem.Player.Shoot.performed -= DoShoot;
+    // }
+    private void Awake() {
+        playerInput = GetComponent<PlayerInput>();
     }
 
     public void DoShoot()
     {
+        // bool pressed = playerInput.actions["Shoot"].
         if (Time.time >= nextTimeToAttack)
->>>>>>> Stashed changes:AtticventureProject/Assets/Scripts/Characters Behaviour/Player_Shooting.cs
         {
             nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
             Shoot(attackDir);
         }
     }
 
+
+    void Update()
+    {
+        currentAttackSpeed = attackSpeed;
+        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        attackDir = mousePos - (Vector2)attackPoint.position;
+    }
+
     void Shoot(Vector2 attackDir)
     {
         GameObject bullet = Instantiate(bulletPrefab, attackPoint.transform.position, transform.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * attackDir.normalized;
+        
         if (critRate >= critMeter)
         {
             bullet.GetComponent<BulletScript>().damage = damage;
@@ -67,4 +78,3 @@ public class Shooting : MonoBehaviour
         shotSFX.Play();
     }
 }
-
