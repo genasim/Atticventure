@@ -11,8 +11,6 @@ TagManager:
   - Crate
   - PlusHP
   - MinusHP
-  - PlusMaxHP
-  - MinusMaxHP
   layers:
   - Default
   - TransparentFX

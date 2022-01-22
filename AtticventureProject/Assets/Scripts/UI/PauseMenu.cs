@@ -16,14 +16,15 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable() {
         pauseButton.Enable();
+        pauseButton.performed += _ => Pause();
     }
 
     private void OnDisable() {
         pauseButton.Disable();
+        pauseButton.performed -= _ => Pause();
     }
 
     private void Awake() {
-        pauseButton.performed += _ => Pause();
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
     }
 
@@ -59,9 +60,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.enabled = false;
         optionsMenu.enabled = true;
     }
+    public void BackToPauseMenu() {
+        optionsMenu.enabled = false;
+        pauseMenu.enabled = true;
+    }
 
     public void Quit() {
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
+
 }

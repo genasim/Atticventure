@@ -29,12 +29,6 @@ public class Enemy_Ranged : MonoBehaviour
 
     void Update()
     {
-        //if (Time.time >= nextTimetoAttack)
-        //{
-        //    Shoot(player.position - gameObject.transform.position);
-        //    nextTimetoAttack = Time.time + 1 / attackSpeed;
-        //}
-
         attackDir = player.position - gameObject.transform.position;
 
         Vector2 playerDir = PlayerDir();
