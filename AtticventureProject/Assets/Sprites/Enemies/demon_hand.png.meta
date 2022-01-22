@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1f867dcc7f25e704dbb6326cbc8dd34a
+guid: eb65601858b48ee4a97af28b681633d2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,139 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: holy_hunter_all_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 62
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db792978272b151488a21c149ab01d9e
-      internalID: -1750213870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: holy_hunter_all_1
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 62
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7505b9c1e89b3245acfafb69d461d77
-      internalID: -752063138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: holy_hunter_all_2
-      rect:
-        serializedVersion: 2
-        x: 124
-        y: 62
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62c4222cf56cff542897fd66164b3c1d
-      internalID: 962174482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: holy_hunter_all_3
-      rect:
-        serializedVersion: 2
-        x: 186
-        y: 62
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e50293d02392644fb4a04c35f726500
-      internalID: -1829943382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: holy_hunter_all_4
-      rect:
-        serializedVersion: 2
-        x: 248
-        y: 62
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: daf02362367735c4d994badeffd0f44e
-      internalID: -1057016372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: holy_hunter_all_5
-      rect:
-        serializedVersion: 2
-        x: 310
-        y: 62
-        width: 62
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8bb8205ff131004478a13ef3cf23ab12
-      internalID: -314195440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: holy_hunter_all_6
+      name: demon_hand_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 62
-        height: 62
+        width: 41
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e70445a3b05555409e899e07fa89e06
-      internalID: -1449339479
+      spriteID: 8d34451c923028543b0b716cd847d3a7
+      internalID: -2000329893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holy_hunter_all_7
+      name: demon_hand_1
       rect:
         serializedVersion: 2
-        x: 62
+        x: 41
         y: 0
-        width: 62
-        height: 62
+        width: 41
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,20 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 739764a69fd53c2439c7d4dbcd9c6920
-      internalID: 211062169
+      spriteID: 4d30ec032db41eb40ab8e6a617bf6966
+      internalID: 465142999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holy_hunter_all_8
+      name: demon_hand_2
       rect:
         serializedVersion: 2
-        x: 124
+        x: 82
         y: 0
-        width: 62
-        height: 62
+        width: 41
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f044e821f0ee00b47a30683b3f783748
-      internalID: 355256396
+      spriteID: bf9c461a018626b479e77b0c65e2f8ee
+      internalID: -1351246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holy_hunter_all_9
+      name: demon_hand_3
       rect:
         serializedVersion: 2
-        x: 186
+        x: 123
         y: 0
-        width: 62
-        height: 62
+        width: 41
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfec5471a5cf5ba4596e38d9ebbf26e7
-      internalID: -1036895055
+      spriteID: 96655a83a0b37454785ecd959c051df2
+      internalID: 657345421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holy_hunter_all_10
+      name: demon_hand_4
       rect:
         serializedVersion: 2
-        x: 248
+        x: 164
         y: 0
-        width: 62
-        height: 62
+        width: 41
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -340,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6161ffa301332345b9324a7e579bee8
-      internalID: -1888661552
+      spriteID: ff5e2abe67ecb6045a061e2d2318a3e2
+      internalID: -387610330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: holy_hunter_all_11
+      name: demon_hand_5
       rect:
         serializedVersion: 2
-        x: 310
+        x: 205
         y: 0
-        width: 62
-        height: 62
+        width: 41
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -361,8 +235,155 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1240c530ad504e44798331e4af1cef75
-      internalID: 705134358
+      spriteID: 0b1450dd9f504314eb42ab5baa74c0b6
+      internalID: -1202264347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_hand_6
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 0
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 182e3c27f94dbc541a953b67d3671338
+      internalID: -422589966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_hand_7
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 0
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c87de55f6eb1e148877a593f15dda57
+      internalID: 1333109882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_hand_8
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 0
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19c32204fe9329946b52277ecba44237
+      internalID: -60614992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_hand_9
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 0
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46a1b8ba0ce9785489182c57d4d6e19d
+      internalID: -1593673247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_hand_10
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 0
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d9ce262bf9a8247837201d488e8aac
+      internalID: -413992439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_hand_11
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 0
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a612957ac19aed6458b10772fa37ad0f
+      internalID: 1706644392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demon_hand_12
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 0
+        width: 41
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c876fe5b15fcaad4c9b49dc390a7e3eb
+      internalID: -924233992
       vertices: []
       indices: 
       edges: []
@@ -378,18 +399,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      holy_hunter_all_0: -1750213870
-      holy_hunter_all_1: -752063138
-      holy_hunter_all_11: 705134358
-      holy_hunter_all_2: 962174482
-      holy_hunter_all_3: -1829943382
-      holy_hunter_all_9: -1036895055
-      holy_hunter_all_8: 355256396
-      holy_hunter_all_6: -1449339479
-      holy_hunter_all_4: -1057016372
-      holy_hunter_all_5: -314195440
-      holy_hunter_all_7: 211062169
-      holy_hunter_all_10: -1888661552
+      demon_hand_3: 657345421
+      demon_hand_1: 465142999
+      demon_hand_2: -1351246
+      demon_hand_5: -1202264347
+      demon_hand_0: -2000329893
+      demon_hand_7: 1333109882
+      demon_hand_12: -924233992
+      demon_hand_10: -413992439
+      demon_hand_6: -422589966
+      demon_hand_8: -60614992
+      demon_hand_11: 1706644392
+      demon_hand_9: -1593673247
+      demon_hand_4: -387610330
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
