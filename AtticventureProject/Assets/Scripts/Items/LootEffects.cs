@@ -26,7 +26,7 @@ public class LootEffects : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         playerMovement = Player.GetComponent<Player_Movement>();
-        playerWeapon = Player.GetComponent<Player_Shooting>();
+        playerWeapon = Player.GetComponent<Player_Shooting  >();
         playerHealth = Player.GetComponent<HealthManager>();
     }
 

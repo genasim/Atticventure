@@ -8,23 +8,18 @@ public class HealthManager : MonoBehaviour
     public int currentHealth;
     public AudioSource hitSFX;
 
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
-    }
-
-    private void Update()
-    {
-        if (currentHealth > maxHealth) currentHealth = maxHealth;
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= (int)damage;
+        hitSFX.Play();
+
         if (currentHealth <= 0) 
             Die();
-
-        hitSFX.Play();
 
         print($"damage taken {maxHealth} {currentHealth}");
     }

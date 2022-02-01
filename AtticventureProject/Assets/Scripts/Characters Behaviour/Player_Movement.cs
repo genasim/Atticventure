@@ -16,9 +16,11 @@ public class Player_Movement : MonoBehaviour
     int xAnimation, yAnimation;
 
     private PlayerInput playerInput;
+    private HealthManager health;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
+        health = GetComponent<HealthManager>();
     }
 
     private void Update()
@@ -32,6 +34,8 @@ public class Player_Movement : MonoBehaviour
             animator.SetFloat("Horizontal", xAnimation);
             animator.SetFloat("Vertical", yAnimation);
         }
+
+        if (health.currentHealth > health.maxHealth) health.currentHealth = health.maxHealth;
     }
 
     void FixedUpdate()
