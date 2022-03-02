@@ -2,18 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Player_Shooting : MonoBehaviour
+public class Player_Shooting : MonoBehaviour, IShooter
 {
-    private PlayerInput playerInput;
-    [SerializeField] private Camera cam;
+#region Variables
+    private InputSystem playerInput;
+    // private PlayerInput playerInput;
+
+    private Camera cam;
     [SerializeField] private Transform attackPoint;
-    private Vector2 attackDir;
 
     [SerializeField] private GameObject bulletPrefab;
-    public float bulletSpeed = 35f;
 
+    public Vector2 attackDir {get; private set;}
+    private bool attackHeld;
+    public float bulletSpeed = 35f;
     public float damage = 20f;
     private float nextTimeToAttack;
     public float attackSpeed = 1f;
@@ -24,29 +27,46 @@ public class Player_Shooting : MonoBehaviour
     private readonly float critMeter;
 
     public AudioSource shotSFX;
-    
+#endregion
+    string action; 
+
     private void Awake() {
-        playerInput = GetComponent<PlayerInput>();
+        // TODO: Reverted becuase of incompatability between On-Screen Controls and PlayerInput component
+        // playerInput = GetComponent<PlayerInput>();
+        // playerInput.actions["Shoot"].performed += _ => attackHeld = true;
+        // playerInput.actions["Shoot"].canceled += _ => attackHeld = false;
+
+        cam = Camera.main;
+        playerInput = _InitialiseInput.playerInput;
+        playerInput.Player.Shoot.performed += ctx => action = ctx.action.ToString();
+    }
+    
+    private void OnEnable() {
+        playerInput.Player.Shoot.performed += _ => attackHeld = true;
+        playerInput.Player.Shoot.canceled += _ => attackHeld = false;
     }
 
-    public void DoShoot()
-    {
-        if (Time.time >= nextTimeToAttack)
-        {
-            nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
-            Shoot(attackDir);
-        }
+    private void OnDisable() {
+        playerInput.Player.Shoot.performed -= _ => attackHeld = true;
+        playerInput.Player.Shoot.canceled -= _ => attackHeld = false;
     }
-
 
     void Update()
     {
+        Debug.Log(action);
+        if (Time.time >= nextTimeToAttack && attackHeld)
+        {
+            // attackDir = playerInput.actions["AttackDirection"].ReadValue<Vector2>();
+            attackDir = playerInput.Player.AttackDirection.ReadValue<Vector2>();
+            if (String.Equals(action, "Player/Shoot[/Mouse/leftButton]"))
+                attackDir = cam.ScreenToWorldPoint(attackDir) - attackPoint.position;
+            nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
+            Shoot();
+        }
         currentAttackSpeed = attackSpeed;
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        attackDir = mousePos - (Vector2)attackPoint.position;
     }
 
-    void Shoot(Vector2 attackDir)
+    public void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, attackPoint.transform.position, transform.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * attackDir.normalized;

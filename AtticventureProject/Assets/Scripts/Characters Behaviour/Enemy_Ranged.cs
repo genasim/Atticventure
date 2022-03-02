@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Ranged : MonoBehaviour
+[RequireComponent(typeof(HealthManager), typeof(Rigidbody2D), typeof(BoxCollider2D))]
+public class Enemy_Ranged : MonoBehaviour, IShooter
 {
+#region Variables
     private Transform thisEnemy;
     private Transform player;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform attackPoint;
 
-    private float nextTimetoAttack = 2f;
-    private Vector2 attackDir;
-    public float attackSpeed = 0.4f;
+    public Vector2 attackDir{get; private set;}
+    private Vector2 playerDir;
 
     public float damage = 10f;
     public float bulletSpeed = 20f;
@@ -19,6 +20,7 @@ public class Enemy_Ranged : MonoBehaviour
     [SerializeField] Animator animator;
 
     [SerializeField] AudioSource shotSFX;
+#endregion
 
     void Awake()
     {
@@ -29,26 +31,28 @@ public class Enemy_Ranged : MonoBehaviour
 
     void Update()
     {
-        attackDir = player.position - gameObject.transform.position;
+        if (player) {
+            attackDir = player.position - gameObject.transform.position;
+        }
 
-        Vector2 playerDir = PlayerDir();
+        PlayerDir(out playerDir);
         animator.SetFloat("Horizontal", playerDir.x);
         animator.SetFloat("Vertical", playerDir.y);
     }
 
-    private Vector2 PlayerDir()
+    private void PlayerDir(out Vector2 playerDir)
     {
         float x = Mathf.Abs(thisEnemy.position.x - player.position.x);
         float y = Mathf.Abs(thisEnemy.position.y - player.position.y);
         // print($"x:{x} y:{y}");
 
         if (x >= y)
-            return new Vector2((thisEnemy.position.x > player.position.x) ? -1 : 1, 0);
+            playerDir = new Vector2((thisEnemy.position.x > player.position.x) ? -1 : 1, 0);
         else
-            return new Vector2(0, (thisEnemy.position.y > player.position.y) ? -1 : 1);
+            playerDir = new Vector2(0, (thisEnemy.position.y > player.position.y) ? -1 : 1);
     }
 
-    public void Shoot()     // Being called by AnimationEvent in ShootPistol.cs
+    public void Shoot()     // Called via AnimationEvent in AnimEvent_HolyHunter.cs
     {
         GameObject bullet = Instantiate(bulletPrefab, attackPoint.position, transform.rotation);
         bullet.GetComponent<BulletScript>().damage = damage;

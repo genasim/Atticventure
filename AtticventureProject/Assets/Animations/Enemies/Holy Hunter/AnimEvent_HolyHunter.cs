@@ -12,7 +12,7 @@ public class AnimEvent_HolyHunter : MonoBehaviour
         enemy_Ranged = transform.parent.gameObject.GetComponent<Enemy_Ranged>();
     }
 
-    void Shoot()    // Being used by AnimationEvent in each of the Animations
+    void Shoot()    // Being used by AnimationEvent in the Animation
     {
         enemy_Ranged.Shoot();
     }

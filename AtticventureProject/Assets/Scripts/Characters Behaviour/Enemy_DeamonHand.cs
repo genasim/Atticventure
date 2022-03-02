@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(HealthManager), typeof(BoxCollider2D))]
 public class Enemy_DeamonHand : MonoBehaviour
 {
     private new Collider2D collider;
-    private Transform playerPos;
+    private Transform player;
     private Transform thisEnemy;
 
     [SerializeField] private Transform attackPoint;
@@ -17,7 +18,7 @@ public class Enemy_DeamonHand : MonoBehaviour
     private void Awake() {
         collider = GetComponent<BoxCollider2D>();
         thisEnemy = GetComponent<Transform>();
-        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         playerMask = LayerMask.GetMask("Player");
     }
 
@@ -31,7 +32,9 @@ public class Enemy_DeamonHand : MonoBehaviour
 
     internal void TeleportToPlayer()    // Triggered by AnimEvent_DemHand.cs
     {
-        thisEnemy.position = playerPos.position;
+        if (player) {
+            thisEnemy.position = player.position;
+        }
     }
 
     internal void ActivateHitBox(bool isActive)    // Triggered by AnimEvent_DemHand.cs

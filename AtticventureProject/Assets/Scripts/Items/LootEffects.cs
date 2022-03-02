@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LootEffects : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class LootEffects : MonoBehaviour
     public LayerMask player;
 
     GameObject Player;
+    // PlayerInput playerInput;
+    InputSystem playerInput;
 
     void Start()
     {
@@ -28,11 +31,15 @@ public class LootEffects : MonoBehaviour
         playerMovement = Player.GetComponent<Player_Movement>();
         playerWeapon = Player.GetComponent<Player_Shooting  >();
         playerHealth = Player.GetComponent<HealthManager>();
+
+        // playerInput = Player.GetComponent<PlayerInput>();
+        playerInput = _InitialiseInput.playerInput;
     }
 
     void Update()
     {
-        canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && Input.GetKeyDown(KeyCode.E) & roomHasBeenCleared;
+        // canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && playerInput.actions["Interact"].triggered & roomHasBeenCleared;
+        canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && playerInput.Player.Interact.triggered && roomHasBeenCleared;
         if (item && hasSpawned == false && canBeOpen)
         {
             effect = item.effect;
