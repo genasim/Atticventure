@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player_Shooting : MonoBehaviour, IShooter
 {
@@ -10,7 +12,11 @@ public class Player_Shooting : MonoBehaviour, IShooter
     // private PlayerInput playerInput;
 
     private Camera cam;
+    private ButtonHeld onScreenAttackButton;
     [SerializeField] private Transform attackPoint;
+    public static RoomManager currentRoom;
+    private Transform nearestEnemy;
+    private GameObject[] enemiesInRoom;
 
     [SerializeField] private GameObject bulletPrefab;
 
@@ -18,7 +24,7 @@ public class Player_Shooting : MonoBehaviour, IShooter
     private bool attackHeld;
     public float bulletSpeed = 35f;
     public float damage = 20f;
-    private float nextTimeToAttack;
+    public float nextTimeToAttack;
     public float attackSpeed = 1f;
     public float currentAttackSpeed;
 
@@ -28,7 +34,7 @@ public class Player_Shooting : MonoBehaviour, IShooter
 
     public AudioSource shotSFX;
 #endregion
-    string action; 
+
 
     private void Awake() {
         // TODO: Reverted becuase of incompatability between On-Screen Controls and PlayerInput component
@@ -36,11 +42,13 @@ public class Player_Shooting : MonoBehaviour, IShooter
         // playerInput.actions["Shoot"].performed += _ => attackHeld = true;
         // playerInput.actions["Shoot"].canceled += _ => attackHeld = false;
 
+        onScreenAttackButton = GameObject.FindGameObjectWithTag("AttackButton").GetComponent<ButtonHeld>();
         cam = Camera.main;
         playerInput = _InitialiseInput.playerInput;
         playerInput.Player.Shoot.performed += ctx => action = ctx.action.ToString();
     }
-    
+
+#region "attackHeld Subscriptions"
     private void OnEnable() {
         playerInput.Player.Shoot.performed += _ => attackHeld = true;
         playerInput.Player.Shoot.canceled += _ => attackHeld = false;
@@ -50,10 +58,24 @@ public class Player_Shooting : MonoBehaviour, IShooter
         playerInput.Player.Shoot.performed -= _ => attackHeld = true;
         playerInput.Player.Shoot.canceled -= _ => attackHeld = false;
     }
+#endregion
 
+    InputControl control;
+    string action; 
     void Update()
     {
-        Debug.Log(action);
+#if UNITY_ANDROID || UNITY_IOS
+        attackHeld = onScreenAttackButton.pressed;
+        GetNearestEnemy(out nearestEnemy);
+        if (Time.time >= nextTimeToAttack && attackHeld)
+        {
+            attackDir = nearestEnemy.position - transform.position;
+            nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
+            Shoot();
+        }
+#else
+        // playerInput.
+        // Debug.Log(control.device);
         if (Time.time >= nextTimeToAttack && attackHeld)
         {
             // attackDir = playerInput.actions["AttackDirection"].ReadValue<Vector2>();
@@ -63,7 +85,30 @@ public class Player_Shooting : MonoBehaviour, IShooter
             nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
             Shoot();
         }
+#endif
         currentAttackSpeed = attackSpeed;
+    }
+
+    private void GetNearestEnemy(out Transform nearestEnemy) {
+        enemiesInRoom = currentRoom.enemyList.ToArray();
+        Transform[] enemyPositions = new Transform[enemiesInRoom.Length];
+        
+        if (enemiesInRoom.Length != 0) {
+            GameObject closest = null;
+            float distance = Mathf.Infinity;
+            Vector3 position = transform.position;
+            foreach (var trans in enemiesInRoom) {
+                Vector3 diff = trans.transform.position - position;
+                float curDistance = diff.sqrMagnitude;
+                if (curDistance < distance) {
+                    closest = trans;
+                    distance = curDistance;
+                }
+            }
+            nearestEnemy = closest.transform;
+        }
+        else
+            nearestEnemy = null;
     }
 
     public void Shoot()

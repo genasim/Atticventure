@@ -94,7 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3692864561690947711, guid: ead247128d8454c4ab2a300ba40de63d, type: 3}
   attackPoint: {fileID: 4312015064617417504}
-  attackSpeed: 0.4
   damage: 10
   bulletSpeed: 20
   animator: {fileID: 4825446410600669842}

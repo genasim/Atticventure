@@ -1486,7 +1486,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4500240469982255770}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1878,7 +1878,7 @@ MonoBehaviour:
   doorColliders:
   - {fileID: 982271936510019317}
   - {fileID: 5983172975104140591}
-  doorAnimatiors:
+  doorAnimators:
   - {fileID: 8678525161686527082}
   - {fileID: 2950288560743521322}
   crate: {fileID: 7730292979553607234}
@@ -2188,7 +2188,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9022605990751552309}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

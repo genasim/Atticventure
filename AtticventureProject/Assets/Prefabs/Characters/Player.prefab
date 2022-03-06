@@ -197,10 +197,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9a0f6937c49ad43b0cf5b1023b6bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onScreenAttackButton: {fileID: 0}
   attackPoint: {fileID: 6610984722910652426}
+  nearestEnemy: {fileID: 0}
   bulletPrefab: {fileID: 3692864561690947711, guid: ee2349bb13862a84fa4c775854770f30, type: 3}
+  attackHeld: 0
   bulletSpeed: 35
-  damage: 20
+  damage: 10
   attackSpeed: 1
   currentAttackSpeed: 0
   critRate: 10

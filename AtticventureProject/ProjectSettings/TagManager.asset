@@ -9,8 +9,7 @@ TagManager:
   - Surface
   - Enemy
   - Crate
-  - PlusHP
-  - MinusHP
+  - AttackButton
   layers:
   - Default
   - TransparentFX

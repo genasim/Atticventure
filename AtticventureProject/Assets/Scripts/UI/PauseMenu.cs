@@ -4,16 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] Canvas pauseMenu;
-    [SerializeField] Canvas optionsMenu;
-    [SerializeField] InputAction pauseButton;
+    [SerializeField] private Canvas pauseMenu;
+    [SerializeField] private Canvas optionsMenu;
+    [SerializeField] private InputAction pauseButton;
     private InputSystem playerInput;
     // PlayerInput playerInput;
-
     private static bool gameIsPaused = false;
+
+    private EventSystem eventSystem;
+    private GameObject firstSelectedPause;
+    private GameObject firstSelectedOptions;
 
     private void OnEnable() {
         pauseButton.Enable();
@@ -25,8 +29,11 @@ public class PauseMenu : MonoBehaviour
         pauseButton.performed -= _ => Pause();
     }
 
-    private void Start() {
+    private void Awake() {
         playerInput = _InitialiseInput.playerInput;
+        eventSystem = EventSystem.current;
+        firstSelectedPause = GameObject.FindObjectOfType<PauseMenu>().transform.GetChild(0).gameObject;
+        firstSelectedOptions = GameObject.FindObjectOfType<OptionsMenu>().transform.GetChild(0).gameObject;
         // playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
     }
 
@@ -36,10 +43,12 @@ public class PauseMenu : MonoBehaviour
         if(gameIsPaused) {
             Time.timeScale = 0;
             pauseMenu.enabled = true;
+            eventSystem.SetSelectedGameObject(firstSelectedPause);
             // playerInput.DeactivateInput();
             playerInput.Disable();
         } else { 
             Time.timeScale = 1;
+            eventSystem.SetSelectedGameObject(null);
             pauseMenu.enabled = false;
             optionsMenu.enabled = false;
             // playerInput.ActivateInput();
@@ -55,6 +64,8 @@ public class PauseMenu : MonoBehaviour
 
     public void SceneReset()
     {
+        pauseMenu.enabled = false;
+        optionsMenu.enabled = false;
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameIsPaused = false;
@@ -63,10 +74,12 @@ public class PauseMenu : MonoBehaviour
     public void OptionsShow() {
         pauseMenu.enabled = false;
         optionsMenu.enabled = true;
+        eventSystem.SetSelectedGameObject(firstSelectedOptions);
     }
     public void BackToPauseMenu() {
         optionsMenu.enabled = false;
         pauseMenu.enabled = true;
+        eventSystem.SetSelectedGameObject(firstSelectedPause);
     }
 
     public void Quit() {

@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> enemyList;
+    public List<GameObject> enemyList;
     [SerializeField] private List<GameObject> spawnPoints;
     [SerializeField] private BoxCollider2D[] doorColliders;
-    [SerializeField] private Animator[] doorAnimatiors;
+    [SerializeField] private Animator[] doorAnimators;
     [SerializeField] private LootEffects crate;
 
+    private LootEffects effects;
+
     public bool hasBeenActivated = false;
+
+    private void Awake() {
+        effects = new LootEffects();
+        effects.AssignPlayerComponents();
+    }
 
     void Update()
     {
@@ -19,20 +26,23 @@ public class RoomManager : MonoBehaviour
             if (!enemy) enemyList.Remove(enemy);
         }
 
-        if (enemyList.Count == 0)
+        if (hasBeenActivated && enemyList.Count == 0)
         {
             foreach (var border in doorColliders)
             {
                 border.enabled = false;
             }
 
-            foreach (var item in doorAnimatiors)
+            foreach (var animator in doorAnimators)
             {
-                item.SetBool("closeDoor", false);
-                item.SetBool("openDoor", true);
+                animator.SetBool("closeDoor", false);
+                animator.SetBool("openDoor", true);
             }
 
             crate.roomHasBeenCleared = true;
+            effects.PlusHP();
+        
+            this.enabled = false;
         }
     }
 
@@ -51,7 +61,7 @@ public class RoomManager : MonoBehaviour
                 border.enabled = true;
             }
 
-            foreach (var item in doorAnimatiors)
+            foreach (var item in doorAnimators)
             {
                 item.SetBool("closeDoor", true);
                 item.SetBool("openDoor", false);

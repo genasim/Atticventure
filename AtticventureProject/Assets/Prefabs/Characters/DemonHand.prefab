@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5713041239748484871}
   - component: {fileID: 5713041239748484868}
   - component: {fileID: 5713041239748484870}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: enemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 5713041240540739488}
   - component: {fileID: 5713041240540739489}
   - component: {fileID: 5713041240540739502}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: DemonHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef1d0fca9228f642b020b9323d78b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
   currentHealth: 0
   hitSFX: {fileID: 5713041240540739502}
 --- !u!82 &5713041240540739502
@@ -316,7 +316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5713041241455816332}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: attackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

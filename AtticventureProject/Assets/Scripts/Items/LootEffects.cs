@@ -16,24 +16,28 @@ public class LootEffects : MonoBehaviour
     private bool canBeOpen = false;
     public bool roomHasBeenCleared = false;
 
-    public Animator itemAnim;
-    public Animator crateAnim;
-    public Transform check;
-    public LayerMask player;
+    [SerializeField] private Animator itemAnim;
+    [SerializeField] private Animator crateAnim;
+    [SerializeField] private Transform check;
+    [SerializeField] private LayerMask player;
 
-    GameObject Player;
-    // PlayerInput playerInput;
+    public GameObject Player;
     InputSystem playerInput;
+    // PlayerInput playerInput;
 
-    void Start()
+    private void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        playerMovement = Player.GetComponent<Player_Movement>();
-        playerWeapon = Player.GetComponent<Player_Shooting  >();
-        playerHealth = Player.GetComponent<HealthManager>();
+        AssignPlayerComponents();
 
         // playerInput = Player.GetComponent<PlayerInput>();
         playerInput = _InitialiseInput.playerInput;
+    }
+
+    public void AssignPlayerComponents() {
+        this.Player = GameObject.FindGameObjectWithTag("Player");
+        this.playerMovement = Player.GetComponent<Player_Movement>();
+        this.playerWeapon = Player.GetComponent<Player_Shooting  >();
+        this.playerHealth = Player.GetComponent<HealthManager>();
     }
 
     void Update()
@@ -43,7 +47,7 @@ public class LootEffects : MonoBehaviour
         if (item && hasSpawned == false && canBeOpen)
         {
             effect = item.effect;
-            Debug.Log(effect);
+            // Debug.Log(effect);
             SetEffect();
             Instantiate(item.item, transform.position, Quaternion.identity, transform.GetChild(0));
             itemAnim.SetBool("HasSpawned", true);
@@ -119,88 +123,88 @@ public class LootEffects : MonoBehaviour
     public void PlusAtkSpd()
     {
         playerWeapon.attackSpeed += 1;
-        Debug.Log("It worked");
+        Debug.Log("AttackSpeed+");
     }
     public void MinusAtkSpd()
     {
         if(playerWeapon.currentAttackSpeed > playerWeapon.attackSpeed)
         {
             playerWeapon.attackSpeed -= 1;
-            Debug.Log("It worked");
+            Debug.Log("AttackSpeed-");
         }
     }
     public void PlusMvtSpd()
     {
         playerMovement.speed += 1;
-        Debug.Log("It worked");
+        Debug.Log("MovSpeed+");
     }
     public void MinusMvtSpd()
     {
         playerMovement.speed -= 1;
-        Debug.Log("It worked");
+        Debug.Log("MovSpeed-");
     }
     public void PlusAtkDmg()
     {
         playerWeapon.damage += 1;
-        Debug.Log("It worked");
+        Debug.Log("Damage+");
     }
     public void MinusAtkDmg()
     {
         playerWeapon.damage -= 1;
-        Debug.Log("It worked");
+        Debug.Log("Damage-");
     }
     public void PlusBulletSpeed()
     {
         playerWeapon.bulletSpeed += 1;
-        Debug.Log("It worked");
+        Debug.Log("BulletSpeed+");
     }
     public void MinusBulletSpeed()
     {
         playerWeapon.bulletSpeed -= 1;
-        Debug.Log("It worked");
+        Debug.Log("BulletSpeed-");
     }
     public void PlusHP()
     {
         playerHealth.currentHealth += 10;
-        Debug.Log("It worked");
+        Debug.Log("Health+");
     }
     public void MinusHP()
     {
         if (playerHealth.currentHealth >= 50) playerHealth.currentHealth -= 10;
-        Debug.Log("It worked");
+        Debug.Log("Health-");
     }
     public void PlusCritRate()
     {
         playerWeapon.critRate += 5;
-        Debug.Log("It worked");
+        Debug.Log("CritRate+");
     }
     public void MinusCritRate()
     {
         playerWeapon.critRate -= 5;
-        Debug.Log("It worked");
+        Debug.Log("CritRate-");
     }
     public void PlusCritDamage()
     {
         playerWeapon.critDamage += 5;
-        Debug.Log("It worked");
+        Debug.Log("CritDmg+");
     }
     public void MinusCritDamage()
     {
         playerWeapon.critDamage -= 5;
-        Debug.Log("It worked");
+        Debug.Log("CritDmg-");
     }
     public void PlusMaxHP()
     {
         if (playerHealth.maxHealth <= 140) playerHealth.maxHealth += 20;
         playerHealth.currentHealth += 10;
         if (Health.numberOfHearths <= 7) Health.numberOfHearths++;
-        Debug.Log("It worked");
+        Debug.Log("MaxHealth+");
     }
     public void MinusMaxHP()
     {
         if (playerHealth.maxHealth >= 60) playerHealth.maxHealth -= 20;
         if (Health.numberOfHearths >= 3) Health.numberOfHearths--;
         if (playerHealth.currentHealth >= 50) playerHealth.currentHealth -= 10;
-        Debug.Log("It worked");
+        Debug.Log("MaxHealth-");
     }
 }

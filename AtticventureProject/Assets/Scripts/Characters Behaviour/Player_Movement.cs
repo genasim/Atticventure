@@ -69,6 +69,7 @@ public class Player_Movement : MonoBehaviour
         camCinamachine.Follow = collision.transform.parent;
 
         AStarGridGraph.UpdateGraph(centre: collision.transform.position);
+        Player_Shooting.currentRoom = collision.GetComponentInChildren<RoomManager>();
 
         if (!collision.GetComponent<RoomManager>().hasBeenActivated)
             collision.GetComponent<RoomManager>().InitiateRoom();
