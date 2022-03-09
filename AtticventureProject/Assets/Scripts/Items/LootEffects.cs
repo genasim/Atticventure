@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 
 public class LootEffects : MonoBehaviour
 {
-    Player_Movement playerMovement;
-    Player_Shooting playerWeapon;
+    [SerializeField] PlayerData data;
     HealthManager playerHealth;
 
     private int effect;
     public Items item;
 
+    private bool interactButton = false;
     private bool hasSpawned = false;
     private bool canBeOpen = false;
     public bool roomHasBeenCleared = false;
@@ -21,29 +21,42 @@ public class LootEffects : MonoBehaviour
     [SerializeField] private Transform check;
     [SerializeField] private LayerMask player;
 
-    public GameObject Player;
-    InputSystem playerInput;
-    // PlayerInput playerInput;
+    private GameObject Player;
+
+    private InputAction interactKeyboard;
+    private InputAction interactGamepad;
 
     private void Awake()
     {
         AssignPlayerComponents();
-
-        // playerInput = Player.GetComponent<PlayerInput>();
-        playerInput = _InitialiseInput.playerInput;
+        var playerManager = GameObject.FindObjectOfType<PlayerManager>();
+        data = playerManager.data;
+        interactKeyboard = PlayerManager.inputKeyboard.Player.Interact;
+        interactGamepad = PlayerManager.inputGamepad.Player.Interact;
     }
 
     public void AssignPlayerComponents() {
         this.Player = GameObject.FindGameObjectWithTag("Player");
-        this.playerMovement = Player.GetComponent<Player_Movement>();
-        this.playerWeapon = Player.GetComponent<Player_Shooting  >();
         this.playerHealth = Player.GetComponent<HealthManager>();
+    }
+
+    private void OnEnable() {
+        interactKeyboard.performed += _ => interactButton = true;
+        interactGamepad.performed += _ => interactButton = true;
+        interactKeyboard.canceled += _ => interactButton = false;
+        interactGamepad.canceled += _ => interactButton = false;
+    }
+
+    private void OnDisable() {
+        interactKeyboard.performed -= _ => interactButton = true;
+        interactGamepad.performed -= _ => interactButton = true;
+        interactKeyboard.canceled -= _ => interactButton = false;
+        interactGamepad.canceled -= _ => interactButton = false;
     }
 
     void Update()
     {
-        // canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && playerInput.actions["Interact"].triggered & roomHasBeenCleared;
-        canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && playerInput.Player.Interact.triggered && roomHasBeenCleared;
+        canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && interactButton & roomHasBeenCleared;
         if (item && hasSpawned == false && canBeOpen)
         {
             effect = item.effect;
@@ -122,45 +135,42 @@ public class LootEffects : MonoBehaviour
     }
     public void PlusAtkSpd()
     {
-        playerWeapon.attackSpeed += 1;
+        data.attackSpeed += 1;
         Debug.Log("AttackSpeed+");
     }
     public void MinusAtkSpd()
     {
-        if(playerWeapon.currentAttackSpeed > playerWeapon.attackSpeed)
-        {
-            playerWeapon.attackSpeed -= 1;
-            Debug.Log("AttackSpeed-");
-        }
+        data.attackSpeed -= 1;
+        Debug.Log("AttackSpeed-");
     }
     public void PlusMvtSpd()
     {
-        playerMovement.speed += 1;
+        data.speed += 1;
         Debug.Log("MovSpeed+");
     }
     public void MinusMvtSpd()
     {
-        playerMovement.speed -= 1;
+        data.speed -= 1;
         Debug.Log("MovSpeed-");
     }
     public void PlusAtkDmg()
     {
-        playerWeapon.damage += 1;
+        data.damage += 10;
         Debug.Log("Damage+");
     }
     public void MinusAtkDmg()
     {
-        playerWeapon.damage -= 1;
+        data.damage -= 10;
         Debug.Log("Damage-");
     }
     public void PlusBulletSpeed()
     {
-        playerWeapon.bulletSpeed += 1;
+        data.bulletSpeed += 1;
         Debug.Log("BulletSpeed+");
     }
     public void MinusBulletSpeed()
     {
-        playerWeapon.bulletSpeed -= 1;
+        data.bulletSpeed -= 1;
         Debug.Log("BulletSpeed-");
     }
     public void PlusHP()
@@ -175,22 +185,22 @@ public class LootEffects : MonoBehaviour
     }
     public void PlusCritRate()
     {
-        playerWeapon.critRate += 5;
+        data.critRate += 5;
         Debug.Log("CritRate+");
     }
     public void MinusCritRate()
     {
-        playerWeapon.critRate -= 5;
+        data.critRate -= 5;
         Debug.Log("CritRate-");
     }
     public void PlusCritDamage()
     {
-        playerWeapon.critDamage += 5;
+        data.critDamage += 5;
         Debug.Log("CritDmg+");
     }
     public void MinusCritDamage()
     {
-        playerWeapon.critDamage -= 5;
+        data.critDamage -= 5;
         Debug.Log("CritDmg-");
     }
     public void PlusMaxHP()

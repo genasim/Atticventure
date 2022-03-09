@@ -11,8 +11,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Canvas pauseMenu;
     [SerializeField] private Canvas optionsMenu;
     [SerializeField] private InputAction pauseButton;
-    private InputSystem playerInput;
-    // PlayerInput playerInput;
     private static bool gameIsPaused = false;
 
     private EventSystem eventSystem;
@@ -30,11 +28,9 @@ public class PauseMenu : MonoBehaviour
     }
 
     private void Awake() {
-        playerInput = _InitialiseInput.playerInput;
         eventSystem = EventSystem.current;
         firstSelectedPause = GameObject.FindObjectOfType<PauseMenu>().transform.GetChild(0).gameObject;
         firstSelectedOptions = GameObject.FindObjectOfType<OptionsMenu>().transform.GetChild(0).gameObject;
-        // playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
     }
 
     private void Pause()
@@ -44,15 +40,15 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0;
             pauseMenu.enabled = true;
             eventSystem.SetSelectedGameObject(firstSelectedPause);
-            // playerInput.DeactivateInput();
-            playerInput.Disable();
+            PlayerManager.inputGamepad.Disable();
+            PlayerManager.inputKeyboard.Disable();
         } else { 
             Time.timeScale = 1;
             eventSystem.SetSelectedGameObject(null);
             pauseMenu.enabled = false;
             optionsMenu.enabled = false;
-            // playerInput.ActivateInput();
-            playerInput.Enable();
+            PlayerManager.inputGamepad.Enable();
+            PlayerManager.inputKeyboard.Enable();
         }
     }
 
@@ -67,8 +63,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.enabled = false;
         optionsMenu.enabled = false;
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameIsPaused = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OptionsShow() {

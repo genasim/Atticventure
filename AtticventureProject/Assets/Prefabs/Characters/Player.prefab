@@ -43,8 +43,6 @@ GameObject:
   - component: {fileID: 6610984723404469170}
   - component: {fileID: 6610984723404469171}
   - component: {fileID: 6610984723404469168}
-  - component: {fileID: 6610984723404469169}
-  - component: {fileID: 6610984723404469182}
   - component: {fileID: 6610984723404469183}
   - component: {fileID: 6610984723404469173}
   - component: {fileID: 118207921429946463}
@@ -171,44 +169,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.99202865, y: 1.5732596}
   m_EdgeRadius: 0
---- !u!114 &6610984723404469169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610984723404469181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1feb682e38611e24ca9e83cb57913eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camCinamachine: {fileID: 0}
-  speed: 9
---- !u!114 &6610984723404469182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610984723404469181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9a0f6937c49ad43b0cf5b1023b6bbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onScreenAttackButton: {fileID: 0}
-  attackPoint: {fileID: 6610984722910652426}
-  nearestEnemy: {fileID: 0}
-  bulletPrefab: {fileID: 3692864561690947711, guid: ee2349bb13862a84fa4c775854770f30, type: 3}
-  attackHeld: 0
-  bulletSpeed: 35
-  damage: 10
-  attackSpeed: 1
-  currentAttackSpeed: 0
-  critRate: 10
-  critDamage: 50
-  shotSFX: {fileID: 118207921429946463}
 --- !u!114 &6610984723404469183
 MonoBehaviour:
   m_ObjectHideFlags: 0
