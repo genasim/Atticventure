@@ -13,7 +13,6 @@ public sealed class PlayerManager : MonoBehaviour
     private GameObject player;
 
     private void OnEnable() {
-            Debug.Log(InputSystem.devices[0].displayName);
             InputSystem.onDeviceChange += ConfigureDevices;
     }
 
@@ -32,7 +31,7 @@ public sealed class PlayerManager : MonoBehaviour
                 if(device.displayName == "Gamepad") {
                         player.AddComponent<MoveGamepad>();
                         player.AddComponent<ShootGamepad>();
-                } else if (device.displayName == "Keyboard") {
+                } if (device.displayName == "Keyboard") {
                         player.AddComponent<MoveKeyboard>();
                         player.AddComponent<ShootKeyboard>();
                 }
@@ -41,16 +40,16 @@ public sealed class PlayerManager : MonoBehaviour
                 if(device.displayName == "Gamepad") {
                         Destroy(player.GetComponent<MoveGamepad>());
                         Destroy(player.GetComponent<ShootGamepad>());
-                } else if (device.displayName == "Keyboard") {
+                } if (device.displayName == "Keyboard") {
                         Destroy(player.GetComponent<MoveKeyboard>());
                         Destroy(player.GetComponent<ShootKeyboard>());
                 }
                 break;
-            case InputDeviceChange.Reconnected:     // Plugged back in.
+            case InputDeviceChange.Reconnected:     // Device plugged back in.
                 if(device.displayName == "Gamepad") {
                         player.AddComponent<MoveGamepad>();
                         player.AddComponent<ShootGamepad>();
-                } else if (device.displayName == "Keyboard") {
+                } if (device.displayName == "Keyboard") {
                         player.AddComponent<MoveKeyboard>();
                         player.AddComponent<ShootKeyboard>();
                 }
@@ -73,16 +72,24 @@ public sealed class PlayerManager : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
+        var allKeyboards = InputSystem.FindControls("<keyboard>");
+        if (allKeyboards.ToArray().Length > 0) {
+                player.AddComponent<MoveKeyboard>();
+                player.AddComponent<ShootKeyboard>();
+        }
+        allKeyboards.Dispose();
+        
+        var allGamepads = InputSystem.FindControls("<gamepad>");
+        if (allGamepads.ToArray().Length > 0) {
+                player.AddComponent<MoveKeyboard>();
+                player.AddComponent<ShootKeyboard>();
+        }
+        allGamepads.Dispose();
         
 #if UNITY_ANDROID || UNITY_IOS
-        player.AddComponent<MoveGamepad>();
-        player.AddComponent<ShootGamepad>();
         onScreenControls.SetActive(true);
 #else
         onScreenControls.SetActive(false);
-        
-        player.AddComponent<MoveKeyboard>();
-        player.AddComponent<ShootKeyboard>();
 #endif
     }
 

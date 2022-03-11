@@ -42,6 +42,4 @@ public abstract class PlayerMove : MonoBehaviour
             animator.SetFloat("Vertical", yAnimation);
         }
     }
-    
-
 }

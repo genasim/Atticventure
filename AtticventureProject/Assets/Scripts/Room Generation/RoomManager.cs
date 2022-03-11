@@ -40,11 +40,12 @@ public class RoomManager : MonoBehaviour
             }
 
             crate.roomHasBeenCleared = true;
-            // effects.PlusHP();
-        
+            effects.PlusHP();
+            
             this.enabled = false;
         }
     }
+
 
     public void InitiateRoom()
     {

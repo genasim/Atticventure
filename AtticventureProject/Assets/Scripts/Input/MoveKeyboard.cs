@@ -26,6 +26,7 @@ public class MoveKeyboard : PlayerMove
     private void Update() {
         movement = input.Player.Movement.ReadValue<Vector2>();
         HandleMovementAnimations();
+        // Debug.Log($"Keyboard: {movement}");
     }
 
     private void FixedUpdate()
