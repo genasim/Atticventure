@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+    public RoomState state;
     public List<GameObject> enemyList;
     [SerializeField] private List<GameObject> spawnPoints;
     [SerializeField] private BoxCollider2D[] doorColliders;
@@ -14,9 +15,16 @@ public class RoomManager : MonoBehaviour
 
     public bool hasBeenActivated = false;
 
+    private RoomGenerator generator;
+
     private void Awake() {
         effects = new LootEffects();
         effects.AssignPlayerComponents();
+        
+        generator = GameObject.FindObjectOfType<RoomGenerator>();
+        generator.rooms.Add(transform.parent.gameObject);
+
+        this.state = RoomState.Regular;
     }
 
     void Update()
@@ -51,25 +59,43 @@ public class RoomManager : MonoBehaviour
     {
         if (!hasBeenActivated)
         {
-            foreach (var spawnPoint in spawnPoints)
-            {
-                GameObject spawnedEnemy = Instantiate(spawnPoint.GetComponent<EnemySpawnPoints>().enemyToSpawn, spawnPoint.transform.position, transform.rotation, spawnPoint.transform);
-                enemyList.Add(spawnedEnemy);
-            }
+            switch (this.state) {
+                case RoomState.Regular:
+                    foreach (var spawnPoint in spawnPoints)
+                    {
+                        GameObject spawnedEnemy = Instantiate(spawnPoint.GetComponent<EnemySpawnPoints>().enemyToSpawn, spawnPoint.transform.position, transform.rotation, spawnPoint.transform);
+                        enemyList.Add(spawnedEnemy);
+                    }
 
-            foreach (var border in doorColliders)
-            {
-                border.enabled = true;
-            }
+                    foreach (var border in doorColliders)
+                    {
+                        border.enabled = true;
+                    }
 
-            foreach (var item in doorAnimators)
-            {
-                item.SetBool("closeDoor", true);
-                item.SetBool("openDoor", false);
-            }
+                    foreach (var item in doorAnimators)
+                    {
+                        item.SetBool("closeDoor", true);
+                        item.SetBool("openDoor", false);
+                    }
 
-            crate.roomHasBeenCleared = false;
-            hasBeenActivated = true;
+                    crate.roomHasBeenCleared = false;
+                    hasBeenActivated = true;
+                    break;
+
+                case RoomState.Boss:
+
+                    //  Spawn Boss
+
+                    //  Remove obstacles
+                
+                    break;
+            }
         }
     }
 }
+
+public enum RoomState {
+    Regular = 1,
+    Boss = 2,
+    Start = 3 
+};

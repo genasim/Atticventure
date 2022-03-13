@@ -5,52 +5,70 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    public int openingDiraction;
-    // 1 --> need down door
-    // 2 --> need left door
-    // 3 --> need up door
+    [SerializeField] private int openingDiraction;
+    // 1 --> need down  door
+    // 2 --> need left  door
+    // 3 --> need up    door
     // 4 --> need right door
-
-    private RoomTemplates templates;
-    private int rand;
-    private bool spawned = false;
+    
+    private RoomGenerator templates;
+    public bool spawned {get; private set;} = false;
 
     void Start()
     {
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        Invoke("Spawn", 0.1f);
+        templates = GameObject.FindObjectOfType<RoomGenerator>();
+        Invoke("Spawn", .1f);
+    }
+
+    public void ClosingRoomSpawn() {
+        if (openingDiraction == 1)
+        {
+            Instantiate(templates.closingRooms[0], transform.position, Quaternion.identity);
+        }
+        else if (openingDiraction == 2)
+        {
+            Instantiate(templates.closingRooms[1], transform.position, Quaternion.identity);
+        }
+        else if (openingDiraction == 3)
+        {
+            Instantiate(templates.closingRooms[2], transform.position, Quaternion.identity);
+        }
+        else if (openingDiraction == 4)
+        {
+            Instantiate(templates.closingRooms[3], transform.position, Quaternion.identity);
+        }
+
+        spawned = true;
+        Destroy(gameObject);
     }
 
     void Spawn()
     {
-        try {
-
-            if (spawned == false)
+        if (spawned == false) {
+            if (openingDiraction == 1)
             {
-
-                if (openingDiraction == 3)
-                {
-                    rand = UnityEngine.Random.Range(0, templates.upRooms.Length);
-                    Instantiate(templates.upRooms[rand], transform.position, templates.upRooms[rand].transform.rotation);
-                }
-                else if (openingDiraction == 4)
-                {
-                    rand = UnityEngine.Random.Range(0, templates.rightRooms.Length);
-                    Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
-                }
-                else if (openingDiraction == 1)
-                {
-                    rand = UnityEngine.Random.Range(0, templates.downRooms.Length);
-                    Instantiate(templates.downRooms[rand], transform.position, templates.downRooms[rand].transform.rotation);
-                }
-                else if (openingDiraction == 2)
-                {
-                    rand = UnityEngine.Random.Range(0, templates.leftRooms.Length);
-                    Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
-                }
-                spawned = true;
+                int rand = UnityEngine.Random.Range(0, templates.downRooms.Length);
+                Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity);
             }
-        } catch (NullReferenceException) {}
+            else if (openingDiraction == 2)
+            {
+                int rand = UnityEngine.Random.Range(0, templates.leftRooms.Length);
+                Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity);
+            }
+            else if (openingDiraction == 3)
+            {
+                int rand = UnityEngine.Random.Range(0, templates.upRooms.Length);
+                Instantiate(templates.upRooms[rand], transform.position, Quaternion.identity);
+            }
+            else if (openingDiraction == 4)
+            {
+                int rand = UnityEngine.Random.Range(0, templates.rightRooms.Length);
+                Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity);
+            }
+
+            spawned = true;
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -58,12 +76,9 @@ public class SpawnPoint : MonoBehaviour
         if (other.CompareTag("SpawnPoint"))
         {
             try {
-                if (other.GetComponent<SpawnPoint>().spawned == false && spawned == false)
-                {
-                        Instantiate(templates.wallRooms, transform.position, Quaternion.identity);
-                        Destroy(gameObject);
+                if (other.GetComponent<SpawnPoint>().spawned == false && spawned == false) {
+                    Destroy(gameObject);
                 }
-                spawned = true;
             } catch (NullReferenceException) {}
         }
     }
