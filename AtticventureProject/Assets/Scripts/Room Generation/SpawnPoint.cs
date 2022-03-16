@@ -5,81 +5,120 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
+    [SerializeField] private GameObject door;
+    [SerializeField] private BoxCollider2D doorColider;
+    [SerializeField] private Animator doorAnimator;
+    [SerializeField] private RoomManager roomManager;
+    [SerializeField] Destroyer destroyer;
+
+    [Header("")]
     [SerializeField] private int openingDiraction;
-    // 1 --> need down  door
-    // 2 --> need left  door
-    // 3 --> need up    door
-    // 4 --> need right door
+    // 0 --> need down  door
+    // 1 --> need left  door
+    // 2 --> need up    door
+    // 3 --> need right door
     
-    private RoomGenerator templates;
-    public bool spawned {get; private set;} = false;
+    private RoomGenerator generator;
+    public bool spawned = false;
 
     void Start()
     {
-        templates = GameObject.FindObjectOfType<RoomGenerator>();
-        Invoke("Spawn", .1f);
+        generator = GameObject.FindObjectOfType<RoomGenerator>();
+        Invoke("Spawn", .2f);
     }
 
     public void ClosingRoomSpawn() {
-        if (openingDiraction == 1)
+        if (openingDiraction == 0)
         {
-            Instantiate(templates.closingRooms[0], transform.position, Quaternion.identity);
+            Instantiate(generator.closingRooms[0], transform.position, Quaternion.identity);
+        }
+        else if (openingDiraction == 1)
+        {
+            Instantiate(generator.closingRooms[1], transform.position, Quaternion.identity);
         }
         else if (openingDiraction == 2)
         {
-            Instantiate(templates.closingRooms[1], transform.position, Quaternion.identity);
+            Instantiate(generator.closingRooms[2], transform.position, Quaternion.identity);
         }
         else if (openingDiraction == 3)
         {
-            Instantiate(templates.closingRooms[2], transform.position, Quaternion.identity);
-        }
-        else if (openingDiraction == 4)
-        {
-            Instantiate(templates.closingRooms[3], transform.position, Quaternion.identity);
+            Instantiate(generator.closingRooms[3], transform.position, Quaternion.identity);
         }
 
-        spawned = true;
-        Destroy(gameObject);
+        this.enabled = false;
+        // spawned = true;
+        // Destroy(gameObject);
     }
 
     void Spawn()
     {
         if (spawned == false) {
-            if (openingDiraction == 1)
+            if (openingDiraction == 0)
             {
-                int rand = UnityEngine.Random.Range(0, templates.downRooms.Length);
-                Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity);
+                int rand = UnityEngine.Random.Range(0, generator.downRooms.Length);
+                Instantiate(generator.downRooms[rand], transform.position, Quaternion.identity);
+            }
+            else if (openingDiraction == 1)
+            {
+                int rand = UnityEngine.Random.Range(0, generator.leftRooms.Length);
+                Instantiate(generator.leftRooms[rand], transform.position, Quaternion.identity);
             }
             else if (openingDiraction == 2)
             {
-                int rand = UnityEngine.Random.Range(0, templates.leftRooms.Length);
-                Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity);
+                int rand = UnityEngine.Random.Range(0, generator.upRooms.Length);
+                Instantiate(generator.upRooms[rand], transform.position, Quaternion.identity);
             }
             else if (openingDiraction == 3)
             {
-                int rand = UnityEngine.Random.Range(0, templates.upRooms.Length);
-                Instantiate(templates.upRooms[rand], transform.position, Quaternion.identity);
-            }
-            else if (openingDiraction == 4)
-            {
-                int rand = UnityEngine.Random.Range(0, templates.rightRooms.Length);
-                Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity);
+                int rand = UnityEngine.Random.Range(0, generator.rightRooms.Length);
+                Instantiate(generator.rightRooms[rand], transform.position, Quaternion.identity);
             }
 
-            spawned = true;
-            Destroy(gameObject);
+            this.enabled = false;
+            // spawned = true;
+            // Destroy(gameObject);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("SpawnPoint"))
         {
             try {
-                if (other.GetComponent<SpawnPoint>().spawned == false && spawned == false) {
-                    Destroy(gameObject);
+                if (other.GetComponent<SpawnPoint>().spawned == false && spawned == false) {    
+                    DestroyDoor();
+                    CleanDestroy();
                 }
             } catch (NullReferenceException) {}
         }
+
+        if (other.gameObject.TryGetComponent(out Destroyer d)) {
+            if (!checkCanGoToNextRoom(other.gameObject.GetComponent<Destroyer>().spawnPoints)) {
+                DestroyDoor();
+                CleanDestroy();
+            }
+        }
+    }
+
+    private bool checkCanGoToNextRoom(List<SpawnPoint> spawnPoints) {
+        foreach (var point in spawnPoints)
+        {
+            if (MathF.Abs(this.openingDiraction - point.openingDiraction) == 2)
+                return true;
+        }
+        return false;
+    }
+
+    public void CleanDestroy() {
+        destroyer.spawnPoints.Remove(this);
+        Destroy(gameObject);
+    }
+
+    public void DestroyDoor() {
+        roomManager.doorColliders.Remove(doorColider);
+        doorColider.enabled = true;
+        roomManager.doorAnimators.Remove(doorAnimator);
+        Destroy(door);
+        this.spawned = true;
     }
 }

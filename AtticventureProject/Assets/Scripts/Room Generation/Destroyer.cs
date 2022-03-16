@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
+	public List<SpawnPoint> spawnPoints;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.CompareTag("SpawnPoint"))
 		{
-			Destroy(other.gameObject);
+			other.gameObject.GetComponent<SpawnPoint>().spawned = true;
+			//	Don't do CleanDestroy()!!!
 		}
 	}
 }

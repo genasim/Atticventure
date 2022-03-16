@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class RoomGenerator : MonoBehaviour
         if (waitTime <= 0 && !spawnedBoss) {
             Instantiate(boss, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
             rooms[rooms.Count - 1].GetComponentInChildren<RoomManager>().state = RoomState.Boss;
+
+            //  Destroy remaining SpawnPoints ?
+
             spawnedBoss = true;
         } else {
             waitTime -= Time.deltaTime;

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public RoomState state;
-    public List<GameObject> enemyList;
+    public RoomState state = RoomState.Regular;
+    [HideInInspector] public List<GameObject> enemyList;
     [SerializeField] private List<GameObject> spawnPoints;
-    [SerializeField] private BoxCollider2D[] doorColliders;
-    [SerializeField] private Animator[] doorAnimators;
+    public List<BoxCollider2D> doorColliders;
+    public List<Animator> doorAnimators;
     [SerializeField] private LootEffects crate;
 
     private LootEffects effects;
@@ -18,11 +18,11 @@ public class RoomManager : MonoBehaviour
     private RoomGenerator generator;
 
     private void Awake() {
-        effects = new LootEffects();
-        effects.AssignPlayerComponents();
+        this.effects = new LootEffects();
+        this.effects.AssignPlayerComponents();
         
-        generator = GameObject.FindObjectOfType<RoomGenerator>();
-        generator.rooms.Add(transform.parent.gameObject);
+        this.generator = GameObject.FindObjectOfType<RoomGenerator>();
+        this.generator.rooms.Add(transform.parent.gameObject);
 
         this.state = RoomState.Regular;
     }
@@ -89,6 +89,16 @@ public class RoomManager : MonoBehaviour
                     //  Remove obstacles
                 
                     break;
+                    
+                case RoomState.ItemRoom:
+
+                    //  Chest with better loot
+
+                    //  No Enemies
+
+                    //  Remove Obstacles
+
+                    break;
             }
         }
     }
@@ -97,5 +107,6 @@ public class RoomManager : MonoBehaviour
 public enum RoomState {
     Regular = 1,
     Boss = 2,
-    Start = 3 
+    Start = 3,
+    ItemRoom = 4
 };
