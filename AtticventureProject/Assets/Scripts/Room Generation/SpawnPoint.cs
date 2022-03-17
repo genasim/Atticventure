@@ -82,10 +82,10 @@ public class SpawnPoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("SpawnPoint"))
+        if (other.TryGetComponent(out SpawnPoint sp))
         {
             try {
-                if (other.GetComponent<SpawnPoint>().spawned == false && spawned == false) {    
+                if (sp.spawned == false && spawned == false) {    
                     DestroyDoor();
                     CleanDestroy();
                 }
@@ -119,6 +119,6 @@ public class SpawnPoint : MonoBehaviour
         doorColider.enabled = true;
         roomManager.doorAnimators.Remove(doorAnimator);
         Destroy(door);
-        this.spawned = true;
+        // this.spawned = true;
     }
 }

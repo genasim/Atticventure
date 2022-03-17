@@ -10,6 +10,7 @@ public class RoomGenerator : MonoBehaviour
     public GameObject[] downRooms;
     public GameObject[] leftRooms;
     public GameObject[] closingRooms;
+    private bool mazeClosed;
 
     public List<GameObject> rooms;
 
@@ -20,7 +21,7 @@ public class RoomGenerator : MonoBehaviour
     private int roomCount = 0;
 
     private void Update() {
-        // if (rooms.Count >= 10) {
+        // if (rooms.Count >= 10 && !mazeClosed) {
         //     foreach (var room in rooms) {
         //         foreach (var spawnPoint in room.gameObject.GetComponentsInChildren<SpawnPoint>())
         //         {
@@ -28,6 +29,7 @@ public class RoomGenerator : MonoBehaviour
         //                 spawnPoint.ClosingRoomSpawn();
         //         }
         //     }
+        //     mazeClosed = true;
         // }
 
         if (waitTime <= 0 && !spawnedBoss) {

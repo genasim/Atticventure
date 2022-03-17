@@ -8,10 +8,13 @@ public class Destroyer : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.CompareTag("SpawnPoint"))
+		if(other.TryGetComponent(out SpawnPoint sp))
 		{
 			other.gameObject.GetComponent<SpawnPoint>().spawned = true;
 			//	Don't do CleanDestroy()!!!
 		}
+
+		if (other.TryGetComponent(out Destroyer d))
+			Destroy(other.transform.parent.gameObject);
 	}
 }

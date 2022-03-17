@@ -3031,7 +3031,7 @@ GameObject:
   - component: {fileID: 428286465}
   m_Layer: 0
   m_Name: RoomGenrator (1)
-  m_TagString: Rooms
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10984,7 +10984,7 @@ GameObject:
   - component: {fileID: 1725873966}
   m_Layer: 0
   m_Name: RoomGenrator
-  m_TagString: Rooms
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11007,8 +11007,6 @@ MonoBehaviour:
   - {fileID: 6989686915748223916, guid: 1e997708a63b06f438ce161694112e8b, type: 3}
   - {fileID: 6989686915748223916, guid: 1e997708a63b06f438ce161694112e8b, type: 3}
   - {fileID: 6989686915748223916, guid: 1e997708a63b06f438ce161694112e8b, type: 3}
-  - {fileID: 6989686915748223916, guid: 1e997708a63b06f438ce161694112e8b, type: 3}
-  - {fileID: 6989686915748223916, guid: 1e997708a63b06f438ce161694112e8b, type: 3}
   - {fileID: 1589828181442688014, guid: 20cc0d93a112717438ccabbfe01e9a06, type: 3}
   - {fileID: 1589828181442688014, guid: 20cc0d93a112717438ccabbfe01e9a06, type: 3}
   - {fileID: 7378086069339448849, guid: e9838ea4672e9de488591c6796d529c0, type: 3}
@@ -11019,8 +11017,6 @@ MonoBehaviour:
   - {fileID: 6706811051317390748, guid: 4c4508d4a0c96aa4ca41e3e22ea88383, type: 3}
   - {fileID: 5962178264141968856, guid: 0ae8c81749e172d48a2f5da994dd45af, type: 3}
   rightRooms:
-  - {fileID: 1698521011712520039, guid: a0e9b09c368392e4393a217720af26c7, type: 3}
-  - {fileID: 1698521011712520039, guid: a0e9b09c368392e4393a217720af26c7, type: 3}
   - {fileID: 1698521011712520039, guid: a0e9b09c368392e4393a217720af26c7, type: 3}
   - {fileID: 1698521011712520039, guid: a0e9b09c368392e4393a217720af26c7, type: 3}
   - {fileID: 1698521011712520039, guid: a0e9b09c368392e4393a217720af26c7, type: 3}
@@ -11041,8 +11037,6 @@ MonoBehaviour:
   - {fileID: 514873239932030970, guid: 9d71c77099e31d845a8b578b07e48e51, type: 3}
   - {fileID: 514873239932030970, guid: 9d71c77099e31d845a8b578b07e48e51, type: 3}
   - {fileID: 514873239932030970, guid: 9d71c77099e31d845a8b578b07e48e51, type: 3}
-  - {fileID: 514873239932030970, guid: 9d71c77099e31d845a8b578b07e48e51, type: 3}
-  - {fileID: 514873239932030970, guid: 9d71c77099e31d845a8b578b07e48e51, type: 3}
   - {fileID: 1707162333410090105, guid: 8ee7a1d08d3929f45abe2d0296863f15, type: 3}
   - {fileID: 1707162333410090105, guid: 8ee7a1d08d3929f45abe2d0296863f15, type: 3}
   - {fileID: 1589828181442688014, guid: 20cc0d93a112717438ccabbfe01e9a06, type: 3}
@@ -11053,8 +11047,6 @@ MonoBehaviour:
   - {fileID: 4030079973612190892, guid: 3ff386bb862b533448f49c7f432def4d, type: 3}
   - {fileID: 6706811051317390748, guid: 4c4508d4a0c96aa4ca41e3e22ea88383, type: 3}
   leftRooms:
-  - {fileID: 516216844167436967, guid: b2e860a1741bb28419ea1bca996aa8e0, type: 3}
-  - {fileID: 516216844167436967, guid: b2e860a1741bb28419ea1bca996aa8e0, type: 3}
   - {fileID: 516216844167436967, guid: b2e860a1741bb28419ea1bca996aa8e0, type: 3}
   - {fileID: 516216844167436967, guid: b2e860a1741bb28419ea1bca996aa8e0, type: 3}
   - {fileID: 516216844167436967, guid: b2e860a1741bb28419ea1bca996aa8e0, type: 3}
