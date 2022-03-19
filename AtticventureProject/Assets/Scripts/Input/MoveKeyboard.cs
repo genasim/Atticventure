@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 public class MoveKeyboard : PlayerMove
 {
@@ -11,7 +10,6 @@ public class MoveKeyboard : PlayerMove
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = GetComponent<HealthManager>();
-        camCinamachine = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
         input = PlayerManager.inputKeyboard;
     }
 

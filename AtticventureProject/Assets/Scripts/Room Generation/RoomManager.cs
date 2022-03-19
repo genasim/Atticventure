@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class RoomManager : MonoBehaviour
 {
@@ -15,16 +16,18 @@ public class RoomManager : MonoBehaviour
 
     public bool hasBeenActivated = false;
 
-    private RoomGenerator generator;
+    private CinemachineVirtualCamera camCinamachine;
 
     private void Awake() {
         this.effects = new LootEffects();
         this.effects.AssignPlayerComponents();
         
-        this.generator = GameObject.FindObjectOfType<RoomGenerator>();
-        this.generator.rooms.Add(transform.parent.gameObject);
+        RoomGenerator generator = GameObject.FindObjectOfType<RoomGenerator>();
+        generator.rooms.Add(transform.parent.gameObject);
 
         this.state = RoomState.Regular;
+
+        camCinamachine = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
     }
 
     void Update()
@@ -84,12 +87,12 @@ public class RoomManager : MonoBehaviour
 
                 case RoomState.Boss:
 
-                    //  Spawn Boss
-
                     //  Remove obstacles
+
+                    //  Spawn Boss
                 
                     break;
-                    
+
                 case RoomState.ItemRoom:
 
                     //  Chest with better loot
@@ -100,6 +103,19 @@ public class RoomManager : MonoBehaviour
 
                     break;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.TryGetComponent(out PlayerMove player)) {
+            camCinamachine.LookAt = transform.parent;
+            camCinamachine.Follow = transform.parent;
+
+            AStarGridGraph.UpdateGraph(centre: transform.position);
+            PlayerShoot.currentRoom = this;
+
+            if (!hasBeenActivated)
+                InitiateRoom();
         }
     }
 }

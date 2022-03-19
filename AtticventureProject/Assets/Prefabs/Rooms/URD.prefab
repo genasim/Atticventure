@@ -2970,7 +2970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 8317065291975637780}
-  doorColider: {fileID: 0}
+  doorColider: {fileID: 7062607897916039793}
   doorAnimator: {fileID: 7664950494812757334}
   roomManager: {fileID: 3543576087876068998}
   destroyer: {fileID: 2993964063182963530}

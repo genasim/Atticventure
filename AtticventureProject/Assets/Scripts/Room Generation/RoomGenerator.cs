@@ -5,42 +5,27 @@ using System;
 
 public class RoomGenerator : MonoBehaviour
 {
-    public GameObject[] upRooms;
-    public GameObject[] rightRooms;
-    public GameObject[] downRooms;
-    public GameObject[] leftRooms;
-    public GameObject[] closingRooms;
-    private bool mazeClosed;
-
-    public List<GameObject> rooms;
+    public RoomTemplates templates;
+    public List<GameObject> rooms = new List<GameObject>();
+    private int roomCount;
+    [SerializeField] private bool mazeClosed;
 
     private float waitTime = 3;
     private bool spawnedBoss = false;
     public GameObject boss;
-
-    private int roomCount = 0;
+    
 
     private void Update() {
-        // if (rooms.Count >= 10 && !mazeClosed) {
-        //     foreach (var room in rooms) {
-        //         foreach (var spawnPoint in room.gameObject.GetComponentsInChildren<SpawnPoint>())
-        //         {
-        //             if (!spawnPoint.spawned)
-        //                 spawnPoint.ClosingRoomSpawn();
-        //         }
-        //     }
-        //     mazeClosed = true;
-        // }
-
-        if (waitTime <= 0 && !spawnedBoss) {
+        if (waitTime <= 0 && !mazeClosed) {
             Instantiate(boss, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
             rooms[rooms.Count - 1].GetComponentInChildren<RoomManager>().state = RoomState.Boss;
 
             //  Destroy remaining SpawnPoints ?
 
-            spawnedBoss = true;
+            mazeClosed = true;
         } else {
             waitTime -= Time.deltaTime;
         }
     }
 }
+

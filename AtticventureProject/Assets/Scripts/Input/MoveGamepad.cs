@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 public class MoveGamepad : PlayerMove
 {
@@ -19,7 +18,6 @@ public class MoveGamepad : PlayerMove
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = GetComponent<HealthManager>();
-        camCinamachine = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
         input = PlayerManager.inputGamepad;
     }
 

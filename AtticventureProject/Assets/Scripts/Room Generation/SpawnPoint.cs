@@ -19,63 +19,84 @@ public class SpawnPoint : MonoBehaviour
     // 3 --> need right door
     
     private RoomGenerator generator;
+    private RoomTemplates templates;
     public bool spawned = false;
+    private bool closeDoor = false;
+
+    // public delegate void spawnBoss();
+    // public static event spawnBoss SpawnBoss;
+
+    // public delegate void Room(Vector2 position);
+    // public static event Room canSpawnRoom;
 
     void Start()
     {
         generator = GameObject.FindObjectOfType<RoomGenerator>();
-        Invoke("Spawn", .2f);
+        templates = generator.templates;
+
+        if (generator.rooms.Count < 6)
+            Invoke("SpawnRoom", .05f);
+        else if (!spawned) {
+                Invoke("ClosingRoomSpawn", 1);
+                // Invoke("DestroyDoor", 1f);
+            }
+
     }
+
+    // private void Start() {
+    //     canSpawnRoom(transform.position);
+    // }
 
     public void ClosingRoomSpawn() {
-        if (openingDiraction == 0)
-        {
-            Instantiate(generator.closingRooms[0], transform.position, Quaternion.identity);
-        }
-        else if (openingDiraction == 1)
-        {
-            Instantiate(generator.closingRooms[1], transform.position, Quaternion.identity);
-        }
-        else if (openingDiraction == 2)
-        {
-            Instantiate(generator.closingRooms[2], transform.position, Quaternion.identity);
-        }
-        else if (openingDiraction == 3)
-        {
-            Instantiate(generator.closingRooms[3], transform.position, Quaternion.identity);
-        }
-
-        this.enabled = false;
-        // spawned = true;
-        // Destroy(gameObject);
-    }
-
-    void Spawn()
-    {
-        if (spawned == false) {
+        if (!spawned) {
             if (openingDiraction == 0)
             {
-                int rand = UnityEngine.Random.Range(0, generator.downRooms.Length);
-                Instantiate(generator.downRooms[rand], transform.position, Quaternion.identity);
+                Instantiate(templates.closingRooms[0], transform.position, Quaternion.identity);
             }
             else if (openingDiraction == 1)
             {
-                int rand = UnityEngine.Random.Range(0, generator.leftRooms.Length);
-                Instantiate(generator.leftRooms[rand], transform.position, Quaternion.identity);
+                Instantiate(templates.closingRooms[1], transform.position, Quaternion.identity);
             }
             else if (openingDiraction == 2)
             {
-                int rand = UnityEngine.Random.Range(0, generator.upRooms.Length);
-                Instantiate(generator.upRooms[rand], transform.position, Quaternion.identity);
+                Instantiate(templates.closingRooms[2], transform.position, Quaternion.identity);
             }
             else if (openingDiraction == 3)
             {
-                int rand = UnityEngine.Random.Range(0, generator.rightRooms.Length);
-                Instantiate(generator.rightRooms[rand], transform.position, Quaternion.identity);
+                Instantiate(templates.closingRooms[3], transform.position, Quaternion.identity);
             }
 
-            this.enabled = false;
-            // spawned = true;
+            spawned = true;
+            // SpawnBoss();
+        }
+    }
+
+    public void SpawnRoom()
+    {
+        if (!spawned) {
+            if (openingDiraction == 0)
+            {
+                int rand = UnityEngine.Random.Range(0, templates.downRooms.Length);
+                Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity);
+            }
+            else if (openingDiraction == 1)
+            {
+                int rand = UnityEngine.Random.Range(0, templates.leftRooms.Length);
+                Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity);
+            }
+            else if (openingDiraction == 2)
+            {
+                int rand = UnityEngine.Random.Range(0, templates.upRooms.Length);
+                Instantiate(templates.upRooms[rand], transform.position, Quaternion.identity);
+            }
+            else if (openingDiraction == 3)
+            {
+                int rand = UnityEngine.Random.Range(0, templates.rightRooms.Length);
+                Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity);
+            }
+
+            spawned = true;
+            // this.enabled = false;
             // Destroy(gameObject);
         }
     }
@@ -93,7 +114,7 @@ public class SpawnPoint : MonoBehaviour
         }
 
         if (other.gameObject.TryGetComponent(out Destroyer d)) {
-            if (!checkCanGoToNextRoom(other.gameObject.GetComponent<Destroyer>().spawnPoints)) {
+            if (!checkCanGoToNextRoom(d.spawnPoints)) {
                 DestroyDoor();
                 CleanDestroy();
             }
@@ -109,16 +130,16 @@ public class SpawnPoint : MonoBehaviour
         return false;
     }
 
-    public void CleanDestroy() {
+    private void CleanDestroy() {
         destroyer.spawnPoints.Remove(this);
         Destroy(gameObject);
     }
 
-    public void DestroyDoor() {
-        roomManager.doorColliders.Remove(doorColider);
-        doorColider.enabled = true;
-        roomManager.doorAnimators.Remove(doorAnimator);
-        Destroy(door);
+    private void DestroyDoor() {
+        roomManager.doorColliders.Remove(this.doorColider);
+        this.doorColider.enabled = true;
+        roomManager.doorAnimators.Remove(this.doorAnimator);
+        Destroy(this.door);
         // this.spawned = true;
     }
 }

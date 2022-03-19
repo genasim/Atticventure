@@ -10,8 +10,8 @@ public class Destroyer : MonoBehaviour
 	{
 		if(other.TryGetComponent(out SpawnPoint sp))
 		{
-			other.gameObject.GetComponent<SpawnPoint>().spawned = true;
-			//	Don't do CleanDestroy()!!!
+			sp.spawned = true;
+			//	Don't do CleanDestroy() or Destroy(other.gameObject)!!!
 		}
 
 		if (other.TryGetComponent(out Destroyer d))
