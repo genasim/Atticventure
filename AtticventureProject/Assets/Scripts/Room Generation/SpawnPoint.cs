@@ -31,7 +31,7 @@ public class SpawnPoint : MonoBehaviour
 
     void Start()
     {
-        generator = GameObject.FindObjectOfType<RoomGenerator>();
+        generator = RoomGenerator.Instance;
         templates = generator.templates;
 
         if (generator.rooms.Count < 6)

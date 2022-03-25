@@ -21,11 +21,11 @@ public class ShootGamepad : PlayerShoot
     }
 
     private void Awake() {
-        onScreenAttackButton = GameObject.FindGameObjectWithTag("AttackButton").GetComponent<ButtonHeld>();
         input = PlayerManager.inputGamepad;
         shotSFX = GetComponent<AudioSource>();
         attackPoint = gameObject.transform.GetChild(0).transform;
         cam = Camera.main;
+        onScreenAttackButton = GameObject.FindGameObjectWithTag("AttackButton").GetComponent<ButtonHeld>();
     }
 
     private void Update() {

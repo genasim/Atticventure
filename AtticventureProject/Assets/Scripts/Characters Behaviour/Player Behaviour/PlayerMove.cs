@@ -11,7 +11,6 @@ public abstract class PlayerMove : MonoBehaviour
     protected Rigidbody2D rb2D;
     protected Animator animator;
     protected HealthManager health;
-    // protected CinemachineVirtualCamera camCinamachine;
 
     private int xAnimation, yAnimation;
 

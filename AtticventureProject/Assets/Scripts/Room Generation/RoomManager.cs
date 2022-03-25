@@ -64,25 +64,7 @@ public class RoomManager : MonoBehaviour
         {
             switch (this.state) {
                 case RoomState.Regular:
-                    foreach (var spawnPoint in spawnPoints)
-                    {
-                        GameObject spawnedEnemy = Instantiate(spawnPoint.GetComponent<EnemySpawnPoints>().enemyToSpawn, spawnPoint.transform.position, transform.rotation, spawnPoint.transform);
-                        enemyList.Add(spawnedEnemy);
-                    }
-
-                    foreach (var border in doorColliders)
-                    {
-                        border.enabled = true;
-                    }
-
-                    foreach (var item in doorAnimators)
-                    {
-                        item.SetBool("closeDoor", true);
-                        item.SetBool("openDoor", false);
-                    }
-
-                    crate.roomHasBeenCleared = false;
-                    hasBeenActivated = true;
+                    RegularRoom();
                     break;
 
                 case RoomState.Boss:
@@ -104,6 +86,28 @@ public class RoomManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void RegularRoom() {
+        foreach (var spawnPoint in spawnPoints)
+        {
+            GameObject spawnedEnemy = Instantiate(spawnPoint.GetComponent<EnemySpawnPoints>().enemyToSpawn, spawnPoint.transform.position, transform.rotation, spawnPoint.transform);
+            enemyList.Add(spawnedEnemy);
+        }
+
+        foreach (var border in doorColliders)
+        {
+            border.enabled = true;
+        }
+
+        foreach (var item in doorAnimators)
+        {
+            item.SetBool("closeDoor", true);
+            item.SetBool("openDoor", false);
+        }
+
+        crate.roomHasBeenCleared = false;
+        hasBeenActivated = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

@@ -34,10 +34,12 @@ public abstract class PlayerShoot : MonoBehaviour, IShooter
         if (data.critRate >= critMeter)
         {
             bullet.GetComponent<BulletScript>().damage = data.damage;
+            Debug.Log("Normal");
         }
         else
         {
             bullet.GetComponent<BulletScript>().damage = data.damage * (100 + data.critDamage / 100);
+            Debug.Log("Crit!");
         }
 
         shotSFX.Play();

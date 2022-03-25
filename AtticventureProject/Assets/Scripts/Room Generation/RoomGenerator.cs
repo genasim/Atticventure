@@ -5,6 +5,17 @@ using System;
 
 public class RoomGenerator : MonoBehaviour
 {
+    private RoomGenerator() {}
+    public static RoomGenerator Instance { get; private set; }
+    private void Awake() 
+    { 
+        if (Instance != null && Instance != this) { 
+            Destroy(this); 
+        } else { 
+            Instance = this; 
+        } 
+    }
+
     public RoomTemplates templates;
     public List<GameObject> rooms = new List<GameObject>();
     private int roomCount;
