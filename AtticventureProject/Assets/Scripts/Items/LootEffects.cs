@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class LootEffects : MonoBehaviour
 {
-    [SerializeField] PlayerData data;
-    HealthManager playerHealth;
+    private PlayerData playerData;
+    private HealthManager playerHealth;
 
     private int effect;
-    public Items item;
+    public Item item;
 
     private bool interactButton = false;
     private bool hasSpawned = false;
@@ -29,15 +29,13 @@ public class LootEffects : MonoBehaviour
     private void Awake()
     {
         AssignPlayerComponents();
-        var playerManager = GameObject.FindObjectOfType<PlayerManager>();
-        data = playerManager.data;
-        interactKeyboard = PlayerManager.inputKeyboard.Player.Interact;
-        interactGamepad = PlayerManager.inputGamepad.Player.Interact;
+        playerData = PlayerManager.Instance.data;
+        interactKeyboard = PlayerManager.Instance.inputKeyboard.Player.Interact;
+        interactGamepad = PlayerManager.Instance.inputGamepad.Player.Interact;
     }
 
     public void AssignPlayerComponents() {
-        this.Player = GameObject.FindGameObjectWithTag("Player");
-        this.playerHealth = Player.GetComponent<HealthManager>();
+        this.playerHealth = PlayerManager.Instance.Player.GetComponent<HealthManager>();
     }
 
     private void OnEnable() {
@@ -60,7 +58,6 @@ public class LootEffects : MonoBehaviour
         if (item && hasSpawned == false && canBeOpen)
         {
             effect = item.effect;
-            // Debug.Log(effect);
             SetEffect();
             Instantiate(item.item, transform.position, Quaternion.identity, transform.GetChild(0));
             itemAnim.SetBool("HasSpawned", true);
@@ -135,42 +132,42 @@ public class LootEffects : MonoBehaviour
     }
     public void PlusAtkSpd()
     {
-        data.attackSpeed += 1;
+        playerData.AttackSpeed += .3f;
         Debug.Log("AttackSpeed+");
     }
     public void MinusAtkSpd()
     {
-        data.attackSpeed -= 1;
+        playerData.AttackSpeed -= .3f;
         Debug.Log("AttackSpeed-");
     }
     public void PlusMvtSpd()
     {
-        data.speed += 1;
+        playerData.Speed += 1;
         Debug.Log("MovSpeed+");
     }
     public void MinusMvtSpd()
     {
-        data.speed -= 1;
+        playerData.Speed -= 1;
         Debug.Log("MovSpeed-");
     }
     public void PlusAtkDmg()
     {
-        data.damage += 10;
+        playerData.Damage += 5;
         Debug.Log("Damage+");
     }
     public void MinusAtkDmg()
     {
-        data.damage -= 10;
+        playerData.Damage -= 5;
         Debug.Log("Damage-");
     }
     public void PlusBulletSpeed()
     {
-        data.bulletSpeed += 1;
+        playerData.BulletSpeed += 1;
         Debug.Log("BulletSpeed+");
     }
     public void MinusBulletSpeed()
     {
-        data.bulletSpeed -= 1;
+        playerData.BulletSpeed -= 1;
         Debug.Log("BulletSpeed-");
     }
     public void PlusHP()
@@ -185,22 +182,22 @@ public class LootEffects : MonoBehaviour
     }
     public void PlusCritRate()
     {
-        data.critRate += 5;
+        playerData.CritRate += 10;
         Debug.Log("CritRate+");
     }
     public void MinusCritRate()
     {
-        data.critRate -= 5;
+        playerData.CritRate -= 10;
         Debug.Log("CritRate-");
     }
     public void PlusCritDamage()
     {
-        data.critDamage += 5;
+        playerData.CritDamage += 5;
         Debug.Log("CritDmg+");
     }
     public void MinusCritDamage()
     {
-        data.critDamage -= 5;
+        playerData.CritDamage -= 5;
         Debug.Log("CritDmg-");
     }
     public void PlusMaxHP()

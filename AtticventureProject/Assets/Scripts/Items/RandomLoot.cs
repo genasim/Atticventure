@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RandomLoot : MonoBehaviour
 {
-    [SerializeField] private Items[] loot;
+    [SerializeField] private Item[] loot;
     [SerializeField] private LootEffects effects;
 
     public int[] table =
@@ -14,8 +14,8 @@ public class RandomLoot : MonoBehaviour
         10  //item C
     };
 
-    public int total;
-    public int randomNumber;
+    [SerializeField] private int total;
+    [SerializeField] private int randomNumber;
 
     void Start()
     {

@@ -25,7 +25,7 @@ public class Enemy_Ranged : MonoBehaviour, IShooter
     void Awake()
     {
         thisEnemy = GetComponent<Transform>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = PlayerManager.Instance.Player.transform;
     }
 
 

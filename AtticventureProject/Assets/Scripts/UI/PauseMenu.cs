@@ -36,19 +36,20 @@ public class PauseMenu : MonoBehaviour
     private void Pause()
     {
         gameIsPaused = !gameIsPaused;
-        if(gameIsPaused) {
+        if (gameIsPaused) {
             Time.timeScale = 0;
             pauseMenu.enabled = true;
             eventSystem.SetSelectedGameObject(firstSelectedPause);
-            PlayerManager.inputGamepad.Disable();
-            PlayerManager.inputKeyboard.Disable();
-        } else { 
+            PlayerManager.Instance.inputGamepad.Disable();
+            PlayerManager.Instance.inputKeyboard.Disable();
+        }
+        else { 
             Time.timeScale = 1;
-            eventSystem.SetSelectedGameObject(null);
             pauseMenu.enabled = false;
             optionsMenu.enabled = false;
-            PlayerManager.inputGamepad.Enable();
-            PlayerManager.inputKeyboard.Enable();
+            eventSystem.SetSelectedGameObject(null);
+            PlayerManager.Instance.inputGamepad.Enable();
+            PlayerManager.Instance.inputKeyboard.Enable();
         }
     }
 
@@ -56,6 +57,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.enabled = false;
         gameIsPaused = false;
+        PlayerManager.Instance.inputGamepad.Enable();
+        PlayerManager.Instance.inputKeyboard.Enable();
     }
 
     public void SceneReset()

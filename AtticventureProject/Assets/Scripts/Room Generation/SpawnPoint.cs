@@ -9,7 +9,8 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private BoxCollider2D doorColider;
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private RoomManager roomManager;
-    [SerializeField] Destroyer destroyer;
+    public MapTile mapTile;
+
 
     [Header("")]
     [SerializeField] private int openingDiraction;
@@ -18,87 +19,75 @@ public class SpawnPoint : MonoBehaviour
     // 2 --> need up    door
     // 3 --> need right door
     
-    private RoomGenerator generator;
     private RoomTemplates templates;
     public bool spawned = false;
-    private bool closeDoor = false;
-
-    // public delegate void spawnBoss();
-    // public static event spawnBoss SpawnBoss;
-
-    // public delegate void Room(Vector2 position);
-    // public static event Room canSpawnRoom;
 
     void Start()
     {
-        generator = RoomGenerator.Instance;
-        templates = generator.templates;
+        templates = RoomGenerator.Instance.templates;
 
-        if (generator.rooms.Count < 6)
-            Invoke("SpawnRoom", .05f);
+        if (RoomGenerator.Instance.rooms.Count < 3)
+            Invoke("SpawnRoom", .1f);
         else if (!spawned) {
-                Invoke("ClosingRoomSpawn", 1);
-                // Invoke("DestroyDoor", 1f);
-            }
-
+            Invoke("ClosingRoomSpawn", 1);
+        }
     }
 
-    // private void Start() {
-    //     canSpawnRoom(transform.position);
-    // }
-
     public void ClosingRoomSpawn() {
-        if (!spawned) {
-            if (openingDiraction == 0)
-            {
-                Instantiate(templates.closingRooms[0], transform.position, Quaternion.identity);
-            }
-            else if (openingDiraction == 1)
-            {
-                Instantiate(templates.closingRooms[1], transform.position, Quaternion.identity);
-            }
-            else if (openingDiraction == 2)
-            {
-                Instantiate(templates.closingRooms[2], transform.position, Quaternion.identity);
-            }
-            else if (openingDiraction == 3)
-            {
-                Instantiate(templates.closingRooms[3], transform.position, Quaternion.identity);
-            }
+        if (spawned) return;
 
-            spawned = true;
-            // SpawnBoss();
+        switch (openingDiraction)
+        {
+            case 0:
+                Instantiate(templates.closingRooms[0], transform.position, Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(templates.closingRooms[1], transform.position, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(templates.closingRooms[2], transform.position, Quaternion.identity);
+                break;
+            case 3:
+                Instantiate(templates.closingRooms[3], transform.position, Quaternion.identity);
+                break;
         }
+
+        spawned = true;
     }
 
     public void SpawnRoom()
     {
-        if (!spawned) {
-            if (openingDiraction == 0)
-            {
-                int rand = UnityEngine.Random.Range(0, templates.downRooms.Length);
-                Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity);
-            }
-            else if (openingDiraction == 1)
-            {
-                int rand = UnityEngine.Random.Range(0, templates.leftRooms.Length);
-                Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity);
-            }
-            else if (openingDiraction == 2)
-            {
-                int rand = UnityEngine.Random.Range(0, templates.upRooms.Length);
-                Instantiate(templates.upRooms[rand], transform.position, Quaternion.identity);
-            }
-            else if (openingDiraction == 3)
-            {
-                int rand = UnityEngine.Random.Range(0, templates.rightRooms.Length);
-                Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity);
-            }
+        if (spawned) return;
 
-            spawned = true;
-            // this.enabled = false;
-            // Destroy(gameObject);
+        switch (openingDiraction)
+        {
+            case 0:
+                {
+                    int rand = UnityEngine.Random.Range(0, templates.downRooms.Length);
+                    Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity);
+                    break;
+                }
+            case 1:
+                {
+                    int rand = UnityEngine.Random.Range(0, templates.leftRooms.Length);
+                    Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity);
+                    break;
+                }
+            case 2:
+                {
+                    int rand = UnityEngine.Random.Range(0, templates.upRooms.Length);
+                    Instantiate(templates.upRooms[rand], transform.position, Quaternion.identity);
+                    break;
+                }
+            case 3:
+                {
+                    int rand = UnityEngine.Random.Range(0, templates.rightRooms.Length);
+                    Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity);
+                    break;
+                }
         }
+
+        spawned = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -113,8 +102,8 @@ public class SpawnPoint : MonoBehaviour
             } catch (NullReferenceException) {}
         }
 
-        if (other.gameObject.TryGetComponent(out Destroyer d)) {
-            if (!checkCanGoToNextRoom(d.spawnPoints)) {
+        if (other.gameObject.TryGetComponent(out RoomManager rm)) {
+            if (!checkCanGoToNextRoom(rm.roomSpawnPoints)) {
                 DestroyDoor();
                 CleanDestroy();
             }
@@ -131,7 +120,7 @@ public class SpawnPoint : MonoBehaviour
     }
 
     private void CleanDestroy() {
-        destroyer.spawnPoints.Remove(this);
+        roomManager.roomSpawnPoints.Remove(this);
         Destroy(gameObject);
     }
 
@@ -140,6 +129,5 @@ public class SpawnPoint : MonoBehaviour
         this.doorColider.enabled = true;
         roomManager.doorAnimators.Remove(this.doorAnimator);
         Destroy(this.door);
-        // this.spawned = true;
     }
 }

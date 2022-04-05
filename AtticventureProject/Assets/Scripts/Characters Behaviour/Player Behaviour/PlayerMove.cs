@@ -14,6 +14,13 @@ public abstract class PlayerMove : MonoBehaviour
 
     private int xAnimation, yAnimation;
 
+    virtual protected void Awake() {
+        data = PlayerManager.Instance.data;
+        rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        health = GetComponent<HealthManager>();
+    }
+
     abstract protected void OnEnable();
     abstract protected void OnDisable();
     abstract protected void Movement(Vector2 movement);

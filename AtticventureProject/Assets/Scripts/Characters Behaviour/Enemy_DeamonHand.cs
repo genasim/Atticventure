@@ -18,7 +18,7 @@ public class Enemy_DeamonHand : MonoBehaviour
     private void Awake() {
         collider = GetComponent<BoxCollider2D>();
         thisEnemy = GetComponent<Transform>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = PlayerManager.Instance.Player.transform;
         playerMask = LayerMask.GetMask("Player");
     }
 

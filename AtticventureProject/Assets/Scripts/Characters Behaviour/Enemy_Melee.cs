@@ -17,7 +17,7 @@ public class Enemy_Melee : MonoBehaviour , IEnemy
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = PlayerManager.Instance.Player.transform;
         gameObject.GetComponent<Pathfinding.AIDestinationSetter>().target = player;
     }
 

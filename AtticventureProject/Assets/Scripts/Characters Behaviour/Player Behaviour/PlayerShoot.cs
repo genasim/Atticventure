@@ -18,28 +18,31 @@ public abstract class PlayerShoot : MonoBehaviour, IShooter
     public Vector2 attackDir {get; set;}
     protected float nextTimeToAttack;
     public float currentAttackSpeed = 1f;
-    protected float critMeter {get;}
-
 
     [SerializeField] protected AudioSource shotSFX;
 
-    protected abstract void OnEnable();
-    protected abstract void OnDisable();
+    virtual protected void Awake() {
+        data = PlayerManager.Instance.data;
+        shotSFX = GetComponent<AudioSource>();
+        attackPoint = gameObject.transform.GetChild(0).transform;
+        cam = Camera.main;
+    }
+    abstract protected void OnEnable();
+    abstract protected void OnDisable();
     
     public void Shoot()
     {
-        GameObject bullet = Instantiate(data.bullet, attackPoint.transform.position, transform.rotation);
-        bullet.GetComponent<Rigidbody2D>().velocity = data.bulletSpeed * attackDir.normalized;
-        
-        if (data.critRate >= critMeter)
+        GameObject bullet = Instantiate(data.Bullet, attackPoint.transform.position, transform.rotation);
+        bullet.GetComponent<Rigidbody2D>().velocity = data.BulletSpeed * attackDir.normalized;
+        var value = UnityEngine.Random.Range(1, 100);
+        if (value > data.CritRate)
         {
-            bullet.GetComponent<BulletScript>().damage = data.damage;
-            Debug.Log("Normal");
+            bullet.GetComponent<BulletScript>().damage = data.Damage;
         }
         else
         {
-            bullet.GetComponent<BulletScript>().damage = data.damage * (100 + data.critDamage / 100);
-            Debug.Log("Crit!");
+            bullet.GetComponent<BulletScript>().damage = data.Damage + data.CritDamage / 10;
+            bullet.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         shotSFX.Play();

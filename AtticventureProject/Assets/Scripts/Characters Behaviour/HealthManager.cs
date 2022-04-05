@@ -17,10 +17,10 @@ public class HealthManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= (int)damage;
-        hitSFX.PlayDelayed(.1f);
+        hitSFX.Play();
 
-        // if (currentHealth <= 0) 
-        //     Die();
+        if (currentHealth <= 0) 
+            Die();
 
         print($"damage taken {maxHealth} {currentHealth}");
     }

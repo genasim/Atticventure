@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public sealed class PlayerManager : MonoBehaviour
+public sealed class PlayerManager : Singleton<PlayerManager>
 {
     [SerializeField] private GameObject onScreenControls;
-    public static InputKeyboard inputKeyboard;
-    public static InputGamepad inputGamepad;
+    public InputKeyboard inputKeyboard;
+    public InputGamepad inputGamepad;
     public PlayerData data;
     [SerializeField] private PlayerData dataDefault;
     private GameObject player;
+    public GameObject Player { get {
+        if (player == null) 
+                player = GameObject.FindGameObjectWithTag("Player");
+        return player;
+        }
+    }
 
     private void OnEnable() {
             InputSystem.onDeviceChange += ConfigureDevices;
@@ -29,29 +35,29 @@ public sealed class PlayerManager : MonoBehaviour
                 InputSystem.AddDevice(device);
 
                 if(device.displayName == "Gamepad") {
-                        player.AddComponent<MoveGamepad>();
-                        player.AddComponent<ShootGamepad>();
+                        Player.AddComponent<MoveGamepad>();
+                        Player.AddComponent<ShootGamepad>();
                 } if (device.displayName == "Keyboard") {
-                        player.AddComponent<MoveKeyboard>();
-                        player.AddComponent<ShootKeyboard>();
+                        Player.AddComponent<MoveKeyboard>();
+                        Player.AddComponent<ShootKeyboard>();
                 }
                 break;
             case InputDeviceChange.Disconnected:    // Device got unplugged.
                 if(device.displayName == "Gamepad") {
-                        Destroy(player.GetComponent<MoveGamepad>());
-                        Destroy(player.GetComponent<ShootGamepad>());
+                        Destroy(Player.GetComponent<MoveGamepad>());
+                        Destroy(Player.GetComponent<ShootGamepad>());
                 } if (device.displayName == "Keyboard") {
-                        Destroy(player.GetComponent<MoveKeyboard>());
-                        Destroy(player.GetComponent<ShootKeyboard>());
+                        Destroy(Player.GetComponent<MoveKeyboard>());
+                        Destroy(Player.GetComponent<ShootKeyboard>());
                 }
                 break;
             case InputDeviceChange.Reconnected:     // Device plugged back in.
                 if(device.displayName == "Gamepad") {
-                        player.AddComponent<MoveGamepad>();
-                        player.AddComponent<ShootGamepad>();
+                        Player.AddComponent<MoveGamepad>();
+                        Player.AddComponent<ShootGamepad>();
                 } if (device.displayName == "Keyboard") {
-                        player.AddComponent<MoveKeyboard>();
-                        player.AddComponent<ShootKeyboard>();
+                        Player.AddComponent<MoveKeyboard>();
+                        Player.AddComponent<ShootKeyboard>();
                 }
                 break;
         //     case InputDeviceChange.Removed:         // Remove from Input System entirely; by default, Devices stay in the system once discovered.
@@ -61,28 +67,24 @@ public sealed class PlayerManager : MonoBehaviour
         }
     }
 
-    void Awake()
+    private void Awake()
     {
-        DefaultDataValues(data, dataDefault);
-        PlayerMove.data = Object.Instantiate(data);
-        PlayerShoot.data = Object.Instantiate(data);
+        data.Reset();
 
         inputKeyboard = new InputKeyboard();
         inputGamepad = new InputGamepad();
 
-        player = GameObject.FindGameObjectWithTag("Player");
-
         var allKeyboards = InputSystem.FindControls("<keyboard>");
         if (allKeyboards.ToArray().Length > 0) {
-                player.AddComponent<MoveKeyboard>();
-                player.AddComponent<ShootKeyboard>();
+                Player.AddComponent<MoveKeyboard>();
+                Player.AddComponent<ShootKeyboard>();
         }
         allKeyboards.Dispose();
         
         var allGamepads = InputSystem.FindControls("<gamepad>");
         if (allGamepads.ToArray().Length > 0) {
-                player.AddComponent<MoveKeyboard>();
-                player.AddComponent<ShootKeyboard>();
+                Player.AddComponent<MoveKeyboard>();
+                Player.AddComponent<ShootKeyboard>();
         }
         allGamepads.Dispose();
         
@@ -91,14 +93,5 @@ public sealed class PlayerManager : MonoBehaviour
 #else
         onScreenControls.SetActive(false);
 #endif
-    }
-
-    private void DefaultDataValues(PlayerData data, PlayerData dataDefault) {
-        data.speed = dataDefault.speed;
-        data.bulletSpeed = dataDefault.bulletSpeed;
-        data.damage = dataDefault.damage;
-        data.attackSpeed = dataDefault.attackSpeed;
-        data.critRate = dataDefault.critRate;
-        data.critDamage = dataDefault.critDamage;
     }
 }

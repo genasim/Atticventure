@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     private void Update()
     {
         try {
-            health = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManager>().currentHealth / 10;
+            health = PlayerManager.Instance.Player.GetComponent<HealthManager>().currentHealth / 10;
         } catch {
             health -= 10;
         }

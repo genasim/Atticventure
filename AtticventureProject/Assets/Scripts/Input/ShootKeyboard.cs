@@ -8,11 +8,9 @@ public class ShootKeyboard : PlayerShoot
     private InputKeyboard input;
     private Vector2 mousePos;
 
-    private void Awake() {
-        input = PlayerManager.inputKeyboard;
-        shotSFX = GetComponent<AudioSource>();
-        attackPoint = gameObject.transform.GetChild(0).transform;
-        cam = Camera.main;
+    protected override void Awake() {
+        base.Awake();
+        input = PlayerManager.Instance.inputKeyboard;
     }
 
     protected override void OnEnable() {
@@ -33,6 +31,6 @@ public class ShootKeyboard : PlayerShoot
             nextTimeToAttack = Time.time + 1 / currentAttackSpeed;     // Attacks per second
             Shoot();
         }
-        currentAttackSpeed = data.attackSpeed;
+        currentAttackSpeed = data.AttackSpeed;
     }
 }

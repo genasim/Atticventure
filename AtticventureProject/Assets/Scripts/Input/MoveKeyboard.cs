@@ -6,11 +6,9 @@ public class MoveKeyboard : PlayerMove
 {
     private InputKeyboard input;
 
-    private void Awake() {
-        rb2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        health = GetComponent<HealthManager>();
-        input = PlayerManager.inputKeyboard;
+    protected override void Awake() {
+        base.Awake();
+        input = PlayerManager.Instance.inputKeyboard;
     }
 
     protected override void OnEnable() {
@@ -27,13 +25,11 @@ public class MoveKeyboard : PlayerMove
         // Debug.Log($"Keyboard: {movement}");
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         Movement(movement);
     }
 
-    protected override void Movement(Vector2 movement)
-    {
-        rb2D.MovePosition(rb2D.position + data.speed * Time.fixedDeltaTime * movement);
+    protected override void Movement(Vector2 movement) {
+        rb2D.MovePosition(rb2D.position + data.Speed * Time.fixedDeltaTime * movement);
     }
 }

@@ -17,5 +17,5 @@ MonoBehaviour:
   bulletSpeed: 35
   damage: 10
   attackSpeed: 1
-  critRate: 10
+  critRate: 15
   critDamage: 50

@@ -881,7 +881,6 @@ Transform:
   - {fileID: 8112422336533753212}
   - {fileID: 9180573757394827832}
   - {fileID: 8896506965377995527}
-  - {fileID: 4770191823595306390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1360,102 +1359,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 17.605007, y: 0.2457026}
   m_EdgeRadius: 0
---- !u!1 &3605274678574378888
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4770191823595306390}
-  - component: {fileID: 6174939628396487025}
-  - component: {fileID: 8027584285722658647}
-  - component: {fileID: 6970705933198183634}
-  m_Layer: 10
-  m_Name: Destroyer
-  m_TagString: SpawnPoint
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4770191823595306390
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3605274678574378888}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1707162333410090110}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6174939628396487025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3605274678574378888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155104fbded3829489e32673c5f33ccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 3458954320742157135}
-  - {fileID: 3096164012233215208}
---- !u!61 &8027584285722658647
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3605274678574378888}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!50 &6970705933198183634
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3605274678574378888}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &3677409365810018912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,7 +1723,7 @@ GameObject:
   - component: {fileID: 2764384465478872105}
   m_Layer: 10
   m_Name: Right
-  m_TagString: SpawnPoint
+  m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1856,8 +1759,8 @@ MonoBehaviour:
   doorColider: {fileID: 6553178478622888602}
   doorAnimator: {fileID: 5092896715865449094}
   roomManager: {fileID: 8580840355686885555}
-  destroyer: {fileID: 6174939628396487025}
   openingDiraction: 1
+  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &2054496200294950474
 BoxCollider2D:
@@ -1957,6 +1860,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
+  roomSpawnPoints:
+  - {fileID: 3458954320742157135}
+  - {fileID: 3096164012233215208}
   enemyList: []
   spawnPoints:
   - {fileID: 443221030603916956}
@@ -2076,7 +1982,7 @@ GameObject:
   - component: {fileID: 2413470018684965026}
   m_Layer: 10
   m_Name: Down
-  m_TagString: SpawnPoint
+  m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2112,8 +2018,8 @@ MonoBehaviour:
   doorColider: {fileID: 9030669113149332859}
   doorAnimator: {fileID: 6609185267378787829}
   roomManager: {fileID: 8580840355686885555}
-  destroyer: {fileID: 6174939628396487025}
   openingDiraction: 2
+  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &1187419206252926392
 BoxCollider2D:

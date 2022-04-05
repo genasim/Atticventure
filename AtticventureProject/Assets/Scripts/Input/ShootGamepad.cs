@@ -11,6 +11,12 @@ public class ShootGamepad : PlayerShoot
     [SerializeField] private Transform nearestEnemy;
     private GameObject[] enemiesInRoom;
 
+    protected override void Awake() {
+        base.Awake();
+        input = PlayerManager.Instance.inputGamepad;
+        onScreenAttackButton = GameObject.FindGameObjectWithTag("AttackButton").GetComponent<ButtonHeld>();
+    }
+
     protected override void OnEnable() {
         input.Player.Shoot.performed += _ => attackHeld = true;
         input.Player.Shoot.canceled += _ => attackHeld = false;
@@ -18,14 +24,6 @@ public class ShootGamepad : PlayerShoot
     protected override void OnDisable() {
         input.Player.Shoot.performed -= _ => attackHeld = true;
         input.Player.Shoot.canceled -= _ => attackHeld = false;
-    }
-
-    private void Awake() {
-        input = PlayerManager.inputGamepad;
-        shotSFX = GetComponent<AudioSource>();
-        attackPoint = gameObject.transform.GetChild(0).transform;
-        cam = Camera.main;
-        onScreenAttackButton = GameObject.FindGameObjectWithTag("AttackButton").GetComponent<ButtonHeld>();
     }
 
     private void Update() {

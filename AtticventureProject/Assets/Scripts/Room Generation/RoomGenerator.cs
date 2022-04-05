@@ -3,19 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class RoomGenerator : MonoBehaviour
+public class RoomGenerator : Singleton<RoomGenerator>
 {
-    private RoomGenerator() {}
-    public static RoomGenerator Instance { get; private set; }
-    private void Awake() 
-    { 
-        if (Instance != null && Instance != this) { 
-            Destroy(this); 
-        } else { 
-            Instance = this; 
-        } 
-    }
-
     public RoomTemplates templates;
     public List<GameObject> rooms = new List<GameObject>();
     private int roomCount;
@@ -23,15 +12,39 @@ public class RoomGenerator : MonoBehaviour
 
     private float waitTime = 3;
     private bool spawnedBoss = false;
-    public GameObject boss;
+    [SerializeField] private GameObject boss;
+    
+    // private void Start() {
+    //     // SpawnRooms(roomCount);
+    //     StartCoroutine("SpawnRooms");
+    // }
+
+    // private IEnumerator SpawnRooms() {
+    //     // roomCount = rooms.Count;
+    //     // Debug.Log(rooms.Count);
+    //     var roomsArray = rooms.ToArray(); 
+    //     while (roomsArray.Length < 7) {
+    //         foreach (var room in roomsArray)
+    //         {
+    //             foreach (var spawnPoint in room.GetComponentsInChildren<SpawnPoint>())
+    //             {
+    //                 spawnPoint.SpawnRoom();
+    //             }
+    //         }
+
+    //         // yield return new WaitForEndOfFrame();
+    //         IEnumerable co = SpawnRooms();
+    //         StartCoroutine(co.GetEnumerator());
+    //     }
+    // }
     
 
     private void Update() {
         if (waitTime <= 0 && !mazeClosed) {
-            Instantiate(boss, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
-            rooms[rooms.Count - 1].GetComponentInChildren<RoomManager>().state = RoomState.Boss;
+            var bossRoom = rooms[rooms.Count - 1];
+            Instantiate(boss, bossRoom.transform.position, Quaternion.identity);
+            bossRoom.GetComponentInChildren<RoomManager>().state = RoomState.Boss;
 
-            //  Destroy remaining SpawnPoints ?
 
             mazeClosed = true;
         } else {
