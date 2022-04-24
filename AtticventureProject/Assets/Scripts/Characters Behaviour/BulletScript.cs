@@ -10,11 +10,11 @@ public class BulletScript : MonoBehaviour
     {
         GameObject collisionObject = collision.gameObject;
 
-        if (collisionObject.GetComponent<HealthManager>())
-            collisionObject.GetComponent<HealthManager>().TakeDamage(damage);
-
-        if (collisionObject.GetComponent<Rigidbody2D>())
-            collisionObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        if (collisionObject.TryGetComponent(out HealthManager hm))
+            hm.TakeDamage(damage);
+        
+        if (collisionObject.TryGetComponent(out Rigidbody2D rb2d))
+            rb2d.velocity = Vector2.zero;
 
         Destroy(gameObject);
     }

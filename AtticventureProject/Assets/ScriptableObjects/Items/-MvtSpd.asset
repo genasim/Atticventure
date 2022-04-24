@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05082f081bd8a3f47a83b145aacbbb5b, type: 3}
-  m_Name: +CrtRate
+  m_Name: -MvtSpd
   m_EditorClassIdentifier: 
-  item: {fileID: 5302072944405076860, guid: e0f78dd4addf43e4d90acaec921b8d31, type: 3}
+  item: {fileID: 1072864299172758517, guid: 9f6bd78e28dcab04183f95e47d0b9062, type: 3}
   effectDescription: {fileID: 0}
-  effect: 13
+  effect: -8

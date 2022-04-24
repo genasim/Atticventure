@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class MapTile : MonoBehaviour
 {
     private RoomTemplates templates;
-    [SerializeField] private RoomMapState _tileState;
     public bool visited = false;
+    private RoomMapState _tileState;
     public RoomMapState TileState { get => _tileState;
         set {
             if (_tileState == value) return;
@@ -40,7 +40,7 @@ public class MapTile : MonoBehaviour
 
     private void Awake() {
         this.TileState = RoomMapState.Hidden;
-        this.templates = RoomGenerator.Instance.templates;
+        this.templates = RoomGenerator.Instance.Templates;
     }
 }
 

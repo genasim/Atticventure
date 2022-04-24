@@ -6,7 +6,6 @@ using UnityEngine;
 public class Enemy_Ranged : MonoBehaviour, IShooter
 {
 #region Variables
-    private Transform thisEnemy;
     private Transform player;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform attackPoint;
@@ -24,17 +23,15 @@ public class Enemy_Ranged : MonoBehaviour, IShooter
 
     void Awake()
     {
-        thisEnemy = GetComponent<Transform>();
         player = PlayerManager.Instance.Player.transform;
     }
 
 
     void Update()
     {
-        if (player) {
-            attackDir = player.position - gameObject.transform.position;
-        }
+        if (!player) return;
 
+        attackDir = player.position - gameObject.transform.position;
         PlayerDir(out playerDir);
         animator.SetFloat("Horizontal", playerDir.x);
         animator.SetFloat("Vertical", playerDir.y);
@@ -42,14 +39,14 @@ public class Enemy_Ranged : MonoBehaviour, IShooter
 
     private void PlayerDir(out Vector2 playerDir)
     {
-        float x = Mathf.Abs(thisEnemy.position.x - player.position.x);
-        float y = Mathf.Abs(thisEnemy.position.y - player.position.y);
+        float x = Mathf.Abs(transform.position.x - player.position.x);
+        float y = Mathf.Abs(transform.position.y - player.position.y);
         // print($"x:{x} y:{y}");
 
         if (x >= y)
-            playerDir = new Vector2((thisEnemy.position.x > player.position.x) ? -1 : 1, 0);
+            playerDir = new Vector2((transform.position.x > player.position.x) ? -1 : 1, 0);
         else
-            playerDir = new Vector2(0, (thisEnemy.position.y > player.position.y) ? -1 : 1);
+            playerDir = new Vector2(0, (transform.position.y > player.position.y) ? -1 : 1);
     }
 
     public void Shoot()     // Called via AnimationEvent in AnimEvent_HolyHunter.cs

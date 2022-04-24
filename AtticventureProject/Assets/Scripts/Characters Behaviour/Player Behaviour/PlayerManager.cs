@@ -9,7 +9,6 @@ public sealed class PlayerManager : Singleton<PlayerManager>
     public InputKeyboard inputKeyboard;
     public InputGamepad inputGamepad;
     public PlayerData data;
-    [SerializeField] private PlayerData dataDefault;
     private GameObject player;
     public GameObject Player { get {
         if (player == null) 
@@ -34,13 +33,19 @@ public sealed class PlayerManager : Singleton<PlayerManager>
                 Debug.Log(device.displayName);
                 InputSystem.AddDevice(device);
 
-                if(device.displayName == "Gamepad") {
-                        Player.AddComponent<MoveGamepad>();
-                        Player.AddComponent<ShootGamepad>();
-                } if (device.displayName == "Keyboard") {
+                var allKeyboards = InputSystem.FindControls("<keyboard>");
+                if (allKeyboards.ToArray().Length > 0) {
                         Player.AddComponent<MoveKeyboard>();
                         Player.AddComponent<ShootKeyboard>();
                 }
+                 allKeyboards.Dispose();
+        
+                var allGamepads = InputSystem.FindControls("<gamepad>");
+                if (allGamepads.ToArray().Length > 0) {
+                        Player.AddComponent<MoveKeyboard>();
+                        Player.AddComponent<ShootKeyboard>();
+                }
+                allGamepads.Dispose();
                 break;
             case InputDeviceChange.Disconnected:    // Device got unplugged.
                 if(device.displayName == "Gamepad") {
@@ -94,4 +99,5 @@ public sealed class PlayerManager : Singleton<PlayerManager>
         onScreenControls.SetActive(false);
 #endif
     }
+
 }

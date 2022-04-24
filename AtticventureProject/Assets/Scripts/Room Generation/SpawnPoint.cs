@@ -9,7 +9,7 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private BoxCollider2D doorColider;
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private RoomManager roomManager;
-    public MapTile mapTile;
+    [HideInInspector] public MapTile mapTile;
 
 
     [Header("")]
@@ -20,17 +20,11 @@ public class SpawnPoint : MonoBehaviour
     // 3 --> need right door
     
     private RoomTemplates templates;
-    public bool spawned = false;
+    [HideInInspector] public bool spawned = false;
 
-    void Start()
+    void Awake()
     {
-        templates = RoomGenerator.Instance.templates;
-
-        if (RoomGenerator.Instance.rooms.Count < 3)
-            Invoke("SpawnRoom", .1f);
-        else if (!spawned) {
-            Invoke("ClosingRoomSpawn", 1);
-        }
+        templates = RoomGenerator.Instance.Templates;
     }
 
     public void ClosingRoomSpawn() {
@@ -61,26 +55,22 @@ public class SpawnPoint : MonoBehaviour
 
         switch (openingDiraction)
         {
-            case 0:
-                {
+            case 0: {
                     int rand = UnityEngine.Random.Range(0, templates.downRooms.Length);
                     Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity);
                     break;
                 }
-            case 1:
-                {
+            case 1: {
                     int rand = UnityEngine.Random.Range(0, templates.leftRooms.Length);
                     Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity);
                     break;
                 }
-            case 2:
-                {
+            case 2: {
                     int rand = UnityEngine.Random.Range(0, templates.upRooms.Length);
                     Instantiate(templates.upRooms[rand], transform.position, Quaternion.identity);
                     break;
                 }
-            case 3:
-                {
+            case 3: {
                     int rand = UnityEngine.Random.Range(0, templates.rightRooms.Length);
                     Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity);
                     break;

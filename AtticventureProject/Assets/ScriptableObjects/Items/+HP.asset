@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05082f081bd8a3f47a83b145aacbbb5b, type: 3}
-  m_Name: +CrtDmg
+  m_Name: +HP
   m_EditorClassIdentifier: 
-  item: {fileID: 4550409934159478403, guid: 774885540d29a4f48adebdba0c01d30c, type: 3}
+  item: {fileID: 1330747478513071733, guid: 124dd34e47d388a4580e15d5193a79d3, type: 3}
   effectDescription: {fileID: 0}
-  effect: 11
+  effect: 6

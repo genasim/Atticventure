@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
-public abstract class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     public static PlayerData data;
     protected Vector2 movement;
@@ -21,9 +21,9 @@ public abstract class PlayerMove : MonoBehaviour
         health = GetComponent<HealthManager>();
     }
 
-    abstract protected void OnEnable();
-    abstract protected void OnDisable();
-    abstract protected void Movement(Vector2 movement);
+    virtual protected void OnEnable() {}
+    virtual protected void OnDisable() {}
+    virtual protected void Movement(Vector2 movement) {}
 
     protected void HandleMovementAnimations() {
         animator.SetFloat("Speed", movement.sqrMagnitude);

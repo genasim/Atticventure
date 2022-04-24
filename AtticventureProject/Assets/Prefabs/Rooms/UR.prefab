@@ -577,6 +577,7 @@ Transform:
   m_Children:
   - {fileID: 1307490790955656538}
   - {fileID: 5051267101096415107}
+  - {fileID: 1220208134521669017}
   - {fileID: 1451687326488888987}
   - {fileID: 7730292979553607245}
   - {fileID: 6278021093066803696}
@@ -1116,7 +1117,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2414586865618614205}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3477113998881915509
 SpriteRenderer:
@@ -1331,8 +1332,8 @@ MonoBehaviour:
   doorColider: {fileID: 8452811522032887119}
   doorAnimator: {fileID: 6645030223578946329}
   roomManager: {fileID: 5866093814210094091}
+  mapTile: {fileID: 0}
   openingDiraction: 1
-  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &8686886844310466054
 BoxCollider2D:
@@ -1464,8 +1465,8 @@ MonoBehaviour:
   doorColider: {fileID: 2816319537883033373}
   doorAnimator: {fileID: 5295895068858886447}
   roomManager: {fileID: 5866093814210094091}
+  mapTile: {fileID: 0}
   openingDiraction: 0
-  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &6923901463929182354
 BoxCollider2D:
@@ -1695,7 +1696,7 @@ Transform:
   - {fileID: 381431180384559987}
   - {fileID: 7469930469843086080}
   m_Father: {fileID: 2414586865618614205}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5752759702516365895
 GameObject:
@@ -1799,7 +1800,7 @@ Transform:
   - {fileID: 1478672449595840433}
   - {fileID: 5261220277131899397}
   m_Father: {fileID: 2414586865618614205}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5866093814210094091
 MonoBehaviour:
@@ -1813,7 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4540c814b822a3b4fb61ec49efa8e533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  _state: 1
   roomSpawnPoints:
   - {fileID: 5360988354383655197}
   - {fileID: 3839860856021236310}
@@ -1829,7 +1830,7 @@ MonoBehaviour:
   - {fileID: 6645030223578946329}
   - {fileID: 5295895068858886447}
   crate: {fileID: 7730292979553607234}
-  hasBeenActivated: 0
+  obstacles: {fileID: 9038281147721258648}
 --- !u!61 &3520876916436970826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2319,6 +2320,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &9038281147721258648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220208134521669017}
+  m_Layer: 0
+  m_Name: Obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1220208134521669017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038281147721258648}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2414586865618614205}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4512760528536877465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2462,15 +2494,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.13
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.46
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalRotation.x

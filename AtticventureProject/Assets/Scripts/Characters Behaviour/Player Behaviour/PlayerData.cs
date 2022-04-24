@@ -16,30 +16,34 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float critRate = 15;
     [SerializeField] private float critDamage = 50;
 
-    public float Speed { get => speed;
-        set { if (speed + value >= 6) speed += value; }
-    }
-
     public GameObject Bullet { get => bullet; }
 
+    public float Speed { get => speed;
+        set { if(speed + value > 6) speed = value; }
+    }
+
     public float BulletSpeed { get => bulletSpeed;
-        set { if (bulletSpeed + value >= 25) bulletSpeed += value; }
+        set { if(bulletSpeed + value > 20) bulletSpeed = value; }
     }
-
+    
     public float Damage { get => damage;
-        set { if (damage + value >= 5) damage += value; }
+        set { if(damage + value > 5) damage = value; }
     }
-
-    public float AttackSpeed { get => attackSpeed; 
-        set { if (attackSpeed + value >= .4f) attackSpeed += value; }
+    
+    public float AttackSpeed { get => attackSpeed;
+        set { if(attackSpeed + value > .7f) attackSpeed = value; }
     }
-
-    public float CritRate { get => critRate; 
-        set { if (critRate + value >= 0 && critRate + value <= 100) critRate += value; }
+    
+    public float CritRate { get => critRate;
+        set {
+            critRate = value;
+            if (critRate < 0) critRate = 0;
+            if (critRate > 100) critRate = 100;
+        }
     }
-
-    public float CritDamage { get => critDamage; 
-        set { if (critDamage + value >= 0) critDamage += value; }
+    
+    public float CritDamage { get => critDamage;
+        set { if(critDamage + value > 30) critDamage = value; }
     }
 
     public void Reset() {

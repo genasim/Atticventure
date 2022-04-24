@@ -6,9 +6,8 @@ using UnityEngine.InputSystem;
 public class LootEffects : MonoBehaviour
 {
     private PlayerData playerData;
-    private HealthManager playerHealth;
+    internal HealthManager playerHealth;
 
-    private int effect;
     public Item item;
 
     private bool interactButton = false;
@@ -21,21 +20,22 @@ public class LootEffects : MonoBehaviour
     [SerializeField] private Transform check;
     [SerializeField] private LayerMask player;
 
-    private GameObject Player;
-
     private InputAction interactKeyboard;
     private InputAction interactGamepad;
 
     private void Awake()
     {
-        AssignPlayerComponents();
+        playerHealth = PlayerManager.Instance.Player.GetComponent<HealthManager>();
         playerData = PlayerManager.Instance.data;
         interactKeyboard = PlayerManager.Instance.inputKeyboard.Player.Interact;
         interactGamepad = PlayerManager.Instance.inputGamepad.Player.Interact;
+        GenerateItem(RoomGenerator.Instance.Pools.RegularRoom);
     }
 
-    public void AssignPlayerComponents() {
-        this.playerHealth = PlayerManager.Instance.Player.GetComponent<HealthManager>();
+    public void GenerateItem(ItemPool newPool)
+    {
+        var loot = GetComponent<RandomLoot>();
+        loot.GenerateRandomItem(newPool);
     }
 
     private void OnEnable() {
@@ -54,75 +54,73 @@ public class LootEffects : MonoBehaviour
 
     void Update()
     {
-        canBeOpen = Physics2D.OverlapCircle(check.position, 1, player) && interactButton & roomHasBeenCleared;
-        if (item && hasSpawned == false && canBeOpen)
-        {
-            effect = item.effect;
-            SetEffect();
-            Instantiate(item.item, transform.position, Quaternion.identity, transform.GetChild(0));
-            itemAnim.SetBool("HasSpawned", true);
-            crateAnim.SetBool("ItemSpawned", true);
-            hasSpawned = true;
-        }
+        canBeOpen = Physics2D.OverlapCircle(check.position, 2, player) && interactButton && roomHasBeenCleared;
+        if (!(item && hasSpawned == false && canBeOpen)) return;
+
+        SetEffect();
+        Instantiate(item.item, transform.position, Quaternion.identity, transform.GetChild(0));
+        itemAnim.SetBool("HasSpawned", true);
+        crateAnim.SetBool("ItemSpawned", true);
+        hasSpawned = true;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(check.position, 1);
+        Gizmos.DrawWireSphere(check.position, 2);
     }
 
-    public void SetEffect()
+    private void SetEffect()
     {
-        switch (effect)
+        switch (item.effect)
         {
             case 1:
-                PlusAtkSpd();
+                PlusAtkDmg();
+                break;
+            case -1:
+                MinusAtkDmg();
                 break;
             case 2:
+                PlusAtkSpd();
+                break;
+            case -2:
                 MinusAtkSpd();
                 break;
             case 3:
-                PlusMvtSpd();
-                break;
-            case 4:
-                MinusMvtSpd();
-                break;
-            case 5:
-                PlusAtkDmg();
-                break;
-            case 6:
-                MinusAtkDmg();
-                break;
-            case 7:
                 PlusBulletSpeed();
                 break;
-            case 8:
+            case -3:
                 MinusBulletSpeed();
                 break;
-            case 9:
-                PlusHP();
-                break;
-            case 10:
-                MinusHP();
-                break;
-            case 11:
+            case 4:
                 PlusCritDamage();
                 break;
-            case 12:
+            case -4:
                 MinusCritDamage();
                 break;
-            case 13:
+            case 5:
                 PlusCritRate();
                 break;
-            case 14:
+            case -5:
                 MinusCritRate();
                 break;
-            case 15:
+            case 6:
+                PlusHP();
+                break;
+            case -6:
+                MinusHP();
+                break;
+            case 7:
                 PlusMaxHP();
                 break;
-            case 16:
+            case -7:
                 MinusMaxHP();
+                break;
+            case 8:
+                PlusMvtSpd();
+                break;
+            case -8:
+                MinusMvtSpd();
                 break;
             default:
                 Debug.Log("Invalid Effect");
@@ -203,7 +201,7 @@ public class LootEffects : MonoBehaviour
     public void PlusMaxHP()
     {
         if (playerHealth.maxHealth <= 140) playerHealth.maxHealth += 20;
-        playerHealth.currentHealth += 10;
+        playerHealth.currentHealth += 20;
         if (Health.numberOfHearths <= 7) Health.numberOfHearths++;
         Debug.Log("MaxHealth+");
     }
@@ -211,7 +209,7 @@ public class LootEffects : MonoBehaviour
     {
         if (playerHealth.maxHealth >= 60) playerHealth.maxHealth -= 20;
         if (Health.numberOfHearths >= 3) Health.numberOfHearths--;
-        if (playerHealth.currentHealth >= 50) playerHealth.currentHealth -= 10;
+        if (playerHealth.currentHealth >= 50) playerHealth.currentHealth -= 20;
         Debug.Log("MaxHealth-");
     }
 }

@@ -26,7 +26,7 @@ public class Minimap : Singleton<Minimap>
         inputKeyboard = PlayerManager.Instance.inputKeyboard;
 
         canvas = Minimap.Instance.GetComponent<Canvas>();
-        templates = RoomGenerator.Instance.templates;
+        templates = RoomGenerator.Instance.Templates;
     }
     private void OnEnable() {
         inputGamepad.Player.Map.performed += _ => ShowMap = true;

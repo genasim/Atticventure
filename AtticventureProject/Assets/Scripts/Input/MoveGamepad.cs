@@ -22,7 +22,7 @@ public class MoveGamepad : PlayerMove
     private void Update() {
         movement = input.Player.Movement.ReadValue<Vector2>();
         HandleMovementAnimations();
-        // Debug.Log($"Gamepad: {movement}");
+        Debug.Log($"Gamepad: {movement}");
     }
 
     private void FixedUpdate() {

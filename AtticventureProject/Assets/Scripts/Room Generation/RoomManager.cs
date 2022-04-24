@@ -5,30 +5,40 @@ using Cinemachine;
 
 public class RoomManager : MonoBehaviour
 {
-    public RoomState state = RoomState.Regular;
+    [SerializeField] private RoomState _state;
+    public RoomState State { get => _state;
+        set {
+            if (_state == value) return;
+            _state = value;
+            switch (_state) {
+                case RoomState.ItemRoom:
+                    ItemRoom();
+                    break;
+            }
+        }
+    }
 	public List<SpawnPoint> roomSpawnPoints;
 
     [HideInInspector] public List<GameObject> enemyList;
-    // private int enemiesCount = 0;
-    // private int EnemiesCount { get => enemiesCount;
-    //     set {
-    //         Debug.Log(enemiesCount);
-    //         enemiesCount = enemyList.Count;
-    //         if (hasBeenActivated && enemyList.Count == 0)
-    //         {
-    //             foreach (var border in doorColliders)
-    //                 border.enabled = false;
+    private int enemiesCount = 0;
+    private int EnemiesCount { get => enemyList.Count;
+        set {
+            enemiesCount = value;
+            if (hasBeenActivated && enemiesCount == 0)
+            {
+                foreach (var border in doorColliders)
+                    border.enabled = false;
 
-    //             foreach (var animator in doorAnimators) {
-    //                 animator.SetBool("closeDoor", false);
-    //                 animator.SetBool("openDoor", true);
-    //             }
+                foreach (var animator in doorAnimators) {
+                    animator.SetBool("closeDoor", false);
+                    animator.SetBool("openDoor", true);
+                }
 
-    //             crate.roomHasBeenCleared = true;
-    //             effects.PlusHP();
-    //         }
-    //     }
-    // }
+                crate.roomHasBeenCleared = true;
+                effects.PlusHP();
+            }
+        }
+    }
 
     [SerializeField] private List<GameObject> spawnPoints;
     public List<BoxCollider2D> doorColliders;
@@ -36,14 +46,15 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private LootEffects crate;
 
     private LootEffects effects;
-    private bool hasBeenActivated = false;
+    [SerializeField] private bool hasBeenActivated = false;
     private CinemachineVirtualCamera camCinamachine;
     private MapTile mapTile;
+    [SerializeField] private GameObject obstacles;
 
     private void Awake() {
         this.effects = new LootEffects();
-        this.effects.AssignPlayerComponents();
-        
+        this.effects.playerHealth = PlayerManager.Instance.Player.GetComponent<HealthManager>();
+
         RoomGenerator.Instance.rooms.Add(transform.parent.gameObject);
 
         camCinamachine = FindObjectOfType<CinemachineVirtualCamera>();
@@ -56,59 +67,43 @@ public class RoomManager : MonoBehaviour
         foreach (var enemy in enemyList)
         {
             if (!enemy) enemyList.Remove(enemy);
-        }
-
-        if (hasBeenActivated && enemyList.Count == 0)
-        {
-            foreach (var border in doorColliders)
-                border.enabled = false;
-
-            foreach (var animator in doorAnimators) {
-                animator.SetBool("closeDoor", false);
-                animator.SetBool("openDoor", true);
-            }
-
-            crate.roomHasBeenCleared = true;
-            // effects.PlusHP();
+            EnemiesCount = enemyList.Count;
         }
     }
 
 
     public void InitiateRoom()
     {
-        if (hasBeenActivated) return;
-        switch (this.state)
+        switch (this.State)
         {
             case RoomState.Regular:
                 RegularRoom();
                 break;
 
             case RoomState.Boss:
-
-                //  Ladder to Boss Room
-
                 break;
-
             case RoomState.ItemRoom:
-                ItemRoom();
                 break;
         }
     }
 
     private void RegularRoom() {
-        foreach (var spawnPoint in spawnPoints)
-        {
-            GameObject spawnedEnemy = Instantiate(spawnPoint.GetComponent<EnemySpawnPoints>().enemyToSpawn, spawnPoint.transform.position, transform.rotation, spawnPoint.transform);
+        if (spawnPoints.Count == 0) {
+            EnemiesCount = 0;
+            return;
+        }
+
+        foreach (var spawnPoint in spawnPoints) {
+            GameObject spawnedEnemy = Instantiate(spawnPoint.GetComponent<EnemySpawnPoints>().enemyToSpawn, 
+                                                  spawnPoint.transform.position, Quaternion.identity, spawnPoint.transform);
             enemyList.Add(spawnedEnemy);
         }
 
-        foreach (var border in doorColliders)
-        {
+        foreach (var border in doorColliders) {
             border.enabled = true;
         }
 
-        foreach (var item in doorAnimators)
-        {
+        foreach (var item in doorAnimators) {
             item.SetBool("closeDoor", true);
             item.SetBool("openDoor", false);
         }
@@ -118,17 +113,21 @@ public class RoomManager : MonoBehaviour
     }
 
     private void ItemRoom() {
+        for (int i = spawnPoints.Count - 1; i >= 0 ; i--) {
+            Destroy(spawnPoints[i]);
+            spawnPoints.Remove(spawnPoints[i]);
+        }
+        obstacles.SetActive(false);
 
-                    //  Chest with better loot
+        crate.GenerateItem(RoomGenerator.Instance.Pools.ItemRoom);
+        crate.gameObject.transform.position = transform.position;
+        crate.roomHasBeenCleared = true;
 
-                    //  No Enemies
-
-                    //  Remove Obstacles
-
+        hasBeenActivated = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.TryGetComponent(out SpawnPoint sp)) {
+        if (other.TryGetComponent(out SpawnPoint sp)) {
 			sp.spawned = true;
 			//	Don't do sp.CleanDestroy() or Destroy(other.gameObject)!!!
             sp.mapTile = this.mapTile;
@@ -146,8 +145,9 @@ public class RoomManager : MonoBehaviour
             AStarGridGraph.UpdateGraph(centre: transform.position);
             PlayerShoot.currentRoom = this;
 
-            if (!hasBeenActivated)
+            if (!hasBeenActivated) {
                 this.InitiateRoom();
+            }
         }
     }
 
@@ -165,7 +165,6 @@ public class RoomManager : MonoBehaviour
 }
 
 public enum RoomState {
-    Starting = 0,
     Regular = 1,
     Boss = 2,
     ItemRoom = 3

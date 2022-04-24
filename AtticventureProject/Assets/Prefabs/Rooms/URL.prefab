@@ -390,8 +390,8 @@ MonoBehaviour:
   doorColider: {fileID: 254196902118714173}
   doorAnimator: {fileID: 7877595276291161183}
   roomManager: {fileID: 4670783659270906089}
+  mapTile: {fileID: 0}
   openingDiraction: 3
-  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &8644271821798668471
 BoxCollider2D:
@@ -514,7 +514,7 @@ Transform:
   - {fileID: 2234415305944385733}
   - {fileID: 4250061480796879634}
   m_Father: {fileID: 5962178264141968859}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4670783659270906089
 MonoBehaviour:
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4540c814b822a3b4fb61ec49efa8e533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  _state: 1
   roomSpawnPoints:
   - {fileID: 1311376047750342419}
   - {fileID: 4025862708950470231}
@@ -547,7 +547,7 @@ MonoBehaviour:
   - {fileID: 7877595276291161183}
   - {fileID: 882400862614043176}
   crate: {fileID: 1789524051528231816}
-  hasBeenActivated: 0
+  obstacles: {fileID: 5906126583774960456}
 --- !u!61 &7784707185536584774
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -624,8 +624,8 @@ MonoBehaviour:
   doorColider: {fileID: 5965366155094694928}
   doorAnimator: {fileID: 2602124094411312334}
   roomManager: {fileID: 4670783659270906089}
+  mapTile: {fileID: 0}
   openingDiraction: 1
-  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &2989622270717659126
 BoxCollider2D:
@@ -1190,6 +1190,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &5906126583774960456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1679384329618355073}
+  m_Layer: 0
+  m_Name: Obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679384329618355073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5906126583774960456}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5962178264141968859}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5962178262820252643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1584,7 @@ Transform:
   m_Children:
   - {fileID: 8750061055206240619}
   - {fileID: 6085544523629022585}
+  - {fileID: 1679384329618355073}
   - {fileID: 1623435429655307999}
   - {fileID: 1789524051528231815}
   - {fileID: 121560953462999015}
@@ -2229,8 +2261,8 @@ MonoBehaviour:
   doorColider: {fileID: 7861043338101400215}
   doorAnimator: {fileID: 882400862614043176}
   roomManager: {fileID: 4670783659270906089}
+  mapTile: {fileID: 0}
   openingDiraction: 0
-  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &1306782449517495647
 BoxCollider2D:
@@ -2344,7 +2376,7 @@ Transform:
   - {fileID: 8706416002702847011}
   - {fileID: 7743750933410577429}
   m_Father: {fileID: 5962178264141968859}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7119181550617380094
 GameObject:
@@ -2935,7 +2967,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5962178264141968859}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8053844173883899739
 SpriteRenderer:
@@ -3149,15 +3181,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.46
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalRotation.x

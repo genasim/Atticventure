@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05082f081bd8a3f47a83b145aacbbb5b, type: 3}
-  m_Name: -MaxHP
+  m_Script: {fileID: 11500000, guid: f3c97d8e88628104fb6eea48afe8020d, type: 3}
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
-  item: {fileID: 5756598238078460163, guid: a9991f30bea1383418560f054654c01e, type: 3}
-  effectDescription: {fileID: 0}
-  effect: 16
+  Speed: 9
+  Bullet: {fileID: 3692864561690947711, guid: ee2349bb13862a84fa4c775854770f30, type: 3}
+  BulletSpeed: 35
+  Damage: 10
+  AttackSpeed: 1
+  CritRate: 15
+  CritDamage: 50

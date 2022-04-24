@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05082f081bd8a3f47a83b145aacbbb5b, type: 3}
-  m_Name: +MaxHP
+  m_Name: +AtkSpd
   m_EditorClassIdentifier: 
-  item: {fileID: 7456110752836225033, guid: a4c3da08cd1ec5040ab46d3e78a0936f, type: 3}
+  item: {fileID: 8077831513579277606, guid: 526ea62ffed3dd34f8a26c8ad6ffed6f, type: 3}
   effectDescription: {fileID: 0}
-  effect: 15
+  effect: 2

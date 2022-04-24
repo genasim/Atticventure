@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthManager))]
 public abstract class PlayerShoot : MonoBehaviour, IShooter
 {
-    public static PlayerData data;
+    protected static PlayerData data;
     public static RoomManager currentRoom;
 
 
@@ -17,7 +17,7 @@ public abstract class PlayerShoot : MonoBehaviour, IShooter
     protected bool attackHeld = false;
     public Vector2 attackDir {get; set;}
     protected float nextTimeToAttack;
-    public float currentAttackSpeed = 1f;
+    protected float currentAttackSpeed = 1f;
 
     [SerializeField] protected AudioSource shotSFX;
 

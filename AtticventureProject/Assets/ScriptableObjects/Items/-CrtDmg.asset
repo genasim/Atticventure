@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 5333332136749770498, guid: 8a332d75c93cebe49a3e2e1fd1734558, type: 3}
   effectDescription: {fileID: 0}
-  effect: 12
+  effect: -4

@@ -4,38 +4,29 @@ using UnityEngine;
 
 public class RandomLoot : MonoBehaviour
 {
-    [SerializeField] private Item[] loot;
     [SerializeField] private LootEffects effects;
 
-    public int[] table =
+    public void GenerateRandomItem(ItemPool pool)
     {
-        60, //item A
-        30, //item B
-        10  //item C
-    };
+        int total = 0;
 
-    [SerializeField] private int total;
-    [SerializeField] private int randomNumber;
-
-    void Start()
-    {
-        foreach (var item in table)
+        foreach (var item in pool.table)
         {
             total += item;
         }
 
-        randomNumber = Random.Range(0, total);
+        int randomNumber = Random.Range(0, total);
 
-        for (int i = 0; i < table.Length; i++)
+        for (int i = 0; i < pool.table.Length; i++)
         {
-            if (randomNumber <= table[i])
+            if (randomNumber <= pool.table[i])
             {
-                effects.item = loot[i];
+                effects.item = pool.loot[i];
                 return;
             }
             else
             {
-                randomNumber -= table[i];
+                randomNumber -= pool.table[i];
             }
         }
 

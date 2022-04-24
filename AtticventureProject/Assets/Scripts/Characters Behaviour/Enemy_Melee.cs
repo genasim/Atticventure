@@ -34,6 +34,7 @@ public class Enemy_Melee : MonoBehaviour , IEnemy
 
     private void TurnToPlayer()
     {
+        if (!player) return;
         Vector2 temp = transform.localScale;
         temp.x = (transform.position.x > player.position.x) ? -1 : 1;
         transform.localScale = temp;
@@ -41,6 +42,7 @@ public class Enemy_Melee : MonoBehaviour , IEnemy
 
     public void AttackPlayer()
     {
+        if (!player) return;
         if (Vector2.Distance(player.transform.position, gameObject.transform.position) <= attackRange)  // Is in Attack Range
             Physics2D.OverlapCircle(attackPoint.position, attackRange, playerMask).gameObject.GetComponent<HealthManager>().TakeDamage(damage);
     }

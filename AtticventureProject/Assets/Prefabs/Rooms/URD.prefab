@@ -108,8 +108,8 @@ MonoBehaviour:
   doorColider: {fileID: 7520735685901448950}
   doorAnimator: {fileID: 7928727747903986992}
   roomManager: {fileID: 3543576087876068998}
+  mapTile: {fileID: 0}
   openingDiraction: 0
-  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &1952075157775104704
 BoxCollider2D:
@@ -550,7 +550,38 @@ Transform:
   - {fileID: 6223601247104805891}
   - {fileID: 7515133213618658185}
   m_Father: {fileID: 6706811051317390749}
-  m_RootOrder: 4
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1850246954978735253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5138638606659613508}
+  m_Layer: 0
+  m_Name: Obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5138638606659613508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850246954978735253}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6706811051317390749}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2240272440507325525
 GameObject:
@@ -1236,8 +1267,8 @@ MonoBehaviour:
   doorColider: {fileID: 6266228031590807876}
   doorAnimator: {fileID: 7613460693570945614}
   roomManager: {fileID: 3543576087876068998}
+  mapTile: {fileID: 0}
   openingDiraction: 2
-  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &8218499467533638226
 BoxCollider2D:
@@ -2295,6 +2326,7 @@ Transform:
   - {fileID: 5634591976768195699}
   - {fileID: 4126133680646017408}
   - {fileID: 9183502355929785533}
+  - {fileID: 5138638606659613508}
   - {fileID: 1630134028774436195}
   - {fileID: 13792228081691668}
   - {fileID: 2270010691390009664}
@@ -2625,7 +2657,7 @@ Transform:
   - {fileID: 1440206811175262699}
   - {fileID: 2226578821206395063}
   m_Father: {fileID: 6706811051317390749}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3543576087876068998
 MonoBehaviour:
@@ -2639,7 +2671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4540c814b822a3b4fb61ec49efa8e533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  _state: 1
   roomSpawnPoints:
   - {fileID: 7179180712774542040}
   - {fileID: 1260511031402286784}
@@ -2658,7 +2690,7 @@ MonoBehaviour:
   - {fileID: 7613460693570945614}
   - {fileID: 7928727747903986992}
   crate: {fileID: 1630134028774436204}
-  hasBeenActivated: 0
+  obstacles: {fileID: 1850246954978735253}
 --- !u!61 &8819417078419294950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2879,8 +2911,8 @@ MonoBehaviour:
   doorColider: {fileID: 7062607897916039793}
   doorAnimator: {fileID: 7664950494812757334}
   roomManager: {fileID: 3543576087876068998}
+  mapTile: {fileID: 0}
   openingDiraction: 1
-  templates: {fileID: 11400000, guid: c5de1e9ace5f62c4cb0b337cc781b760, type: 2}
   spawned: 0
 --- !u!61 &5760104751071765575
 BoxCollider2D:
@@ -3149,15 +3181,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.08
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 2728330268531666379, guid: 87d33f5d2f4515f409b1c0070dc7db5e, type: 3}
       propertyPath: m_LocalRotation.x
