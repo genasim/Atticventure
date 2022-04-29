@@ -29,6 +29,5 @@ public class RandomLoot : MonoBehaviour
                 randomNumber -= pool.table[i];
             }
         }
-
     }
 }

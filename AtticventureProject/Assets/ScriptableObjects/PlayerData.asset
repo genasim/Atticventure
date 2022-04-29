@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c97d8e88628104fb6eea48afe8020d, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  Speed: 9
-  Bullet: {fileID: 3692864561690947711, guid: ee2349bb13862a84fa4c775854770f30, type: 3}
-  BulletSpeed: 35
-  Damage: 10
-  AttackSpeed: 1
-  CritRate: 15
-  CritDamage: 50
+  speed: 9
+  bullet: {fileID: 3692864561690947711, guid: ee2349bb13862a84fa4c775854770f30, type: 3}
+  bulletSpeed: 35
+  damage: 10
+  attackSpeed: 1
+  critRate: 15
+  critDamage: 50

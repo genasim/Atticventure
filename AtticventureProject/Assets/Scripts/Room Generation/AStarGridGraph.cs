@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public static class AStarGridGraph
+namespace MazeGeneration
 {
-    public static void UpdateGraph(Vector2 centre)
+    public static class AStarGridGraph
     {
-        // This holds all graph data
-        AstarData data = AstarPath.active.data;
+        public static void UpdateGraph(Vector2 centre)
+        {
+            // This holds all graph data
+            AstarData data = AstarPath.active.data;
 
-        var gg = AstarPath.active.data.gridGraph;
+            var gg = AstarPath.active.data.gridGraph;
 
-        gg.center = centre;
+            gg.center = centre;
 
-        // Scans all graphs
-        AstarPath.active.Scan();
+            // Scans all graphs
+            AstarPath.active.Scan();
+        }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using MazeGeneration;
 
 public class LootEffects : MonoBehaviour
 {
@@ -170,7 +171,7 @@ public class LootEffects : MonoBehaviour
     }
     public void PlusHP()
     {
-        playerHealth.currentHealth += 10;
+        if (playerHealth.currentHealth < playerHealth.maxHealth) playerHealth.currentHealth += 10;
         Debug.Log("Health+");
     }
     public void MinusHP()

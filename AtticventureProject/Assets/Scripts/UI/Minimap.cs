@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MazeGeneration;
 
 public class Minimap : Singleton<Minimap>
 {
-    private static RoomTemplates templates;
 
     private bool showMap = false;
     private bool ShowMap {get => showMap;
@@ -26,7 +26,6 @@ public class Minimap : Singleton<Minimap>
         inputKeyboard = PlayerManager.Instance.inputKeyboard;
 
         canvas = Minimap.Instance.GetComponent<Canvas>();
-        templates = RoomGenerator.Instance.Templates;
     }
     private void OnEnable() {
         inputGamepad.Player.Map.performed += _ => ShowMap = true;
@@ -42,10 +41,11 @@ public class Minimap : Singleton<Minimap>
         inputKeyboard.Player.Map.canceled -= _ => ShowMap = false;
     }
 
-    public static void AddRoomToMap(GameObject position, out MapTile mapTile) {
-        var offset = new Vector2(position.transform.position.x * 110/22.25f, 
-                                 position.transform.position.y * 110/12.5f);
-        var go = Instantiate(templates.mapTile, (Vector2)canvas.transform.position + offset, Quaternion.identity, canvas.transform);
+    public static void AddRoomToMap(Transform position, out MapTile mapTile) {
+        var offset = new Vector2(position.position.x * 110/22.25f, 
+                                 position.position.y * 110/12.5f);
+        var go = Instantiate(RoomGenerator.Instance.Templates.mapTile, (Vector2)canvas.transform.position + offset, 
+                             Quaternion.identity, canvas.transform);
         mapTile = go.GetComponent<MapTile>(); 
     }
 }

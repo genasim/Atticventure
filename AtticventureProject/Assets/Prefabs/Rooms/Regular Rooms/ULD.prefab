@@ -2364,7 +2364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4540c814b822a3b4fb61ec49efa8e533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 1
+  state: 1
   roomSpawnPoints:
   - {fileID: 6143618063841614355}
   - {fileID: 1900722015277084821}
@@ -2383,7 +2383,7 @@ MonoBehaviour:
   - {fileID: 589357294252874290}
   - {fileID: 8457375210104621056}
   crate: {fileID: 6631250060583947735}
-  obstacles: {fileID: 5876277741331804108}
+  hasBeenActivated: 0
 --- !u!61 &3568641752637804492
 BoxCollider2D:
   m_ObjectHideFlags: 0

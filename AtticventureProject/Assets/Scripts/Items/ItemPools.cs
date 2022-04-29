@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemPools : ScriptableObject {
     public ItemPool RegularRoom;
     public ItemPool ItemRoom;
+    public ItemPool temp;
 }
 
 [System.Serializable] public struct ItemPool

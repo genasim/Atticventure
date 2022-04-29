@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnPoints : MonoBehaviour
+namespace MazeGeneration 
 {
-    public GameObject enemyToSpawn;
+    public class EnemySpawnPoints : MonoBehaviour
+    {
+        public GameObject enemyToSpawn;
+    }
 }
