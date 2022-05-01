@@ -8,7 +8,7 @@ using MazeGeneration;
 public abstract class PlayerShoot : MonoBehaviour, IShooter
 {
     protected static PlayerData data;
-    public static RoomManager currentRoom;
+    public static RegularRoom currentRoom;
 
 
     protected Transform attackPoint;

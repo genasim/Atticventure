@@ -47,26 +47,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 104698939018472347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4540c814b822a3b4fb61ec49efa8e533, type: 3}
+  m_Script: {fileID: 11500000, guid: cebb8ab093467204ba07f51fbd6cb346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
   roomSpawnPoints:
   - {fileID: 2098220388004026375}
   - {fileID: 8212486540780605593}
-  enemyList: []
-  spawnPoints:
-  - {fileID: 6425411682994532490}
-  - {fileID: 7478252011261600298}
-  - {fileID: 1726493783521464279}
   doorColliders:
   - {fileID: 4202266539781531995}
   - {fileID: 6859622622593559425}
   doorAnimators:
   - {fileID: 8380158925177002607}
   - {fileID: 4433270629596959911}
+  spawnPoints:
+  - {fileID: 6425411682994532490}
+  - {fileID: 7478252011261600298}
+  - {fileID: 1726493783521464279}
   crate: {fileID: 4404929928687574960}
-  hasBeenActivated: 0
+  enemyList: []
 --- !u!61 &8402226011109782839
 BoxCollider2D:
   m_ObjectHideFlags: 0

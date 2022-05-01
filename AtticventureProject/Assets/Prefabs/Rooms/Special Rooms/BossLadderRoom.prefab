@@ -49,7 +49,7 @@ MonoBehaviour:
   door: {fileID: 3875590708238205855}
   doorColider: {fileID: 5611185811788810523}
   doorAnimator: {fileID: 9213762342694473246}
-  roomManager: {fileID: 913265840722439049}
+  roomManager: {fileID: 5167419821957245056}
   mapTile: {fileID: 0}
   openingDiraction: 3
   spawned: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   door: {fileID: 7703789978277592741}
   doorColider: {fileID: 7994422332954556563}
   doorAnimator: {fileID: 6788083432242501207}
-  roomManager: {fileID: 913265840722439049}
+  roomManager: {fileID: 5167419821957245056}
   mapTile: {fileID: 0}
   openingDiraction: 2
   spawned: 0
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   door: {fileID: 2841142820519553744}
   doorColider: {fileID: 3720520045266182936}
   doorAnimator: {fileID: 6417115063501366662}
-  roomManager: {fileID: 913265840722439049}
+  roomManager: {fileID: 5167419821957245056}
   mapTile: {fileID: 0}
   openingDiraction: 0
   spawned: 0
@@ -3073,7 +3073,7 @@ MonoBehaviour:
   door: {fileID: 2029427747086161800}
   doorColider: {fileID: 9219230814743293218}
   doorAnimator: {fileID: 1026492476378639254}
-  roomManager: {fileID: 913265840722439049}
+  roomManager: {fileID: 5167419821957245056}
   mapTile: {fileID: 0}
   openingDiraction: 1
   spawned: 0
@@ -3679,7 +3679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4269669226874050878}
-  - component: {fileID: 913265840722439049}
+  - component: {fileID: 5167419821957245056}
   - component: {fileID: 4175626312607156075}
   m_Layer: 0
   m_Name: RoomManager
@@ -3705,7 +3705,7 @@ Transform:
   m_Father: {fileID: 2577125959879052663}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &913265840722439049
+--- !u!114 &5167419821957245056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3714,29 +3714,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8211949006358093794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4540c814b822a3b4fb61ec49efa8e533, type: 3}
+  m_Script: {fileID: 11500000, guid: 15544d493cb506e448281d5a9d906b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 2
-  roomSpawnPoints:
-  - {fileID: 8345280130859728689}
-  - {fileID: 26055390579386134}
-  - {fileID: 1852536423842059107}
-  - {fileID: 8907009354990023927}
-  enemyList: []
-  spawnPoints: []
-  doorColliders:
-  - {fileID: 3720520045266182936}
-  - {fileID: 5611185811788810523}
-  - {fileID: 9219230814743293218}
-  - {fileID: 7994422332954556563}
-  doorAnimators:
-  - {fileID: 1026492476378639254}
-  - {fileID: 6788083432242501207}
-  - {fileID: 9213762342694473246}
-  - {fileID: 6417115063501366662}
-  crate: {fileID: 0}
+  state: 4
+  roomSpawnPoints: []
+  doorColliders: []
+  doorAnimators: []
   hasBeenActivated: 0
+  boss: {fileID: 0}
 --- !u!61 &4175626312607156075
 BoxCollider2D:
   m_ObjectHideFlags: 0

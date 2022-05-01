@@ -58,7 +58,7 @@ MonoBehaviour:
   - {fileID: 6989686915748223916, guid: 1e997708a63b06f438ce161694112e8b, type: 3}
   - {fileID: 1698521011712520039, guid: a0e9b09c368392e4393a217720af26c7, type: 3}
   ItemRoom: {fileID: 2577125959879052656, guid: 94fa8057b202d62468009626f06d5f09, type: 3}
-  BossRoom: {fileID: 2577125959879052656, guid: 7e6ff73b1db84594b86bfb6245426124, type: 3}
+  BossLadderRoom: {fileID: 2577125959879052656, guid: 7e6ff73b1db84594b86bfb6245426124, type: 3}
   mapTile: {fileID: 2381505883589417199, guid: 958630f0336d617489b083a78a30b505, type: 3}
   currentRoom: {fileID: 21300000, guid: 985c7ff0046b13944ad36b81d2739271, type: 3}
   visitedRoom: {fileID: 21300000, guid: 60a024f0bb1513d41a9376f66125094e, type: 3}

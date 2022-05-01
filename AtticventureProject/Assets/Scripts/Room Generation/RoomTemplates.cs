@@ -14,7 +14,7 @@ namespace MazeGeneration
         public GameObject[] leftRooms;
         public GameObject[] closingRooms;
         public GameObject ItemRoom;
-        public GameObject BossRoom;
+        public GameObject BossLadderRoom;
 
         [Header("Map tiles")]
         public GameObject mapTile;

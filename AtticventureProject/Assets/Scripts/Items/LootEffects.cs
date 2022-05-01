@@ -136,7 +136,7 @@ public class LootEffects : MonoBehaviour
     }
     public void MinusAtkSpd()
     {
-        playerData.AttackSpeed -= .3f;
+        playerData.AttackSpeed -= .2f;
         Debug.Log("AttackSpeed-");
     }
     public void PlusMvtSpd()

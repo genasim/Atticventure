@@ -2361,7 +2361,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5715134922252247497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4540c814b822a3b4fb61ec49efa8e533, type: 3}
+  m_Script: {fileID: 11500000, guid: cebb8ab093467204ba07f51fbd6cb346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
@@ -2369,11 +2369,6 @@ MonoBehaviour:
   - {fileID: 6143618063841614355}
   - {fileID: 1900722015277084821}
   - {fileID: 6740120094340469505}
-  enemyList: []
-  spawnPoints:
-  - {fileID: 4175879915155193379}
-  - {fileID: 6403985121404589695}
-  - {fileID: 4840135064641232035}
   doorColliders:
   - {fileID: 2952337233331321959}
   - {fileID: 2641359547012903346}
@@ -2382,8 +2377,12 @@ MonoBehaviour:
   - {fileID: 4459040295970615708}
   - {fileID: 589357294252874290}
   - {fileID: 8457375210104621056}
+  spawnPoints:
+  - {fileID: 4175879915155193379}
+  - {fileID: 6403985121404589695}
+  - {fileID: 4840135064641232035}
   crate: {fileID: 6631250060583947735}
-  hasBeenActivated: 0
+  enemyList: []
 --- !u!61 &3568641752637804492
 BoxCollider2D:
   m_ObjectHideFlags: 0

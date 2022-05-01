@@ -95,7 +95,6 @@ namespace MazeGeneration
                 if (!CheckCanGoToNextRoom(rm.roomSpawnPoints)) {
                     CleanDestroy();
                 }
-                mapTile = rm.mapTile;
             }
         }
 

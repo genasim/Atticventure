@@ -19,8 +19,4 @@ public interface IShooter
     void Shoot();
 }
 
-public interface IRoom
-{
-    void InitiateRoom();
-}
 

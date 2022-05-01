@@ -47,7 +47,7 @@ namespace MazeGeneration
 
             //  ASSIGN BOSS ROOM
             var bossRoom = rooms[rooms.Count - 1];
-            ReplaceRoom(bossRoom, Templates.BossRoom);
+            ReplaceRoom(bossRoom, Templates.BossLadderRoom);
         }
 
         private GameObject PickRoom() {

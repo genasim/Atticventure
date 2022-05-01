@@ -41,3 +41,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5d8a9a67eabd10845850a1f7146336b0, type: 2}
     - {fileID: 11400000, guid: bf3b05f752ab5214caed41e934180218, type: 2}
     table: 1400000014000000140000001400000014000000
+  temp:
+    Name: temp
+    loot:
+    - {fileID: 11400000, guid: bf3b05f752ab5214caed41e934180218, type: 2}
+    - {fileID: 11400000, guid: c96db626291ee2142bb3d4683eb93d5b, type: 2}
+    table: 6400000014000000

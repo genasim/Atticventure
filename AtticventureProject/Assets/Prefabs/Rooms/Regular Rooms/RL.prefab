@@ -934,26 +934,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 893887847460141190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4540c814b822a3b4fb61ec49efa8e533, type: 3}
+  m_Script: {fileID: 11500000, guid: cebb8ab093467204ba07f51fbd6cb346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
   roomSpawnPoints:
   - {fileID: 9093075127868745217}
   - {fileID: 5081618145424574545}
-  enemyList: []
-  spawnPoints:
-  - {fileID: 5618716984452606244}
-  - {fileID: 4608453634582396215}
-  - {fileID: 6790101672826855269}
   doorColliders:
   - {fileID: 825811198296682329}
   - {fileID: 7657236313578900147}
   doorAnimators:
   - {fileID: 659946522550869892}
   - {fileID: 8904229270835189312}
+  spawnPoints:
+  - {fileID: 5618716984452606244}
+  - {fileID: 4608453634582396215}
+  - {fileID: 6790101672826855269}
   crate: {fileID: 8337149831379984969}
-  hasBeenActivated: 0
+  enemyList: []
 --- !u!61 &8204435904026900023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2369,11 +2368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5614179272739355204, guid: db3ad3a84a1659c458cefc14ba07e7f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.47
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 5614179272739355204, guid: db3ad3a84a1659c458cefc14ba07e7f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.77
+      value: 2.27
       objectReference: {fileID: 0}
     - target: {fileID: 5614179272739355204, guid: db3ad3a84a1659c458cefc14ba07e7f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2684,11 +2683,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 792801304560962636, guid: 64638e6ffc07679469838afee6eeb4b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.79
+      value: -0.49
       objectReference: {fileID: 0}
     - target: {fileID: 792801304560962636, guid: 64638e6ffc07679469838afee6eeb4b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -2.15
       objectReference: {fileID: 0}
     - target: {fileID: 792801304560962636, guid: 64638e6ffc07679469838afee6eeb4b8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2755,11 +2754,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9084209653827907289, guid: feea758a43ea1e14a8cc26fed66dc70e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.47
+      value: -1.98
       objectReference: {fileID: 0}
     - target: {fileID: 9084209653827907289, guid: feea758a43ea1e14a8cc26fed66dc70e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88
+      value: 2.61
       objectReference: {fileID: 0}
     - target: {fileID: 9084209653827907289, guid: feea758a43ea1e14a8cc26fed66dc70e, type: 3}
       propertyPath: m_LocalPosition.z
