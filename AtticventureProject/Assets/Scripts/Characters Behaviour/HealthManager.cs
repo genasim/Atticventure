@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class HealthManager : MonoBehaviour
 {
+    [SerializeField] bool gameOver = false;
+
     public int maxHealth = 100;
     public int currentHealth;
     [SerializeField] private AudioSource hitSFX;
@@ -45,5 +48,6 @@ public class HealthManager : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        if (gameOver) SceneManager.LoadScene(0);
     }
 }

@@ -22,7 +22,7 @@ TagManager:
   - SpawnPoints
   - EnemyBullet
   - DemonHand
-  - 
+  - Obsticle
   - 
   - 
   - 
@@ -57,14 +57,14 @@ TagManager:
   - name: Crates
     uniqueID: 2225005597
     locked: 0
+  - name: Bullet
+    uniqueID: 2634962089
+    locked: 0
   - name: Enemy
     uniqueID: 3065411503
     locked: 0
   - name: Player
     uniqueID: 3486222327
-    locked: 0
-  - name: Bullet
-    uniqueID: 2634962089
     locked: 0
   - name: Upper Door
     uniqueID: 2650552761
