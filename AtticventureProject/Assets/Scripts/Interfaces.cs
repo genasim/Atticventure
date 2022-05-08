@@ -15,8 +15,10 @@ public interface IDamagable
 
 public interface IShooter
 {
-    Vector2 attackDir{get;}
     void Shoot();
 }
 
+public interface IInteractable {
+    void Interact();
+}
 

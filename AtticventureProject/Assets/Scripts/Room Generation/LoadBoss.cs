@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-public class LoadBoss : MonoBehaviour
+public class LoadBoss : MonoBehaviour, IInteractable
 {
     private bool interactButton = false;
 
@@ -33,9 +33,13 @@ public class LoadBoss : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player" && interactButton)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(collision.gameObject.tag == "Player" && interactButton) {
+            Interact();
         }
+
+    }
+
+    public void Interact() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

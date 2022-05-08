@@ -6,13 +6,19 @@ namespace MazeGeneration
 {
     public class BossLadderRoom : RoomManager
     {
+        [SerializeField] private GameObject keyRoom;
+
         private void Awake() {
             SetUpRoom();
         }
 
+        private void Start() {
+            keyRoom = RoomGenerator.PickRoom();
+            keyRoom.GetComponentInChildren<LootEffects>();
+        }
+
         protected override void InitiateRoom()
         {
-            // throw new System.NotImplementedException();
         }
         
         override protected void OnTriggerEnter2D(Collider2D other) {

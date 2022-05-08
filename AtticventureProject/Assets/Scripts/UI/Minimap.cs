@@ -6,11 +6,8 @@ using MazeGeneration;
 public class Minimap : Singleton<Minimap>
 {
 
-    private bool showMap = false;
-    private bool ShowMap {get => showMap;
-        set {
-            showMap = value;
-            if (showMap)
+    private bool ShowMap { set {
+            if (value == true)
                 canvas.enabled = true;
             else
                 canvas.enabled = false;

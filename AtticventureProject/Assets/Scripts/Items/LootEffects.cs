@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using MazeGeneration;
 
-public class LootEffects : MonoBehaviour
+public class LootEffects : MonoBehaviour, IInteractable
 {
     private PlayerData playerData;
     internal HealthManager playerHealth;
@@ -57,7 +57,11 @@ public class LootEffects : MonoBehaviour
     {
         canBeOpen = Physics2D.OverlapCircle(check.position, 2, player) && interactButton && roomHasBeenCleared;
         if (!(item && hasSpawned == false && canBeOpen)) return;
+        Interact();
+    }
 
+    public void Interact()
+    {
         SetEffect();
         Instantiate(item.item, transform.position, Quaternion.identity, transform.GetChild(0));
         itemAnim.SetBool("HasSpawned", true);

@@ -50,9 +50,9 @@ namespace MazeGeneration
             ReplaceRoom(bossRoom, Templates.BossLadderRoom);
         }
 
-        private GameObject PickRoom() {
-            int index = UnityEngine.Random.Range(1, rooms.Count - 2);
-            var room = rooms[index];
+        public static GameObject PickRoom() {
+            int index = UnityEngine.Random.Range(1, RoomGenerator.Instance.rooms.Count - 2);
+            var room = RoomGenerator.Instance.rooms[index];
             if ((int)room.GetComponentInChildren<RoomManager>().state != (int)RoomState.Regular)
                 room = PickRoom();
             

@@ -7,6 +7,23 @@ namespace MazeGeneration
     public class BossRoom : RoomManager
     {
         [SerializeField] private GameObject boss;
+        [HideInInspector] public List<GameObject> enemyList;
+        private int enemiesCount = 0;
+        private int EnemiesCount {
+            set {
+                enemiesCount = value;
+                if (hasBeenActivated && enemiesCount == 0)
+                {
+                    // foreach (var border in doorColliders)
+                    //     border.enabled = false;
+
+                    foreach (var animator in doorAnimators) {
+                        animator.SetBool("closeDoor", false);
+                        animator.SetBool("openDoor", true);
+                    }
+                }
+            }
+        }
 
         private void Awake() {
             SetUpRoom();
@@ -14,8 +31,9 @@ namespace MazeGeneration
 
         protected override void InitiateRoom()
         {
-          
-            // throw new System.NotImplementedException();
+            Instantiate(boss, transform.position, Quaternion.identity, transform);
+
+            hasBeenActivated = true;
         }
         
         override protected void OnTriggerEnter2D(Collider2D other) {
