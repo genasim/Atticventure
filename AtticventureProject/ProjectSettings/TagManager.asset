@@ -22,7 +22,7 @@ TagManager:
   - SpawnPoints
   - EnemyBullet
   - DemonHand
-  - Obstacle
+  - 
   - 
   - 
   - 
@@ -51,11 +51,11 @@ TagManager:
   - name: Doors
     uniqueID: 2519524475
     locked: 0
-  - name: Loot
-    uniqueID: 2301199097
-    locked: 0
   - name: Crates
     uniqueID: 2225005597
+    locked: 0
+  - name: Loot
+    uniqueID: 2301199097
     locked: 0
   - name: Bullet
     uniqueID: 2634962089

@@ -1116,7 +1116,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3003,6 +3003,7 @@ MonoBehaviour:
   - {fileID: 131431154}
   - {fileID: 950699183}
   hasBeenActivated: 0
+  mapTile: {fileID: 0}
   spawnPoints: []
   crate: {fileID: 0}
   enemyList: []
@@ -7409,18 +7410,6 @@ PrefabInstance:
       propertyPath: temp.m_SingletonActionBindings.Array.data[0].m_Action
       value: Temp
       objectReference: {fileID: 0}
-    - target: {fileID: 6610984723404469170, guid: 8ed908bd242463f41b1f66d2967c2e2b, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610984723404469170, guid: 8ed908bd242463f41b1f66d2967c2e2b, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610984723404469170, guid: 8ed908bd242463f41b1f66d2967c2e2b, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6610984723404469180, guid: 8ed908bd242463f41b1f66d2967c2e2b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9870,27 +9859,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834059120}
   m_CullTransparentMesh: 1
---- !u!1 &1843036559 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6610984723404469181, guid: 8ed908bd242463f41b1f66d2967c2e2b, type: 3}
-  m_PrefabInstance: {fileID: 1378873075}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &1843036568
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843036559}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0899999, y: -0.44988617}
-  serializedVersion: 2
-  m_Radius: 0.43693462
 --- !u!1 &1845714237
 GameObject:
   m_ObjectHideFlags: 0

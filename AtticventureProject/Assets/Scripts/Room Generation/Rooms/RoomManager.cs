@@ -14,14 +14,15 @@ namespace MazeGeneration
 
         [SerializeField] protected bool hasBeenActivated = false;
         private CinemachineVirtualCamera camCinamachine;
-        private MapTile mapTile;
+        public MapTile mapTile;
 
         protected void SetUpRoom() {
             RoomGenerator.Instance.rooms.Add(transform.parent.gameObject);
 
             camCinamachine = FindObjectOfType<CinemachineVirtualCamera>();
 
-            Minimap.AddRoomToMap(gameObject.transform.parent.gameObject.transform, out mapTile);
+            if (mapTile == null)
+                Minimap.AddRoomToMap(gameObject.transform.parent.gameObject.transform, out mapTile);
         }
 
         abstract protected void InitiateRoom();

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2728330268531666373}
   - component: {fileID: 2728330268531666377}
   - component: {fileID: 1637424985806724391}
-  m_Layer: 13
+  m_Layer: 3
   m_Name: Crate
   m_TagString: Crate
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 2728330268531666376}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3216f52f2c567dc44b6caf86c38d1dbb, type: 2}
+  m_Controller: {fileID: 9100000, guid: db6557de4b4a4de4fa05ead3eeaa2656, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2728330268862743220}
   - component: {fileID: 2728330268862743221}
-  m_Layer: 13
+  m_Layer: 3
   m_Name: ItemHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

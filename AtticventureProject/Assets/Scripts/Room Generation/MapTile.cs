@@ -7,8 +7,9 @@ namespace MazeGeneration
 {
     public class MapTile : MonoBehaviour
     {
-        private RoomTemplates templates;
         public bool visited = false;
+        public float alpha { get; private set; }
+        private RoomTemplates templates;
         private RoomMapState _tileState;
         public RoomMapState TileState { get => _tileState;
             set {
@@ -18,22 +19,26 @@ namespace MazeGeneration
                 var color = GetComponent<Image>().color;
                 switch (_tileState) {
                     case RoomMapState.Current:
-                        color.a = 1;
+                        alpha = 1;
+                        color.a = alpha;
                         image.color = color;
                         image.sprite = templates.currentRoom;
                         break;
                     case RoomMapState.Visited:
-                        color.a = 1;
+                        alpha = 1;
+                        color.a = alpha;
                         image.color = color;
                         image.sprite = templates.visitedRoom;
                         break;
                     case RoomMapState.Unvisited:
-                        color.a = 1;
+                        alpha = 1;
+                        color.a = alpha;
                         image.color = color;
                         image.sprite = templates.unvisitedRoom;
                         break;
                     case RoomMapState.Hidden:
-                        color.a = 0;
+                        alpha = 0;
+                        color.a = alpha;
                         image.color = color;
                         break;
                 }

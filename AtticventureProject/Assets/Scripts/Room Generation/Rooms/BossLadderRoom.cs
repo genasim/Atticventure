@@ -6,15 +6,27 @@ namespace MazeGeneration
 {
     public class BossLadderRoom : RoomManager
     {
-        [SerializeField] private GameObject keyRoom;
+        private RoomManager keyRoomManager;
+        public Item key;
+        [HideInInspector] public GameObject keyRoom;
+        [HideInInspector] public BoxCollider2D entranceCol;
+        [HideInInspector] public Animator entranceAnim;
+
+        public void UnlockRoom() {
+            entranceCol.enabled = false;
+            entranceAnim.SetBool("closeDoor", false);
+            entranceAnim.SetBool("openDoor", true);
+        }
 
         private void Awake() {
             SetUpRoom();
+            keyRoom = RoomGenerator.PickRoom();
+            keyRoomManager = keyRoom.GetComponentInChildren<RoomManager>();
         }
 
         private void Start() {
-            keyRoom = RoomGenerator.PickRoom();
-            keyRoom.GetComponentInChildren<LootEffects>();
+            keyRoom.GetComponentInChildren<LootEffects>().item = key;   
+            mapTile.gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(1,0,0,mapTile.alpha);
         }
 
         protected override void InitiateRoom()

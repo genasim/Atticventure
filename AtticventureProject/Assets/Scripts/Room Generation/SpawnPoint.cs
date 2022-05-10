@@ -92,8 +92,27 @@ namespace MazeGeneration
             }
 
             if (other.gameObject.TryGetComponent(out RoomManager rm)) {
-                if (!CheckCanGoToNextRoom(rm.roomSpawnPoints)) {
+                if (!CheckCanGoToNextRoom(rm.roomSpawnPoints))
                     CleanDestroy();
+
+                switch ((int)rm.state) {
+                    case 2:
+                        door.GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
+                        break;
+                    case 4:
+                        door.GetComponentInChildren<SpriteRenderer>().color = new Color(1, .47f, .47f, 1);
+                        
+                        roomManager.doorColliders.Remove(this.doorColider);
+                        roomManager.doorAnimators.Remove(this.doorAnimator);
+                        
+                        var bosLadderRoom = (BossLadderRoom)rm;
+                        doorColider.enabled = true;
+                        doorAnimator.SetBool("closeDoor", true);
+                        doorAnimator.SetBool("openDoor", false);
+
+                        bosLadderRoom.entranceCol = this.doorColider;
+                        bosLadderRoom.entranceAnim = this.doorAnimator;
+                        break;
                 }
             }
         }
@@ -109,15 +128,13 @@ namespace MazeGeneration
 
         public void CleanDestroy() {
             roomManager.roomSpawnPoints.Remove(this);
-            DestroyDoor();
-            Destroy(gameObject);
-        }
-
-        private void DestroyDoor() {
+                //  Destroy Door
             roomManager.doorColliders.Remove(this.doorColider);
             this.doorColider.enabled = true;
             roomManager.doorAnimators.Remove(this.doorAnimator);
             Destroy(this.door);
+                //  Destroy Spawn Point
+            Destroy(gameObject);
         }
     }
 }

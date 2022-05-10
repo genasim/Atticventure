@@ -8,6 +8,7 @@ namespace MazeGeneration
     {
         [SerializeField] private bool generateMaze = true;
         [SerializeField] private int maxRounds = 1;
+
         [SerializeField] private RoomTemplates templates;
         public RoomTemplates Templates { get => templates; }
 
@@ -45,9 +46,9 @@ namespace MazeGeneration
             var itemRoom = PickRoom();
             ReplaceRoom(itemRoom, Templates.ItemRoom);
 
-            //  ASSIGN BOSS ROOM
-            var bossRoom = rooms[rooms.Count - 1];
-            ReplaceRoom(bossRoom, Templates.BossLadderRoom);
+            //  ASSIGN BOSS LADDER ROOM
+            var bossLadderRoom = rooms[rooms.Count - 1];
+            ReplaceRoom(bossLadderRoom, Templates.BossLadderRoom);
         }
 
         public static GameObject PickRoom() {
@@ -63,6 +64,7 @@ namespace MazeGeneration
             var transform = oldRoom.transform;                                      //  Cache position to place new room
             var index = rooms.IndexOf(oldRoom);                                     //  Cache index of old room to insert new one at
             var positions = new List<Transform>();
+            var mapTile = oldRoom.GetComponentInChildren<RoomManager>().mapTile;
             foreach (var point in oldRoom.GetComponentsInChildren<SpawnPoint>()) {  //  Cache positions of oldRoom's spawnPoints
                 positions.Add(point.transform);
             }
@@ -73,6 +75,7 @@ namespace MazeGeneration
                 if (!CheckIfPointIsInMaze(spawnPoint, positions))                           //  with that of the old ones'
                     spawnPoint.CleanDestroy();                                              //  Remove unnecessary spawnPoints
             }
+            tempRoom.GetComponentInChildren<RoomManager>().mapTile = mapTile;
 
             if (index != rooms.Count-1) rooms.Remove(tempRoom);     //  Remove duplucate entry
             rooms[index] = tempRoom;
