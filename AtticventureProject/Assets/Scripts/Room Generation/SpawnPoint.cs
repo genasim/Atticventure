@@ -10,7 +10,7 @@ namespace MazeGeneration
         [SerializeField] private GameObject door;
         [SerializeField] private BoxCollider2D doorColider;
         [SerializeField] private Animator doorAnimator;
-        [SerializeField] private RoomManager roomManager;
+        [SerializeField] private Room roomManager;
         public MapTile mapTile;
 
 
@@ -91,16 +91,17 @@ namespace MazeGeneration
                 }
             }
 
-            if (other.gameObject.TryGetComponent(out RoomManager rm)) {
+            if (other.gameObject.TryGetComponent(out Room rm)) {
                 if (!CheckCanGoToNextRoom(rm.roomSpawnPoints))
                     CleanDestroy();
 
                 switch ((int)rm.state) {
                     case 2:
-                        door.GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
+                        ReplaceDoor<ItemRoom>(rm);
                         break;
                     case 4:
-                        door.GetComponentInChildren<SpriteRenderer>().color = new Color(1, .47f, .47f, 1);
+                            //  To be replaced when with ReplaceRoom<>() when textures for BossLadder Room are ready
+                        this.door.GetComponentInChildren<SpriteRenderer>().color = new Color(1, .47f, .47f, 1);
                         
                         roomManager.doorColliders.Remove(this.doorColider);
                         roomManager.doorAnimators.Remove(this.doorAnimator);
@@ -115,6 +116,17 @@ namespace MazeGeneration
                         break;
                 }
             }
+        }
+
+        private void ReplaceDoor<T>(Room rm) where T : Room {
+            var newRoom = (T)rm;
+            var door = doorAnimator.gameObject;
+            var rotation = door.transform.rotation;
+
+            var newDoor = Instantiate(newRoom.door, door.transform.position, rotation, door.transform.parent);
+            newDoor.GetComponent<SpriteRenderer>().flipY = door.GetComponent<SpriteRenderer>().flipY;
+            doorAnimator = newDoor.GetComponent<Animator>();
+            Destroy(door);
         }
 
         private bool CheckCanGoToNextRoom(List<SpawnPoint> spawnPoints) {
@@ -133,7 +145,7 @@ namespace MazeGeneration
             this.doorColider.enabled = true;
             roomManager.doorAnimators.Remove(this.doorAnimator);
             Destroy(this.door);
-                //  Destroy Spawn Point
+                //  Destroy Door
             Destroy(gameObject);
         }
     }

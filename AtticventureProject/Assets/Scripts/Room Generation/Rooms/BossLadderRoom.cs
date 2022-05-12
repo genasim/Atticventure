@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace MazeGeneration
 {
-    public class BossLadderRoom : RoomManager
+    public class BossLadderRoom : Room
     {
-        private RoomManager keyRoomManager;
+        private Room keyRoomManager;
         public Item key;
         [HideInInspector] public GameObject keyRoom;
         [HideInInspector] public BoxCollider2D entranceCol;
@@ -21,7 +21,7 @@ namespace MazeGeneration
         private void Awake() {
             SetUpRoom();
             keyRoom = RoomGenerator.PickRoom();
-            keyRoomManager = keyRoom.GetComponentInChildren<RoomManager>();
+            keyRoomManager = keyRoom.GetComponentInChildren<Room>();
         }
 
         private void Start() {

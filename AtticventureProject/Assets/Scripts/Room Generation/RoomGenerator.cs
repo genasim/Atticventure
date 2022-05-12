@@ -29,7 +29,7 @@ namespace MazeGeneration
             int round = 0;
             while (round < maxRounds) {
                 for (int i = rooms.Count - 1; i >= 0 ; i--) {
-                    var spawnPoints = rooms[i].GetComponentInChildren<RoomManager>().roomSpawnPoints;
+                    var spawnPoints = rooms[i].GetComponentInChildren<Room>().roomSpawnPoints;
                     for (int j = spawnPoints.Count - 1; j >= 0 ; j--)
                         spawnPoints[j].SpawnRoom();
                 }
@@ -37,7 +37,7 @@ namespace MazeGeneration
                 round++;
             }
             for (int i = rooms.Count - 1; i >= 0 ; i--) {
-                var spawnPoints = rooms[i].GetComponentInChildren<RoomManager>().roomSpawnPoints;
+                var spawnPoints = rooms[i].GetComponentInChildren<Room>().roomSpawnPoints;
                 for (int j = spawnPoints.Count - 1; j >= 0 ; j--)
                     spawnPoints[j].ClosingRoomSpawn();
             }
@@ -54,7 +54,7 @@ namespace MazeGeneration
         public static GameObject PickRoom() {
             int index = UnityEngine.Random.Range(1, RoomGenerator.Instance.rooms.Count - 2);
             var room = RoomGenerator.Instance.rooms[index];
-            if ((int)room.GetComponentInChildren<RoomManager>().state != (int)RoomState.Regular)
+            if ((int)room.GetComponentInChildren<Room>().state != (int)RoomState.Regular)
                 room = PickRoom();
             
             return room;
@@ -64,7 +64,7 @@ namespace MazeGeneration
             var transform = oldRoom.transform;                                      //  Cache position to place new room
             var index = rooms.IndexOf(oldRoom);                                     //  Cache index of old room to insert new one at
             var positions = new List<Transform>();
-            var mapTile = oldRoom.GetComponentInChildren<RoomManager>().mapTile;
+            var mapTile = oldRoom.GetComponentInChildren<Room>().mapTile;
             foreach (var point in oldRoom.GetComponentsInChildren<SpawnPoint>()) {  //  Cache positions of oldRoom's spawnPoints
                 positions.Add(point.transform);
             }
@@ -73,9 +73,9 @@ namespace MazeGeneration
             var tempRoom = Instantiate(newRoom, transform.position, Quaternion.identity);   //  Place new room
             foreach (var spawnPoint in tempRoom.GetComponentsInChildren<SpawnPoint>()) {    //  Compare positions of new points
                 if (!CheckIfPointIsInMaze(spawnPoint, positions))                           //  with that of the old ones'
-                    spawnPoint.CleanDestroy();                                              //  Remove unnecessary spawnPoints
+                    spawnPoint.CleanDestroy();                                              //  Remove unnecessary doors
             }
-            tempRoom.GetComponentInChildren<RoomManager>().mapTile = mapTile;
+            tempRoom.GetComponentInChildren<Room>().mapTile = mapTile;
 
             if (index != rooms.Count-1) rooms.Remove(tempRoom);     //  Remove duplucate entry
             rooms[index] = tempRoom;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MazeGeneration
 {
-    public class BossRoom : RoomManager
+    public class BossRoom : Room
     {
         [SerializeField] private GameObject boss;
         [HideInInspector] public List<GameObject> enemyList;

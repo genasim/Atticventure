@@ -37,8 +37,7 @@ public class PlayerData : ScriptableObject
     public float CritRate { get => critRate;
         set {
             critRate = value;
-            if (critRate < 0) critRate = 0;
-            if (critRate > 100) critRate = 100;
+            Mathf.Clamp(critRate, 0, 100);
         }
     }
     

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MazeGeneration 
 {
-    public class RegularRoom : RoomManager
+    public class RegularRoom : Room
     {
         [SerializeField] private List<GameObject> spawnPoints;
         [SerializeField] private LootEffects crate;
