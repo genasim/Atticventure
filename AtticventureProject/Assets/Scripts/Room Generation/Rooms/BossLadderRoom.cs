@@ -6,13 +6,16 @@ namespace MazeGeneration
 {
     public class BossLadderRoom : Room
     {
-        private Room keyRoomManager;
-        public Item key;
-        [HideInInspector] public GameObject keyRoom;
-        [HideInInspector] public BoxCollider2D entranceCol;
-        [HideInInspector] public Animator entranceAnim;
+        public static bool keyFound = false;
+        public static Room neighbouringRoom;
+        public static GameObject keyRoom;
+        public static BoxCollider2D entranceCol;
+        public static Animator entranceAnim;
 
-        public void UnlockRoom() {
+        public Item key;
+
+        public static void UnlockRoom() {
+            if (!keyFound) return;
             entranceCol.enabled = false;
             entranceAnim.SetBool("closeDoor", false);
             entranceAnim.SetBool("openDoor", true);
@@ -21,7 +24,6 @@ namespace MazeGeneration
         private void Awake() {
             SetUpRoom();
             keyRoom = RoomGenerator.PickRoom();
-            keyRoomManager = keyRoom.GetComponentInChildren<Room>();
         }
 
         private void Start() {

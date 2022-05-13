@@ -10,7 +10,8 @@ namespace MazeGeneration
         [SerializeField] private LootEffects crate;
         [HideInInspector] public List<GameObject> enemyList;
         private int enemiesCount = 0;
-        private int EnemiesCount { set {
+        private int EnemiesCount { get => enemiesCount; 
+            set {
                 enemiesCount = value;
                 if (hasBeenActivated && enemiesCount == 0)
                 {
@@ -24,11 +25,13 @@ namespace MazeGeneration
 
                     crate.roomHasBeenCleared = true;
                     crate.PlusHP();
-                
+                    roomHasBeenCleared = true;
+
                     var bossLadderRoom = FindObjectOfType<BossLadderRoom>();
-                    if (crate.item != bossLadderRoom.GetComponentInChildren<BossLadderRoom>().key) return;
-                    bossLadderRoom.UnlockRoom();
-                    crate.Interact();
+                    if (crate.item == bossLadderRoom.key) {
+                        crate.Interact();
+                    }
+                    if (BossLadderRoom.neighbouringRoom == this) BossLadderRoom.UnlockRoom();
                 }
             }
         }
@@ -38,6 +41,9 @@ namespace MazeGeneration
         }
 
         override protected void InitiateRoom() {
+            if (roomHasBeenCleared && BossLadderRoom.neighbouringRoom == this) BossLadderRoom.UnlockRoom();
+
+            if (hasBeenActivated) return;
             if (spawnPoints.Count == 0) {
                 EnemiesCount = 0;
                 return;

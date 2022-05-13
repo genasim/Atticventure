@@ -948,7 +948,8 @@ MonoBehaviour:
   doorColliders:
   - {fileID: 210600486276528031}
   doorAnimators:
-  - {fileID: 0}
+  - {fileID: 4816415726889587914}
+  door: {fileID: 0}
   hasBeenActivated: 0
   mapTile: {fileID: 0}
   spawnPoints:

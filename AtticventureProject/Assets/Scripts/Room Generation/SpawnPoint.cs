@@ -10,8 +10,8 @@ namespace MazeGeneration
         [SerializeField] private GameObject door;
         [SerializeField] private BoxCollider2D doorColider;
         [SerializeField] private Animator doorAnimator;
-        [SerializeField] private Room roomManager;
-        public MapTile mapTile;
+        private Room room;
+        [HideInInspector] public MapTile mapTile;
 
 
         [Header("")]
@@ -27,6 +27,7 @@ namespace MazeGeneration
         void Awake()
         {
             templates = RoomGenerator.Instance.Templates;
+            room = transform.parent.parent.GetComponent<Room>();
         }
 
         public void ClosingRoomSpawn() {
@@ -102,29 +103,32 @@ namespace MazeGeneration
                     case 4:
                             //  To be replaced when with ReplaceRoom<>() when textures for BossLadder Room are ready
                         this.door.GetComponentInChildren<SpriteRenderer>().color = new Color(1, .47f, .47f, 1);
+                        BossLadderRoom.neighbouringRoom = room;
                         
-                        roomManager.doorColliders.Remove(this.doorColider);
-                        roomManager.doorAnimators.Remove(this.doorAnimator);
+                        room.doorColliders.Remove(this.doorColider);
+                        room.doorAnimators.Remove(this.doorAnimator);
                         
                         var bosLadderRoom = (BossLadderRoom)rm;
                         doorColider.enabled = true;
                         doorAnimator.SetBool("closeDoor", true);
                         doorAnimator.SetBool("openDoor", false);
 
-                        bosLadderRoom.entranceCol = this.doorColider;
-                        bosLadderRoom.entranceAnim = this.doorAnimator;
+                        BossLadderRoom.entranceCol = this.doorColider;
+                        BossLadderRoom.entranceAnim = this.doorAnimator;
                         break;
                 }
             }
         }
 
         private void ReplaceDoor<T>(Room rm) where T : Room {
-            var newRoom = (T)rm;
             var door = doorAnimator.gameObject;
             var rotation = door.transform.rotation;
 
-            var newDoor = Instantiate(newRoom.door, door.transform.position, rotation, door.transform.parent);
+            var newDoor = Instantiate(((T)rm).door, door.transform.position, rotation, door.transform.parent);
             newDoor.GetComponent<SpriteRenderer>().flipY = door.GetComponent<SpriteRenderer>().flipY;
+            
+            var index = room.doorAnimators.IndexOf(doorAnimator);
+            room.doorAnimators[index] = newDoor.GetComponent<Animator>();
             doorAnimator = newDoor.GetComponent<Animator>();
             Destroy(door);
         }
@@ -139,11 +143,11 @@ namespace MazeGeneration
         }
 
         public void CleanDestroy() {
-            roomManager.roomSpawnPoints.Remove(this);
+            room.roomSpawnPoints.Remove(this);
                 //  Destroy Door
-            roomManager.doorColliders.Remove(this.doorColider);
+            room.doorColliders.Remove(this.doorColider);
             this.doorColider.enabled = true;
-            roomManager.doorAnimators.Remove(this.doorAnimator);
+            room.doorAnimators.Remove(this.doorAnimator);
             Destroy(this.door);
                 //  Destroy Door
             Destroy(gameObject);

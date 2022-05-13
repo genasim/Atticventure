@@ -49,7 +49,7 @@ MonoBehaviour:
   door: {fileID: 2029427747086161800}
   doorColider: {fileID: 5611185811788810523}
   doorAnimator: {fileID: 1026492476378639254}
-  roomManager: {fileID: 913265840722439049}
+  room: {fileID: 913265840722439049}
   mapTile: {fileID: 0}
   openingDiraction: 3
   spawned: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   door: {fileID: 7703789978277592741}
   doorColider: {fileID: 7994422332954556563}
   doorAnimator: {fileID: 2253873812935832437}
-  roomManager: {fileID: 913265840722439049}
+  room: {fileID: 913265840722439049}
   mapTile: {fileID: 0}
   openingDiraction: 2
   spawned: 0
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   door: {fileID: 2841142820519553744}
   doorColider: {fileID: 3720520045266182936}
   doorAnimator: {fileID: 1733866320252931546}
-  roomManager: {fileID: 913265840722439049}
+  room: {fileID: 913265840722439049}
   mapTile: {fileID: 0}
   openingDiraction: 0
   spawned: 0
@@ -2616,7 +2616,7 @@ MonoBehaviour:
   door: {fileID: 3875590708238205855}
   doorColider: {fileID: 9219230814743293218}
   doorAnimator: {fileID: 2613994139051406092}
-  roomManager: {fileID: 913265840722439049}
+  room: {fileID: 913265840722439049}
   mapTile: {fileID: 0}
   openingDiraction: 1
   spawned: 0
@@ -3064,12 +3064,13 @@ MonoBehaviour:
   - {fileID: 7994422332954556563}
   doorAnimators:
   - {fileID: 1026492476378639254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2253873812935832437}
+  - {fileID: 2613994139051406092}
+  - {fileID: 1733866320252931546}
   door: {fileID: 7277146106549835302, guid: fc1656d39b06b404f9d686c49d1e66b8, type: 3}
   hasBeenActivated: 0
   mapTile: {fileID: 0}
+  roomHasBeenCleared: 0
   crate: {fileID: 270048895125857766}
 --- !u!61 &4175626312607156075
 BoxCollider2D:

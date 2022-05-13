@@ -16,6 +16,7 @@ namespace MazeGeneration
         [SerializeField] protected bool hasBeenActivated = false;
         private CinemachineVirtualCamera camCinamachine;
         public MapTile mapTile;
+        [HideInInspector] public bool roomHasBeenCleared = false;
 
         protected void SetUpRoom() {
             RoomGenerator.Instance.rooms.Add(transform.parent.gameObject);
@@ -44,9 +45,7 @@ namespace MazeGeneration
                 AStarGridGraph.UpdateGraph(centre: transform.position);
                 // PlayerShoot.currentRoom = this;
 
-                if (!hasBeenActivated) {
-                    InitiateRoom();
-                }
+                InitiateRoom();
             }
         }
 

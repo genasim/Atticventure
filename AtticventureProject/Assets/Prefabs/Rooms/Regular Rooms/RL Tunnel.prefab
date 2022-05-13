@@ -793,10 +793,12 @@ MonoBehaviour:
   - {fileID: 825811198296682329}
   - {fileID: 7657236313578900147}
   doorAnimators:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 24301713356571967}
+  - {fileID: 6662751335561508196}
+  door: {fileID: 0}
   hasBeenActivated: 0
   mapTile: {fileID: 0}
+  roomHasBeenCleared: 0
   spawnPoints:
   - {fileID: 5618716984452606244}
   crate: {fileID: 8337149831379984969}
@@ -1063,7 +1065,6 @@ MonoBehaviour:
   door: {fileID: 9146828878629983418}
   doorColider: {fileID: 825811198296682329}
   doorAnimator: {fileID: 6662751335561508196}
-  roomManager: {fileID: 2874352305825824259}
   mapTile: {fileID: 0}
   openingDiraction: 3
   spawned: 0
@@ -1160,10 +1161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb3a8b2553a5494ebc786cc260a625c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 0}
+  door: {fileID: 1103517727883217792}
   doorColider: {fileID: 7657236313578900147}
-  doorAnimator: {fileID: 0}
-  roomManager: {fileID: 2874352305825824259}
+  doorAnimator: {fileID: 24301713356571967}
   mapTile: {fileID: 0}
   openingDiraction: 1
   spawned: 0
@@ -2184,6 +2184,11 @@ PrefabInstance:
 --- !u!4 &24301713356571966 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2937553268113349545, guid: f244707e02a30b94fbf336b816f0959f, type: 3}
+  m_PrefabInstance: {fileID: 2923433629967343255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &24301713356571967 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2937553268113349544, guid: f244707e02a30b94fbf336b816f0959f, type: 3}
   m_PrefabInstance: {fileID: 2923433629967343255}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6228329257867284365

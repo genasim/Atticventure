@@ -16,6 +16,10 @@ namespace MazeGeneration
 
         protected override void InitiateRoom()
         {
+            roomHasBeenCleared = true;
+            if (roomHasBeenCleared && BossLadderRoom.neighbouringRoom == this) BossLadderRoom.UnlockRoom();
+
+            if (hasBeenActivated) return;
             crate.roomHasBeenCleared = true;
 
             hasBeenActivated = true;

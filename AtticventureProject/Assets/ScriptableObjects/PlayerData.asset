@@ -15,7 +15,7 @@ MonoBehaviour:
   speed: 9
   bullet: {fileID: 3692864561690947711, guid: ee2349bb13862a84fa4c775854770f30, type: 3}
   bulletSpeed: 35
-  damage: 10
+  damage: 100
   attackSpeed: 1
   critRate: 15
   critDamage: 50

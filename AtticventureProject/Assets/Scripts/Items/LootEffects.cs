@@ -33,10 +33,30 @@ public class LootEffects : MonoBehaviour, IInteractable
         GenerateItem(RoomGenerator.Instance.Pools.RegularRoom);
     }
 
-    public void GenerateItem(ItemPool newPool)
+    
+    public void GenerateItem(ItemPool pool)
     {
-        var loot = GetComponent<RandomLoot>();
-        loot.GenerateRandomItem(newPool);
+        int total = 0;
+
+        foreach (var item in pool.table)
+        {
+            total += item;
+        }
+
+        int randomNumber = Random.Range(0, total);
+
+        for (int i = 0; i < pool.table.Length; i++)
+        {
+            if (randomNumber <= pool.table[i])
+            {
+                item = pool.loot[i];
+                return;
+            }
+            else
+            {
+                randomNumber -= pool.table[i];
+            }
+        }
     }
 
     private void OnEnable() {
@@ -126,6 +146,9 @@ public class LootEffects : MonoBehaviour, IInteractable
                 break;
             case -8:
                 MinusMvtSpd();
+                break;
+            case 0:
+                BossLadderRoom.keyFound = true;
                 break;
             default:
                 Debug.Log("Invalid Effect");

@@ -1670,8 +1670,9 @@ MonoBehaviour:
   - {fileID: 6553178478622888602}
   - {fileID: 9030669113149332859}
   doorAnimators:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7285097306140062986}
+  - {fileID: 309847724133734446}
+  door: {fileID: 0}
   hasBeenActivated: 0
   mapTile: {fileID: 0}
   spawnPoints:

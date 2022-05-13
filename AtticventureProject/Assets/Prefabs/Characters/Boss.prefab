@@ -434,8 +434,8 @@ GameObject:
   - component: {fileID: 7646479237778451732}
   - component: {fileID: 724464017299623715}
   - component: {fileID: 6019936983956600934}
-  - component: {fileID: 4183650504609140636}
   - component: {fileID: 2445100686679910534}
+  - component: {fileID: 4183650504609140636}
   - component: {fileID: 1769007673094393940}
   m_Layer: 8
   m_Name: Boss
@@ -752,22 +752,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4183650504609140636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649358822253364556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ef1d0fca9228f642b020b9323d78b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOver: 0
-  maxHealth: 500
-  currentHealth: 0
-  hitSFX: {fileID: 7646479237778451732}
 --- !u!114 &2445100686679910534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,6 +778,22 @@ MonoBehaviour:
     attackPointDR: {fileID: 937249931635273563}
     attackPointDL: {fileID: 8000207231527245192}
   shotSFX: {fileID: 724464017299623715}
+--- !u!114 &4183650504609140636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649358822253364556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef1d0fca9228f642b020b9323d78b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOver: 0
+  maxHealth: 500
+  currentHealth: 0
+  hitSFX: {fileID: 7646479237778451732}
 --- !u!58 &1769007673094393940
 CircleCollider2D:
   m_ObjectHideFlags: 0

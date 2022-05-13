@@ -3108,10 +3108,10 @@ MonoBehaviour:
   - {fileID: 999880991}
   - {fileID: 880711016}
   doorAnimators:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1607367060}
+  - {fileID: 2100630046}
+  - {fileID: 1907169823}
+  - {fileID: 1806455784}
   door: {fileID: 0}
   hasBeenActivated: 0
   mapTile: {fileID: 0}
